@@ -1,0 +1,67 @@
+/* CSS Document */
+body { 
+	font-size:62.5%; 
+	font-family:Arial, Helvetica, sans-serif;
+	background: #009FAA url(../img/body_bg.png) repeat-x;
+	margin-top:40px; 
+}
+
+
+#formInd{
+	width:600px; margin:0 auto; 
+	height:320px;
+	padding:10px;
+	color:#ffd;
+	border-style:solid;
+	border-radius:15px;
+	display:block;
+}
+
+#formComp{
+	width:600px; margin:0 auto; 
+	height:200px;
+	padding:10px;
+	color:#ffd;
+	border-style:solid;
+	border-radius:15px;
+	display:block;
+}
+	
+label{ 
+	font-size:90%; display:block; 
+	float:left; width:10em; text-align:right;
+	margin:.2em .2em 0 0; color:#ffd; 
+	font-weight:bold;padding:8px 0px; 
+}
+
+input.text-input{
+	margin:4px;padding:2px 0;color:#333;
+	background-color:#FFFFFF;
+}
+input.text-input:focus{
+	background-color:#FFDDAA;
+}
+
+input.button:hover{
+	background:#009FAA none repeat scroll 0% 0%; color:white;
+}
+
+table td{
+	border:none;
+}
+
+input.button{
+	/*position:absolute; top:125px; left:120px;*/
+	padding:3px 6px;
+	border:2px solid #fff; margin:20px 0px 0px 0px; 
+	color:#3D7169; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	background:#CCC; 
+	/*-moz-border-radius:5px;*/
+}
+
+#Resultado{
+	margin-top:20px;	
+	display:block;
+	padding:10px;
+}

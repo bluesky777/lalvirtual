@@ -1,0 +1,34 @@
+.clear{
+	clear:both;
+}
+.clearIz{
+	clear:rigth;
+}
+.MenuCont{
+    margin-top: 20px;
+    display: block;
+}
+.ContPer{
+	margin: 10px;
+	float:left;
+	display:block;
+	border: 1px solid;
+	box-shadow:#666;
+	width: 300px;
+	overflow:hidden;
+	border-radius: 5px;
+}
+.ContPer ul li{
+    cursor: pointer;
+}
+.ContPer ul li ul{
+	font-size:9px;
+}
+.ContPer ul li ul li{
+	cursor: default;
+	display:block;
+}
+
+.Respuesta{
+    float: left;
+}

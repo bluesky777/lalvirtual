@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" /> 
+        <title>Slideshow with jmpress.js</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Slideshow with jmpress.js" />
+        <meta name="keywords" content="jmpress, slideshow, container, plugin, jquery, css3" />
+        <meta name="author" content="for Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="Entrada/SlideshowJmpress/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="Entrada/SlideshowJmpress/css/style.css" />
+		<!--[if lt IE 9]>
+		<link rel="stylesheet" type="text/css" href="css/style_ie.css" />
+		<![endif]-->
+
+    </head>
+    <body>
+        <div class="container">
+
+			<section id="jms-slideshow" class="jms-slideshow">
+				<div class="step" data-color="color-1">
+					<div class="jms-content">
+						<h3>En buena hora</h3>
+						<p>Justamente lo que estabamos necesitando, algo que automatice los procesos con gran inteligencia virtual</p>
+						<a class="jms-link" href="http://www.jdbluesky.com/">www.jdbluesky.com</a>
+					</div>
+					<img src="Entrada/SlideshowJmpress/images/1.png" />
+				</div>
+				<div class="step" data-color="color-2" data-y="500" data-scale="0.4" data-rotate-x="30">
+					<div class="jms-content">
+						<h3>Liceo Adventista Libertad</h3>
+						<p>Una institución que cubre todas tus necesidades</p>
+						<a class="jms-link" href="http://licadli.interamerica.org">Leer más</a>
+					</div>
+					<img src="Entrada/SlideshowJmpress/images/2.png" />
+				</div>
+				<div class="step" data-color="color-3" data-x="2000" data-z="3000" data-rotate="170">
+					<div class="jms-content">
+						<h3>Estamos de cumpleaños</h3>
+						<p>Este año participa con nosotros de todas las actividades en donde conmemoraremos las bodas de plata de nuestro colegio</p>
+                                                <a class="jms-link" href="javascript:void(0);" onclick="alert('Feliz cumpleaños mi colegio!');">Leer más</a>
+					</div>
+					<img src="Entrada/SlideshowJmpress/images/3.png" />
+				</div>
+				<div class="step" data-color="color-4" data-x="3000">
+					<div class="jms-content">
+						<h3>Web master!!</h3>
+						<p>"Agradezco a toda la comunidad liceista por su apoyo y aprecio durante todos estos años de labor. Espero sigamos demostrando que la informática también alaba el nombre de Dios"</p>
+						<a class="jms-link" href="http://www.youtube.com/user/7777BlueSky7777">En youtube</a>
+					</div>
+					<img src="Entrada/SlideshowJmpress/images/4.png" />
+				</div>
+				<div class="step" data-color="color-5" data-x="4500" data-z="1000" data-rotate-y="45">
+					<div class="jms-content">
+						<h3>Sabías que...</h3>
+						<p>Que pronto estaremos colocando secciones como la foto de la semana, la canción de la semana, Publicaciones destacadas y mucho más!</p>
+						<a class="jms-link" href="javascript:void(0);">Pronto</a>
+					</div>
+					<img src="Entrada/SlideshowJmpress/images/5.png" />
+				</div>
+			</section>
+        </div>
+		<script type="text/javascript">
+			$(function() {
+			
+				$( '#jms-slideshow' ).jmslideshow();
+				
+			});
+		</script>
+    </body>
+</html>

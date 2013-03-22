@@ -1,0 +1,38 @@
+#frmPorGrado select{
+	margin: 4px;
+	padding: 5px;
+	font-size: 110% !important;
+}
+.txtInfo{
+	display: inline-block;
+	margin: 4px;
+	font-size: 110%;
+}
+.txtInfo2{
+	display: inline-block;
+	width: 100px;
+	margin: 4px;
+	font-size: 110%;
+}
+#rdPuestModo{
+	margin-bottom: 5px;
+}
+.txtInfo a{
+	font-size: 120%;
+	font-weight: bold;
+}
+.txtInfo a:hover{
+	text-decoration: underline;
+}
+#OptPuntajes{
+	margin: 7px;
+}
+#OptPuntajes .lightajax{
+	display: inline-block;
+	font-size: 120%;
+	font-weight: bold;
+	padding: 5px;
+}
+#OptPuntajes .lightajax:hover{
+	text-decoration: underline;
+}

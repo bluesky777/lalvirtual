@@ -1,0 +1,46 @@
+#gxAn{
+	vertical-align: top;
+	display: inline-block;
+	width: 300px;
+	height: 250px;
+	margin: 4px;
+	border: 1px solid #ccc;
+	padding: 4px;
+}
+.xti{
+	padding: 8px;
+	font-size: 100%;
+	font-weight: bold;
+	color: #fff;
+
+	background: #8fa30d; /* Old browsers */
+	background: -moz-linear-gradient(top,  #8fa30d 0%, #6d9100 49%, #5f7f00 51%, #78a000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8fa30d), color-stop(49%,#6d9100), color-stop(51%,#5f7f00), color-stop(100%,#78a000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #8fa30d 0%,#6d9100 49%,#5f7f00 51%,#78a000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #8fa30d 0%,#6d9100 49%,#5f7f00 51%,#78a000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #8fa30d 0%,#6d9100 49%,#5f7f00 51%,#78a000 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #8fa30d 0%,#6d9100 49%,#5f7f00 51%,#78a000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8fa30d', endColorstr='#78a000',GradientType=0 ); /* IE6-9 */
+
+}
+.xtit a{
+	color: #fff;
+}
+.xtit a:hover{
+	text-decoration: underline;
+}
+.xlis{
+	padding: 4px;
+	display: inline-block;
+	height: 200px;
+	overflow: auto;
+}
+.xlis li{
+	padding: 4px;
+	max-height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.xlis li a:hover{
+	text-decoration: underline;
+}

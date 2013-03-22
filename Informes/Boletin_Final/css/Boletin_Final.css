@@ -1,0 +1,150 @@
+body{
+	margin: 0;
+	font-size: 12px;
+	line-height: 1;
+	text-align: center;
+}
+header{
+	display: inline-block;
+	vertical-align: top;
+}
+section{
+	display: inline-block;
+}
+.imgLog{
+	margin: 10px 0 10px 10px;
+	display: inline-block;
+}
+.imgLog img{
+	height:60px;
+}
+.HeCol, .Resol{
+	display: inline-block;
+	width: 500px;
+	text-align: center;
+	vertical-align: top;
+
+}
+.HeCol h3, .HeCol h2, .HeCol p{
+	margin: 0px;
+}
+
+.HeCol p{
+	font-size: 80%;
+	color: #8D8D8D;
+}
+
+#Info{
+
+}
+.tnom{
+	display: inline-block;
+}
+.nom{
+	display: inline-block;
+	font-weight: bold;
+	width: 400px;
+
+}
+#nom, #gr{
+	display: inline-block;
+	margin: 10px;
+	font-size: 110%;
+}
+.tbc, .tbr{
+	display: table;
+	margin: 0 20px;
+}
+.tbc{
+	margin-top: 20px;
+}
+.rowhf, .row{
+	display: table-row;
+}
+.cell{
+	display: table-cell;
+	border-bottom: 1px solid #CCC;
+	text-align: center;
+}
+.cMat, .tbr .t{
+	width:300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+	text-align: left;
+}
+.hNo, .hMat, .hPer, .hInd, .hDef, .hCre, .hAus, .tbr .cell{
+	font-size: 110%;
+	font-weight: bold;
+}
+.hNo, .tbr .n{
+	width: 20px;
+}
+.hMat{
+	width: 300px;
+}
+
+.hPer, .hCre, .tbr .p, .tbr .c{
+	width: 37px;
+	overflow: hidden;
+}
+.hCre, .Cre{
+	font-style: italic;
+}
+.hInd, .tbr .i{
+	width: 70px;
+}
+.hDef, .tbr .d{
+	width: 75px;
+}
+.tbr .t{
+	text-align: center !important;
+}
+.diag{
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 40px;
+	font-weight: bold;
+}
+footer{
+	text-align: center;
+	margin-top: 30px;
+}
+.frRec, .frSec{
+	width: 200px;
+	display: inline-block;
+	padding: 5px;
+	text-align: center;
+}
+.frSec .fr, .frRec .fr{
+	padding: 2px 4px 0px 4px; 
+	border-top: 1px solid #CCC;
+}
+.frRec{
+	margin-right: 20px;
+}
+.frRec img, .frSec img, .EspFr{
+	height: 110px;
+	border: 0px;
+}
+.frSec img{
+	height: 70px;
+}
+.parPerd{
+	font-size: 70%;
+	color: #D00000;
+}
+.parPerd:hover{
+	cursor: pointer;
+	color: #F1212F;
+}
+.infoCol{
+	margin-top: 60px;
+	display:inline-block;
+}
+.urlPagCol, .urlMyVC, .Telef{
+	display: inline-block;
+}
+.urlPagCol{
+	margin-right: 200px;
+}

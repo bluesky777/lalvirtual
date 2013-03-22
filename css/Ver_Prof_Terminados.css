@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+.AnuncioNuevo{
+	width:400;
+	height:40;
+	border:solid  #DBD9FF;
+	border-radius: 0 20 0 20;
+	padding:10;
+	overflow:hidden;
+	background-color:#C8AAFF;
+}
+
+.Anuncio{
+	width:400;
+	height:40;
+	overflow:hidden;
+	border:solid #FBD9E2;
+	border-radius: 0 20 0 20;
+	padding:10;
+}

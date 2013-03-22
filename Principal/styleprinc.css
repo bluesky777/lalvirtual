@@ -1,0 +1,376 @@
+
+
+#myBarra{
+    border-bottom: 1px solid #133783;
+    padding: 5px 0px 0px 0px;
+    overflow: auto;
+    /*height: 25px;*/
+    vertical-align: middle;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.52);
+    /*background-color: #3B5998; Color de facebook*/
+    
+
+    background: #4495e7; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ0OTVlNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDUzYTYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #4495e7 0%, #0053a6 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4495e7), color-stop(100%,#0053a6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #4495e7 0%,#0053a6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #4495e7 0%,#0053a6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #4495e7 0%,#0053a6 100%); /* IE10+ */
+    background: linear-gradient(top,  #4495e7 0%,#0053a6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4495e7', endColorstr='#0053a6',GradientType=0 ); /* IE6-8 */
+
+}
+
+#myBarra #myBarraInt{
+    /*position: relative;*/
+    
+    width: 100%;
+    height: 30px;
+}
+.Separador{
+    border: 1px solid #a8abfa;
+    vertical-align: bottom;
+    margin-top: 7px;
+    
+    height: 15px;
+    border-right-style:none;
+    border-top-style:none;
+    border-bottom-style:none;
+    /*display: inline-block;*/
+    float: left;
+}
+
+#FotoUsu{
+    /*width: 25px; */
+    height: 25px;
+
+}
+
+
+.imgUsu{
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 2px;
+}
+
+.TinyName{
+    padding-top: 7px;
+    max-width: 175px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+
+
+.Opt1{
+	float: left;
+}
+
+#CentroPrinc{
+    margin-top: 2px;
+    overflow: auto;
+}
+
+.wrapper{ 
+    margin: 0pt 0px 0px 18px;  
+    padding: 50px 5px 5px;
+    max-width: 800px;
+    overflow: auto;
+    /*background-color: #fff;*/
+    min-height: 700px;
+}  
+.ui-autocomplete-input {
+    width: 320px;
+    overflow-y: auto;   overflow-x: hidden;
+    padding-right: 20px;    padding-left: 4px;  padding-top: 4px;   padding-bottom: 4px;
+    font-size: 0.9em !important;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+}
+.ui-widget{
+    margin-right: -0.4em !important;
+}
+
+/*///////////// MENU DE PERIODO //////////////////////*/
+
+
+#PeriodoNav, .OptInicio, #OptUsuario, #OptCerrar, #OptLogoMyVc, #BuscadorPeople{
+    float: left; 
+    color: #D8DFEA;
+	
+}
+
+#OptLogoMyVc{
+    margin: 0px 25px;
+}
+#OptLogoMyVc img{
+    height: 27px;
+}
+
+#OptUsuario a{
+    float: left;
+}
+
+#PeriodoNav .PeriodoNavMenu{
+    width: 90px;
+    display: inline-block;
+}
+#BuscadorPeople{
+    margin: 0px 50px;
+}
+#txtBuscardorPeople{
+    padding: 4px;
+    width: 315px;
+    margin-left: 4px;
+}
+#PeriodoNav .PeriodoNavMenu a{
+    background-image: url("../img/flecha-abajo.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 13px !important;
+}
+
+#OptUsuario a{
+    display: block;
+    padding: 1px 10px;
+    color: #D8DFEA;
+    font-weight: bold;
+}
+
+#PeriodoNav .PeriodoNavMenu a, .OptInicio a, #OptCerrar a{
+    display: block;
+    padding: 8px 10px;
+    color: #D8DFEA;
+    font-weight: bold;
+	
+}
+
+#PeriodoNav .PeriodoNavMenu a:hover, .OptInicio a:hover, #OptUsuario a:hover, #OptCerrar a:hover{
+    color: #FFFFFF;
+}
+
+#PeriodoNav .PeriodoOpciones{
+    display: none;
+    background: #f0eeff;
+    position: absolute;
+    border-radius: 0px 1px 4px 4px;
+    box-shadow: 0px 4px 2px #a7a7a7;
+}
+
+
+#PeriodoNav .PeriodoOpciones .PeriodoOpcion .PeriodoYear{
+    color: #060029;
+    padding: 10px 15px 3px 15px;
+    display: block;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#PeriodoNav .PeriodoOpciones .PeriodoOpcion .PeriodoPer a{
+    padding: 5px 25px;
+    display: block;
+}
+#PeriodoNav .PeriodoOpciones .PeriodoOpcion .PeriodoPer a:hover{
+    background: #6977d7;
+    color: #FFFFFF;
+}
+
+
+.MenuBarraPresionado{
+    background: #f0eeff !important;
+    color: #296ba5 !important;
+        
+}
+
+
+.capaTransparente{position:absolute; height:100%; width:80%;
+                 background:#ccc;
+                 opacity: 0; filter: alpha(opacity=0); -moz-opacity: 0;}
+
+
+
+/*/////////////  FIN MENU DE PERIODO //////////////////////*/
+
+
+
+/*///////////// PARA CONTENIDO DE CREAR PERIODO //////////////////////*/
+.NuevoPer{
+    
+	border: 1px solid #CED5D7;
+	border-radius: 6px;
+	padding: 45px 45px 20px;
+	margin-top: 50px;
+	background-color: white;
+	box-shadow: 0px 5px 10px #B5C1C5, 0 0 0 10px #EEF5F7 inset;
+}
+.NuevoPer label{
+    font-family: 'Signika', sans-serif;
+	display: block; 
+	font-weight: bold;
+}
+.NuevoPer div{
+	margin-bottom: 15px;
+}
+
+.NuevoPer input[type='text'], .contacto textarea, .contacto input[type='password']{
+    font-family: 'Signika', sans-serif;
+	padding: 7px 6px;
+	width: 294px;
+	border: 1px solid #CED5D7;
+	resize: none;
+	box-shadow:0 0 0 3px #EEF5F7;
+	margin: 5px 0;
+}
+.NuevoPer input[type='text']:focus, .contacto textarea:focus, .contacto input[type='password']:focus{
+	outline: none;
+	box-shadow:0 0 0 3px #dde9ec;
+}
+
+
+
+/*////////////// FIN CONTENIDO CREAR PERIODO //////////////////////*/
+
+
+
+
+
+
+/* Estilo del menu principal */
+
+
+#MenuPrincipal{
+    border-right: 1px solid #CCCCCC;
+    float: left;
+    padding: 5px 5px 5px 15px;
+}
+
+#MenuPrincipal .imgUsuIzquierda img{
+    margin-top: 10px;
+    max-width: 110px;
+    opacity: 0.8;
+    border: 1px solid #D8DFEA;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px #CAD2CE;
+}
+#MenuPrincipal .imgUsuIzquierda img:hover{
+    opacity: 1;
+}
+
+.SepararMenu{
+    border-bottom: 1px solid #d5cdff; 
+    margin-top: 10px;
+}
+
+#InforUsuario{
+    vertical-align: top;
+    padding-top: 40px;
+    padding-left: 10px;
+    max-width: 100px;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#MenuPrincipal #MenuOpciones{
+    display: block;
+    padding: 4px 0px 4px 5px;
+    width: 200px;
+}
+
+#MenuPrincipal #MenuOpciones .OpcionPrinc{
+    
+}
+#MenuPrincipal #MenuOpciones .OpcionPrinc a{
+    font-family: 'Signika', sans-serif;
+    background-image: url("../img/ico_List_Der.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 5px 0px 5px 30px;
+    
+    color: #060029;
+    display: block;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+#MenuPrincipal #MenuOpciones .OpcionPrinc a:hover{
+    background-color: #d7d2ee;
+}
+
+#MenuPrincipal #MenuOpciones .OpcionPrinc ul li a{
+    font-family: 'Signika', sans-serif;
+    background-image: none;
+    padding-left: 35px;
+    padding-bottom: 1px;
+    color: #4e4e4e;
+    font-size: 0.8em;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*////////////// EL TOOLTIP //////////*/
+
+.tipsy-inner {
+	padding:10px 15px;
+	line-height:1.5em;
+	font-weight:bold;
+}
+.tipsy {
+	opacity:.8;
+	filter:alpha(opacity=80);
+	background-repeat:no-repeat;
+	padding:5px;
+	
+}
+.tipsy-inner {
+	padding:8px 8px;
+	max-width:150px;
+	font:11px 'Lucida Grande', sans-serif;
+	font-weight:bold;
+	-moz-border-radius:4px;
+	-khtml-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	background-color:#000;
+	color:white;
+	text-align:left;
+	
+}
+.tipsy-north {
+	background-image:url(../Entrada/images/tipsy-north.gif);
+	background-position:top center;
+}
+.tipsy-south {
+	background-image:url(../Entrada/images/tipsy-south.gif);
+	background-position:bottom center;
+}
+.tipsy-east {
+	background-image:url(../Entrada/images/tipsy-east.gif);
+	background-position:right center;
+}
+.tipsy-west {
+	background-image:url(../Entrada/images/tipsy-west.gif);
+	background-position:left center;
+}
+/*////// FIN TOOLTIP //////////*/
+

@@ -1,0 +1,41 @@
+
+#ltAct{
+	margin: 4px;
+	padding: 2px;
+}
+
+#ltAct li{
+	vertical-align: middle;
+	border: 1px solid #CCC;
+	padding: 4px;
+	font-size: 1.2em;
+}
+.NoA{
+	display: inline-block;
+	font-size: 1em;
+	font-weight: bold;
+	padding: 4px;
+}
+.TitA{
+	display: inline-block;
+	width: 400;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.TitA:hover{
+	text-decoration: underline;
+}
+.TitA a{
+	display:block;
+    padding: 10px 5px 4px;    
+}
+#ltAct li img{
+	opacity: .8;
+	display: inline-block;
+	height: 20px;
+	cursor: pointer;
+}
+#ltAct li img:hover{
+	opacity: 1;
+}

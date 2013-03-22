@@ -1,0 +1,76 @@
+
+.ImgPerfil img, .ImgPrincipal img{
+    width: 130px;
+    display: inline-block;
+}
+.ImgPerfil, .ImgPrincipal{
+    display: inline-block;
+}
+.ImgPerfil img:hover, .ImgPrincipal img:hover{
+    opacity: 0.9;
+}
+
+div.SubidorFile {
+   position: relative;
+   width: 88px;
+   height: 24px;
+   overflow:hidden;
+   background:url("../img/Upload-Button.png") left top no-repeat;
+   clip:rect(0px, 80px, 24px, 0px );
+}  
+
+div.SubidorFile input {
+   position: absolute;
+   left: auto;
+   right: 0px;
+   top: 0px;
+   margin:0;
+   padding:0;
+   filter: Alpha(Opacity=0);
+   -moz-opacity: 0;
+   opacity: 0;
+   cursor: pointer;
+}
+#Usuario{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #cecaff;
+}
+#ConteMyUsu{
+    padding: 20px 5px;
+}
+.TituloMyUsu{
+    margin-bottom: 7px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1.2em;
+}
+.colTitu{
+    background-color: #4239bd;
+    padding: 4px;
+    text-align: right;
+    font-style: italic;
+    font-weight: bold;
+    color: #dbd8ff;
+
+}
+#frmDatosAlum input{
+    border: 1px solid #bfbfbf;
+    padding: 4px;
+    margin: 4px;
+}
+#frmDatosAlum select{
+    border: 1px solid #bfbfbf;
+    padding: 4px;
+    margin: 4px;
+    font-size: 1.2em;
+}
+#frmDatosAlum label{
+    padding: 4px;
+    margin: 4px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#frmDatosAlum td{
+    border: 1px solid #e5e3ff;
+}

@@ -1,0 +1,90 @@
+ 
+.Titulo1 p{
+	margin-bottom: 10px;
+}
+
+#DisNom{
+	margin: 7px;
+	color: #969696;
+}
+.busAl:hover{
+	text-decoration: underline !important;
+}
+
+#rdPerdT{
+	display: inline-block;
+	font-size: 0.8em !important;
+}
+.titPer{
+	display: block;
+	margin: 5px;
+	font-size: 90%;
+	border-radius: 0px 4px 4px 0px;
+	padding: 10px;
+	color: #fff;
+}
+.titMate{
+	display: block;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	padding: 5px;
+	background-color: #FFB2FF;
+}
+.titMate:hover{
+	background-color: #FFD1FF;
+}
+.CnMt .tbc{ border-spacing: 3px; }
+.rowh, .row{ 	display: table-row; }
+.rowh{ 	font-size: .9em; 	font-weight: bold; }
+.row{
+	font-size: .8em;
+	font-weight: normal;
+}
+.cellh, .cell{
+	border-bottom: 1px solid #ccc;
+	/*
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;*/
+}
+.cell input{
+	width: 35px;
+	padding: 4px;
+	border: 1px solid #CCC;
+}
+.hNo{
+	width: 10px;
+}
+.hCod{
+	width: 40px;
+}
+.hInd{
+	width: 250px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.hCmp{
+	/*width: 70px;*/
+}
+.DescrCmp, .DescrInd{
+	display: inline-block;
+	font-size: 0.8em;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.DescrCmp{
+	width: 100px;
+}
+.DescrInd{
+	width: 350px;
+}
+.ui-autocomplete-loading { 
+	background: white url('../img/ui-anim_basic_16x16.gif') right center no-repeat; 
+}
+.perd{
+	background-color: #FFBABA;
+	border-color: #FE3D3D !important;  
+}
+

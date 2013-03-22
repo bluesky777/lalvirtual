@@ -1,0 +1,4 @@
+[08-Oct-2012 19:09:01] PHP Warning:  mysql_query(): supplied argument is not a valid MySQL-Link resource in /home/lalvirtu/public_html/lal/php/clsConexion.php on line 40
+[08-Oct-2012 19:36:38] PHP Warning:  mysql_query(): supplied argument is not a valid MySQL-Link resource in /home/lalvirtu/public_html/lal/php/clsConexion.php on line 40
+[08-Oct-2012 19:38:30] PHP Warning:  mysql_query(): supplied argument is not a valid MySQL-Link resource in /home/lalvirtu/public_html/lal/php/clsConexion.php on line 40
+[08-Oct-2012 19:40:10] PHP Warning:  mysql_query(): supplied argument is not a valid MySQL-Link resource in /home/lalvirtu/public_html/lal/php/clsConexion.php on line 40

@@ -1,0 +1,52 @@
+.inforEnc{
+	margin: 10px auto;
+}
+.inforEnc h1{
+	font-size: 1.5em;
+}
+.inforEnc h2{
+	font-size: 1.3em;
+}
+.inforEnc h1, .inforEnc  h2{
+	font-weight: bold;
+	padding: 4px;
+}
+
+#CuadThreeP{
+	margin: 50px auto;
+	width: 400px;
+	border: 1px solid #ccc;
+}
+.InfoPuest{
+	padding-bottom: 50px;
+	background: 
+}
+#PrimerPuest, #SegundoPuest, #TercerPuest{
+	display: inline-block;
+	vertical-align: bottom;
+	width: 100px;
+	border: 1px solid #ccc;
+}
+#PrimerPuest{
+	height: 170px;
+}
+#SegundoPuest{
+	height: 130px;
+}
+#TercerPuest{
+	height: 90px;
+}
+.SmallImgPerf img{
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+}
+.PorcUsu {
+	display: block;
+	font-size: 120%;
+}
+.PorcUsu a:hover{
+	text-decoration: underline;
+}

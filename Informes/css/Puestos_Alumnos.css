@@ -1,0 +1,61 @@
+
+.tbc{
+	border: 1px solid #ccc;
+	margin: 10px;
+}
+.nomCell{
+	width: 150px;
+	overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: left;
+}
+.colTot{
+	display: inline-block;
+	width: 70px
+	text-align: center;
+}
+#ContLoaded a{
+	text-decoration:none;
+}
+#ContLoaded a:hover{
+	text-decoration:underline;
+}
+.cell{
+	vertical-align: bottom;
+	padding: 4px;
+}
+.cAlter{
+	background: #DFDDFC;
+}
+.piepag{
+	margin: 10px;
+	display: inline-block; 
+}
+#DiagV{
+	position: fixed;
+	max-width: 300px;
+	max-height: 200px;
+	background-color: #FFFFFF;
+	left: 0;
+	top: 0;
+	overflow: auto;
+	box-shadow: 0px 5px 10px #B5C1C5, 0 0 0 10px #EEF5F7 inset;
+	padding: 10px;
+	border: 1px solid #ccc;
+	vertical-align: middle;
+}
+#btPuestPdf{
+	cursor: pointer;
+	border: 1px solid #ccc;
+}
+#btPuestExc{
+	cursor: pointer;
+	border: 1px solid #ccc;
+}
+.CerrarDiag{
+	float: right;
+	font-size: 130%;
+	font-weight: bold;
+	margin: 4px;
+}
