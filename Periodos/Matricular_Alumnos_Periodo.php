@@ -1,6 +1,6 @@
 <?php
 require_once("../verificar_sesion.php");
-require_once("../Periodos/clsPeriodos.php");
+require_once("clsPeriodos.php");
 
 $Prd=new clsPeriodos();
 ?>
@@ -15,7 +15,7 @@ $idPer=$_GET['idPer'];
 $rSqlP=$Prd->gPeriodoYear($idPer);
 $Peri=$rSqlP["Periodo"];
 $Year=$rSqlP["Year"];
-
+//echo "Peridooooo ".$Peri;
 ?>
     
 <a href="../Periodos/Matricular_Alumnos_Periodo_Guardar.php?idPer=<? echo $idPer; ?>" title="Deja el periodo <? echo $Peri; ?> como el anterior" id="MatriAll">Matricular todos</a>
@@ -32,7 +32,7 @@ $Year=$rSqlP["Year"];
 <ul id="Grupos">
 <?php
 
-$qSqlGr=$Prd->gGrupoYear();
+$qSqlGr=$Prd->gGrupoYear($Year);
 
 while($rSqlGr=mysql_fetch_array($qSqlGr)){
 	?>
@@ -85,7 +85,7 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 <ul id="Grupos">
 
 <?php
-$qSqlGr=$Prd->gGrupos();
+$qSqlGr=$Prd->gGrupos($Year);
 
 while($rSqlGr=mysql_fetch_array($qSqlGr)){
 	?>

@@ -66,9 +66,12 @@ $con=Conectar();
 <body>
 <?php
 
-$sql="select * from tbalumnos a, tbgrupoalumnos ga where a.idAlum=ga.idAlumno and ga.idGrupo='".$_GET['idGrupo']. "' and ga.idPeriodo='".$_SESSION['PeriodoUsu']."' order by ApellidosAlum";
+$sql="SELECT * from tbalumnos a, tbgrupoalumnos ga 
+	WHERE a.idAlum=ga.idAlumno and ga.idGrupo='".$_GET['idGrupo']. "' 
+		and ga.idPeriodo='".$_SESSION['PeriodoUsu']."' 
+	ORDER BY ApellidosAlum;";
 
-
+// echo $sql;
 ?>
 <center>
 <i>Grupo: </i><b><?php echo $_GET['Grupo']." - ".$_GET['NomGrupo']; ?></b><br>

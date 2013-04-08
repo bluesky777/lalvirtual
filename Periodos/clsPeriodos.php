@@ -19,7 +19,21 @@ class clsPeriodos extends clsConexion {
 	function gPeriodo($idPer){
 		$sqlP="Select * from tbperiodos where idPer=".$idPer.";";
 		$qSqlP=$this->queryx($sqlP, "No se pudo traer los periodos.");
+		//echo $sqlP;
 		return mysql_fetch_array($qSqlP);
+	}
+	function gPeriodoAnt($rSqlP){
+		$sqlP_ant="Select * from tbperiodos where Year=".$rSqlP['Year']." order by Periodo desc;";
+		$qSqlP_ant=$this->queryx($sqlP_ant, "No se pudo traer los periodos.");
+		
+		//echo $sqlP_ant;
+		while ($rSqlP_ant = mysql_fetch_array($qSqlP_ant)) {
+			// echo "<br>Periodo estatico - >".$rSqlP['Periodo']. " Periodo fetch->".$rSqlP_ant['Periodo']."<br><br>";
+			if ($rSqlP_ant['Periodo']<$rSqlP['Periodo']){
+				return $rSqlP_ant['idPer'];
+			}
+			 
+		}
 	}
 	function gYear(){
 		$sqlY="select * from tbyearcolegio;";
@@ -33,8 +47,12 @@ class clsPeriodos extends clsConexion {
 		return $rSqlP;
 	}
 
-	function gGrupoYear(){
-		$sqlGr="select idGrupo, Grupo, NombreGrupo from tbgrupos, tbyearcolegio where YearGrupo=Year";
+	function gGrupoYear($Year){
+		$sqlGr="select idGrupo, Grupo, NombreGrupo 
+			from tbgrupos, tbyearcolegio 
+			where YearGrupo=Year and tbyearcolegio.year=".$Year;
+		
+		//echo $sqlGr;
 		$qSqlGr=$this->queryx($sqlGr, "No se pudo traer los grupos.");
 		return $qSqlGr;
 	}
@@ -55,7 +73,8 @@ class clsPeriodos extends clsConexion {
 			where g.idGrupo=ga.idGrupo and ga.idAlumno=a.idAlum  and ga.Estado=1 
 			and g.idGrupo=" . $idGrupo . " and ga.idPeriodo=p.idPer 
 			and p.Periodo=". $Per . " and p.Year=".$Year;
-			
+		//echo $sqlCant;
+
 		$qSqlCant=$this->queryx($sqlCant, "No se contaron los alumnos.");
 		$rSqlCant=mysql_fetch_array($qSqlCant);
 		return $rSqlCant;
@@ -80,8 +99,9 @@ class clsPeriodos extends clsConexion {
 		return $rSqlCant;
 	}
 
-	function gGrupos(){
-		$sqlGr="select idGrupo, Grupo, NombreGrupo from tbgrupos, tbyearcolegio where YearGrupo=Year";
+	function gGrupos($Year){
+		$sqlGr="select idGrupo, Grupo, NombreGrupo from tbgrupos, tbyearcolegio 
+			where YearGrupo=Year and Year=".$Year;
 		$qSqlGr=$this->queryx($sqlGr, "No se trajeron los grupos.");
 		return $qSqlGr;
 	}

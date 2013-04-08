@@ -138,6 +138,8 @@ while($rSqlY=mysql_fetch_array($qSqlY)){
         </select>
         
     </div>
+
+    <input type="submit" value="Crear Periodo">
   </form>
 
 <br>
