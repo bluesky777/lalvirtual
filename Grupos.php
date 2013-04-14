@@ -119,7 +119,7 @@ while($rSqlG=mysql_fetch_array($qSlqG)){
         </td>
         <td><input type="text" value="<?php echo $rSqlG['DescripNombreGrupo']; ?>" name="DescripNombreGrupo<?php echo $rSqlG['idGrupo']; ?>" size="8"></td>
         <td>
-            <img src="../img/Horarios/<?php echo $rSqlG['Grupo']; ?>-<? echo $_SESSION['Year'];?>.PNG" class="imgHorar" title="Click para ver grande" />
+            <img src="../img/Horarios/<?php echo $rSqlG['Grupo']; ?>-<?php echo $_SESSION['Year'];?>.PNG" class="imgHorar" title="Click para ver grande" />
         </td>
         <td><input type="text" value="<?php echo $rSqlG['ValorMatricula']; ?>" name="ValorMatricula<?php echo $rSqlG['idGrupo']; ?>" size="5"></td>
         <td><input type="text" value="<?php echo $rSqlG['ValorPension']; ?>" name="ValorPension<?php echo $rSqlG['idGrupo']; ?>"  size="5"></td>

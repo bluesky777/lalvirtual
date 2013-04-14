@@ -18,7 +18,7 @@ $Year=$rSqlP["Year"];
 //echo "Peridooooo ".$Peri;
 ?>
     
-<a href="../Periodos/Matricular_Alumnos_Periodo_Guardar.php?idPer=<? echo $idPer; ?>" title="Deja el periodo <? echo $Peri; ?> como el anterior" id="MatriAll">Matricular todos</a>
+<a href="../Periodos/Matricular_Alumnos_Periodo_Guardar.php?idPer=<?php echo $idPer; ?>" title="Deja el periodo <?php echo $Peri; ?> como el anterior" id="MatriAll">Matricular todos</a>
 
 <div class="clearIz"></div>
 
@@ -53,7 +53,7 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 		while($rSqlAl=mysql_fetch_array($qSqlAl)){
 			?>
 			<li>
-            	<? echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>
+            	<?php echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>
             </li>
 			<?
 		}
@@ -108,7 +108,7 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 		while($rSqlAl=mysql_fetch_array($qSqlAl)){
 			?>
 			<li>
-            	<? echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>
+            	<?php echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>
             </li>
 			<?
 		}

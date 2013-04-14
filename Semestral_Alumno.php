@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('conexion.php');
 require_once('verificar_sesion.php');
 
@@ -115,15 +115,15 @@ if ($numM>0){
 
 ?>
 
-<p>Materia: <b style="font-size:18px"><? echo $rSqlM['NombreMateria']; ?>- <b style="font-size:24px"><? echo $rSqlM['NombreGrupo']; ?></b></b>
+<p>Materia: <b style="font-size:18px"><?php echo $rSqlM['NombreMateria']; ?>- <b style="font-size:24px"><?php echo $rSqlM['NombreGrupo']; ?></b></b>
 </p>
-<p>Semestral <b><? echo $Semestre . " - " . $_SESSION['Year']; ?></b><br>
+<p>Semestral <b><?php echo $Semestre . " - " . $_SESSION['Year']; ?></b><br>
   <br>
 </p>
 <form name="frmNotasSem" id="NotasSem">
 
   <p>Descripción:<br/>
-    <input type="text" name="txtDesc" value="<? echo $rSqlM['Semestral']; ?>">
+    <input type="text" name="txtDesc" value="<?php echo $rSqlM['Semestral']; ?>">
   </p>
   <p>&nbsp; </p>
   <table border="1">
@@ -131,8 +131,8 @@ if ($numM>0){
 	<tr bgcolor="#828282" style="color:#E2E2E2">
 	  <th>No</th>
     	<th>
-        <input type="hidden" value="<? echo $_GET['idMat'];?>" name="idMat" >
-        <input type="hidden" value="<? echo $idSem;?>" name="idSem" >
+        <input type="hidden" value="<?php echo $_GET['idMat'];?>" name="idMat" >
+        <input type="hidden" value="<?php echo $idSem;?>" name="idSem" >
     	  
         Apellidos y nombres</th>
            <th title="">Nota</th>
@@ -170,16 +170,16 @@ while($rSqlL=mysql_fetch_array($qSqlL)){
   }
   
   ?>  	
-	<tr <? if($sw==1){ echo 'bgcolor="#E1E1E1"';$sw=0;}else{$sw=1;} ?>>
+	<tr <?php if($sw==1){ echo 'bgcolor="#E1E1E1"';$sw=0;}else{$sw=1;} ?>>
 		<td>
-	  		<? echo $i; ?>
+	  		<?php echo $i; ?>
 		</td>
       
 		<td>
-			<? echo $rSqlL['ApellidosAlum']." ".$rSqlL['NombresAlum'];?>
+			<?php echo $rSqlL['ApellidosAlum']." ".$rSqlL['NombresAlum'];?>
         </td>
         
-        <td><input type="text" name="<? echo "Nota".$rSqlL['idAlum']; ?>" size="3" maxlength="3" value="<?php echo $rSqlA['Nota']; ?>" style="margin-left:1; margin-right:1;" >
+        <td><input type="text" name="<?php echo "Nota".$rSqlL['idAlum']; ?>" size="3" maxlength="3" value="<?php echo $rSqlA['Nota']; ?>" style="margin-left:1; margin-right:1;" >
         </td>
         
 		<?

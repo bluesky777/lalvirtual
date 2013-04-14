@@ -1,4 +1,4 @@
-<?
+<?php
 session_name("LoginUsuario"); 
 session_start(); //iniciamos la sesión 
 

@@ -128,7 +128,7 @@ $qSql=mysql_query($sql, $con)or die("Pailas con los usuarios. ".mysql_error());
 
 while($rSql=mysql_fetch_array($qSql)){
 ?>	
-<tr id="<? echo $rSql['idUsu']; ?>">
+<tr id="<?php echo $rSql['idUsu']; ?>">
 	<td class="center"><?php echo $rSql['idUsu']; ?></td>
     <td id="LoginUsu"><?php echo $rSql['LoginUsu']; ?></td>
     <td class="center"><?php echo $rSql['CifradoUsu']; ?></td>

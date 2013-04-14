@@ -55,7 +55,7 @@ if ($ContAlu==0){
 		
 		$MatCods[]=$rSqlNomMat['idMaterGrupo'];
 		?>
-        <div class="cell" width="26"><b><? echo $rSqlNomMat['AbreviaturaMateria']; ?></b></div>
+        <div class="cell" width="26"><b><?php echo $rSqlNomMat['AbreviaturaMateria']; ?></b></div>
 		<?
 	}
 	
@@ -75,7 +75,7 @@ $i = $sw = $PorcGr = 0;
 while($rSqlAl=mysql_fetch_array($qSqlAl)){
 
   ?>
-  <div class="row <? if($sw==0){ echo "cAlter"; $sw=1;}else{ echo $sw=0; }?>" >
+  <div class="row <?php if($sw==0){ echo "cAlter"; $sw=1;}else{ echo $sw=0; }?>" >
 
     <div class="cell"><?php echo ++$i; //$i++;?></div>
     <div class="cell"><span class="nomCell"><?php echo $rSqlAl['NombresAlum']." ".$rSqlAl['ApellidosAlum']; ?></span></div>
@@ -94,7 +94,7 @@ while($rSqlAl=mysql_fetch_array($qSqlAl)){
       
       <div class="cell"><?php // Celda en que aparece el porcentaje y logros por materia ?>
 	  
-	  <? 
+	  <?php 
 	  	echo str_replace(".0", "", number_format($rSqlComp['Valores'], 1));
 
 		$ComentarioIndics="";
@@ -112,7 +112,7 @@ while($rSqlAl=mysql_fetch_array($qSqlAl)){
 		$ContIndic+=$ContPerdidos;
 		
 		if ($ContPerdidos>0){
-		?><a href="javascript:void(0);" title="<? echo $ComentarioIndics; ?>" style="font-size:8px;">(<? echo $ContPerdidos;?>)</a>
+		?><a href="javascript:void(0);" title="<?php echo $ComentarioIndics; ?>" style="font-size:8px;">(<?php echo $ContPerdidos;?>)</a>
 		<?
 		}
 		?>
@@ -125,7 +125,7 @@ while($rSqlAl=mysql_fetch_array($qSqlAl)){
   $PorcGr += $rSqlAl['PromedioAlum'];
 ?>
 
-    <div class="cell"><? echo number_format($rSqlAl['PromedioAlum'], 2); ?>%
+    <div class="cell"><?php echo number_format($rSqlAl['PromedioAlum'], 2); ?>%
     <span title="Total de indicadores pendientes" style="font-size:8px;"><?php if ($ContIndic>0) echo "(".$ContIndic.")"; ?></span></div>
 
   </div>
@@ -147,7 +147,7 @@ while($rSqlAl=mysql_fetch_array($qSqlAl)){
         <?
 	}
 	?>
-  	<div class="cell"><b><? echo number_format($PorcGr/$ContAlu, 2); ?></b></div>
+  	<div class="cell"><b><?php echo number_format($PorcGr/$ContAlu, 2); ?></b></div>
   </div>
 
 </div>

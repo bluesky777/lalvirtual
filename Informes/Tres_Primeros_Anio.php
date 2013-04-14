@@ -52,19 +52,19 @@ while($rSqlAl=mysql_fetch_assoc($qSqlAl)){
 			<?php
 			
 			?>
-			<span class="SmallImgPerf"><img src="" title="<? echo $DatosPuest[1]["NombresAlum"];?>"></span>
-			<span class="PorcUsu"><? echo number_format($DatosPuest[1]["PromedioAlumTotal"], 1);?></span>
-			<span class="NomUsu"><? echo $DatosPuest[1]["NombresAlum"];?></span>
+			<span class="SmallImgPerf"><img src="" title="<?php echo $DatosPuest[1]["NombresAlum"];?>"></span>
+			<span class="PorcUsu"><?php echo number_format($DatosPuest[1]["PromedioAlumTotal"], 1);?></span>
+			<span class="NomUsu"><?php echo $DatosPuest[1]["NombresAlum"];?></span>
 		</div>
 		<div id="PrimerPuest">
-			<span class="SmallImgPerf"><img src="" title="<? echo $DatosPuest[0]["NombresAlum"];?>"></span>
-			<span class="PorcUsu"><? echo number_format($DatosPuest[0]["PromedioAlumTotal"], 1);?></span>
-			<span class="NomUsu"><? echo $DatosPuest[0]["NombresAlum"];?></span>
+			<span class="SmallImgPerf"><img src="" title="<?php echo $DatosPuest[0]["NombresAlum"];?>"></span>
+			<span class="PorcUsu"><?php echo number_format($DatosPuest[0]["PromedioAlumTotal"], 1);?></span>
+			<span class="NomUsu"><?php echo $DatosPuest[0]["NombresAlum"];?></span>
 		</div>
 		<div id="TercerPuest">
-			<span class="SmallImgPerf"><img src="" title="<? echo $DatosPuest[2]["NombresAlum"];?>"></span>
-			<span class="PorcUsu"><? echo number_format($DatosPuest[2]["PromedioAlumTotal"], 1);?></span>
-			<span class="NomUsu"><? echo $DatosPuest[2]["NombresAlum"];?></span>
+			<span class="SmallImgPerf"><img src="" title="<?php echo $DatosPuest[2]["NombresAlum"];?>"></span>
+			<span class="PorcUsu"><?php echo number_format($DatosPuest[2]["PromedioAlumTotal"], 1);?></span>
+			<span class="NomUsu"><?php echo $DatosPuest[2]["NombresAlum"];?></span>
 		</div>
 
 	</div>

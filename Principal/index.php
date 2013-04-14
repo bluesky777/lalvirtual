@@ -24,14 +24,14 @@ require_once("barra_superior.php");
     <span class="imgUsuIzquierda">
         <div class="screenImg">
             <div class="intScreen">
-                <img src="../img/<? echo $_SESSION['PerfilImg']; ?>" title="Imagen de perfil">
+                <img src="../img/<?php echo $_SESSION['PerfilImg']; ?>" title="Imagen de perfil">
             </div>
         </div>
     </span> <!-- Termina .imgUsu -->
     
     <span id="InforUsuario">
         
-        <span class="NombreDeUsu"><? echo $_SESSION['Usuario']?></span>
+        <span class="NombreDeUsu"><?php echo $_SESSION['Usuario']?></span>
         
     </span>
     
@@ -80,13 +80,13 @@ require_once("barra_superior.php");
             </a>
         </li>        
         
-        <? if($tipoU==2) { ?>
+        <?php if($tipoU==2) { ?>
         
         <li  title="Ver materias y sus opciones" class="OpcionPrinc">
             <a href='javascript:void(0);' class="CargarMaterias">Materias</a>
         </li> 
         
-        <? } 
+        <?php } 
 
         if(in_array("Ver boletines", $_SESSION['Privilegios'][0]) or $tipoU==1)
         { 
@@ -109,7 +109,7 @@ require_once("barra_superior.php");
 		?>
         
         
-	<? if (in_array("Editar estructura grupos", $_SESSION['Privilegios'][0]) or ($tipoU==1)){ ?>
+	<?php if (in_array("Editar estructura grupos", $_SESSION['Privilegios'][0]) or ($tipoU==1)){ ?>
         <li class="OpcionPrinc"><a href="javascript:void(0);">Editar</a>
             <ul class="subsubmenu2">
             	<li><a href="javascript:void(0);" id="../Grupos.php" class="OptGrupos">Grupos</a></li>
@@ -120,7 +120,7 @@ require_once("barra_superior.php");
             </ul>
         </li>
       
-        <? } 
+        <?php } 
         
         if (isAdm()){
         ?>
@@ -144,7 +144,7 @@ require_once("barra_superior.php");
         if (isPr()){         ?>
             <li class="OpcionPrinc OptPrinEdNtAlMenu">
                 <a href="javascript:void(0);">Editar notas de alumno</a>
-            </li>      <? 
+            </li>      <?php 
         }
         if (isEst() or isAcud()){         ?>
             <li class="OpcionPrinc">
@@ -152,7 +152,7 @@ require_once("barra_superior.php");
             </li> 
             <li class="OpcionPrinc OptPrinEdNtAlMenu">
                 <a href="javascript:void(0);">Ver notas</a>
-            </li>        <? 
+            </li>        <?php 
         }
         if (isEst()){ ?>
         
@@ -161,7 +161,7 @@ require_once("barra_superior.php");
             </a>
         </li>
         
-        <? } ?>
+        <?php } ?>
       
       	
         <?php
@@ -204,7 +204,7 @@ require_once("barra_superior.php");
 		}
 		
 		?>
-  Hola<? if (isset($_SESSION['NombresUsuar'])){echo " ".$_SESSION['NombresUsuar'];}else{echo " ".$_SESSION['Usuario'];} ?>, te ruego disculpes todos los inconvenientes que encuentres en esta aplicación pues aun está en desarrollo, ten paciencia y verifica tus movimientos para evitar inconvenientes.</p>
+  Hola<?php if (isset($_SESSION['NombresUsuar'])){echo " ".$_SESSION['NombresUsuar'];}else{echo " ".$_SESSION['Usuario'];} ?>, te ruego disculpes todos los inconvenientes que encuentres en esta aplicación pues aun está en desarrollo, ten paciencia y verifica tus movimientos para evitar inconvenientes.</p>
 <p>&nbsp;</p>
 <p>Este sitio está adaptado para navegadores como Chrome y Firefox. Internet Explorer no soporta la tecnología usada en este sitio.</p>
 <p>&nbsp;</p>

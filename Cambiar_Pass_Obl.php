@@ -105,7 +105,7 @@ function Guardar(){
 
 function Verificar(pass){
 	
-	var datos = "txtLogin=<? echo $_SESSION['Usuario']; ?>&txtPass=" + pass;
+	var datos = "txtLogin=<?php echo $_SESSION['Usuario']; ?>&txtPass=" + pass;
 	
 	$.ajax({
 		type: 'POST',

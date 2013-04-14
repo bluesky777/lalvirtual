@@ -50,7 +50,7 @@ $UbicaRel="../img/";
     <div class="SubidorFile">
         <form id="frmSubirPerf" method="POST" enctype="multipart/form-data" name="frmSubirPerf">
             <input type="file" name="flImgNuevPer" id="FlImgNuevPerf" /> 
-            <input type="hidden" name="idUsu" value="<? echo $Cod; ?>" />
+            <input type="hidden" name="idUsu" value="<?php echo $Cod; ?>" />
         </form>
     
     </div>
@@ -78,7 +78,7 @@ $UbicaRel="../img/";
       <div class="SubidorFile">
           <form id="frmSubirPrin" method="POST" enctype="multipart/form-data" name="frmSubirPrin">
               <input type="file" name="flImgNuevPr" id="FlImgNuevPrin" />
-              <input type="hidden" name="idUsu" value="<? echo $Cod; ?>" />
+              <input type="hidden" name="idUsu" value="<?php echo $Cod; ?>" />
               <input type="hidden" name="OperUsu" value="ImgPrin" />
           </form>
       </div>
@@ -142,8 +142,8 @@ $UbicaRel="../img/";
             <div class="cell">
                 
               <select name="txtAct">
-                <option value="1" <? if( $Activo == true) echo "Selected"; ?> >Si</option>
-                <option value="0" <? if( $Activo == false) echo "Selected"; ?> >No</option>
+                <option value="1" <?php if( $Activo == true) echo "Selected"; ?> >Si</option>
+                <option value="0" <?php if( $Activo == false) echo "Selected"; ?> >No</option>
               </select>
 
             </div>
@@ -217,8 +217,8 @@ $UbicaRel="../img/";
                     while ($rSqlTipDoc = mysql_fetch_array($qSqlTipDoc)) {
                         
                     ?>
-                    <option value="<? echo $rSqlTipDoc['idTipoDoc'];?>"><? echo $rSqlTipDoc['InicialesDoc'];?></option>
-                    <?           
+                    <option value="<?php echo $rSqlTipDoc['idTipoDoc'];?>"><?php echo $rSqlTipDoc['InicialesDoc'];?></option>
+                    <?php           
                     }
                     ?>
                 </select>
@@ -242,7 +242,7 @@ $UbicaRel="../img/";
                     while ($rSqlTipDoc = mysql_fetch_array($qSqlTipDoc)) {
                         
                     ?>
-                    <option value="<? echo $rSqlTipDoc['idTipoDoc'];?>"><? echo $rSqlTipDoc['InicialesDoc'];?></option>
+                    <option value="<?php echo $rSqlTipDoc['idTipoDoc'];?>"><?php echo $rSqlTipDoc['InicialesDoc'];?></option>
                     <?
                                     
                     }
@@ -258,8 +258,8 @@ $UbicaRel="../img/";
             <div class="cell">
                 
               <select name="txtAct">
-                <option value="1" <? if( $Activo == true) echo "Selected"; ?> >Si</option>
-                <option value="0" <? if( $Activo == false) echo "Selected"; ?> >No</option>
+                <option value="1" <?php if( $Activo == true) echo "Selected"; ?> >Si</option>
+                <option value="0" <?php if( $Activo == false) echo "Selected"; ?> >No</option>
               </select>
 
             </div>

@@ -72,10 +72,10 @@
 
     	
         <div id="OptUsuario" title="Cambie sus opciones de usuario">
-            <a href="javascript:void(0);" id="../MyUsuario.php?idUsu=<? echo $_SESSION['idUsuar']; ?>">
+            <a href="javascript:void(0);" id="../MyUsuario.php?idUsu=<?php echo $_SESSION['idUsuar']; ?>">
             
                 <span class="imgUsu">
-                    <img src="../img/<? echo $_SESSION['PerfilImg']; ?>" id="FotoUsu" title="Imagen de perfil.">
+                    <img src="../img/<?php echo $_SESSION['PerfilImg']; ?>" id="FotoUsu" title="Imagen de perfil.">
                 </span> <!-- Termina .imgUsu -->
                 
                 

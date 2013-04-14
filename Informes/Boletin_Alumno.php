@@ -467,8 +467,8 @@ foreach($MateriaYa as $id_Mat => $Materia){
 			
 				?>
 				
-		        <td title="<? echo $ComentarioIndics; ?>">
-		            <? echo $ContPerdidos; ?>
+		        <td title="<?php echo $ComentarioIndics; ?>">
+		            <?php echo $ContPerdidos; ?>
 		        </td>
 				
 				<?		
@@ -478,7 +478,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 		
 	}  /// FOREACH periodos a recorrer	
 ?>
-	<td><b><? echo $TotalMatPer; ?></b></td>
+	<td><b><?php echo $TotalMatPer; ?></b></td>
 </tr>	
 
 <?
@@ -521,13 +521,13 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 				$TotalPer+=$ContPerdidos;
 
 				?>
-			    <td><b><? echo $ContPerdidos; ?></b></td>
+			    <td><b><?php echo $ContPerdidos; ?></b></td>
 				<?
 			}
 		}
 }
 ?>
-    <td><b><? echo $TotalPer; ?></b></td>
+    <td><b><?php echo $TotalPer; ?></b></td>
 </tr>
 
 </table>

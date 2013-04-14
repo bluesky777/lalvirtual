@@ -23,7 +23,7 @@ $Prd=new clsPeriodos();
 <body>
 */
 ?>
-<input type="hidden" name="idPerH" id="idPerH" value="<? echo $_SESSION['PeriodoUsu']; ?>" >
+<input type="hidden" name="idPerH" id="idPerH" value="<?php echo $_SESSION['PeriodoUsu']; ?>" >
 <div id="tbPeriodos">
     <div class="TituFilaPer">
     	<span class="TituColPer">
@@ -53,23 +53,23 @@ $Prd=new clsPeriodos();
 	?>
     <div class="FilasPer">
     	<span>
-        	<label><? echo $rSqlP['idPer']; ?></label>
+        	<label><?php echo $rSqlP['idPer']; ?></label>
         </span>
     	<span>
-        	<label><? echo $rSqlP['Year']; ?></label>
+        	<label><?php echo $rSqlP['Year']; ?></label>
         </span>
         <span class="ColumPeriodo">
-        	<label><? echo $rSqlP['Periodo']; ?></label>
+        	<label><?php echo $rSqlP['Periodo']; ?></label>
         </span>
        	<span>
-        	<label><? echo $rSqlP['FechaInicio']; ?></label>
+        	<label><?php echo $rSqlP['FechaInicio']; ?></label>
         </span>
         <span>
-        	<label><? echo $rSqlP['FechaFin']; ?></label>
+        	<label><?php echo $rSqlP['FechaFin']; ?></label>
         </span>
         <span>
-            <a href="javascript:void(0);" id="<? echo $rSqlP['idPer'];?>" class="EditarPer" >Editar</a>
-            <a href="javascript:void(0);" id="<? echo $rSqlP['idPer'];?>" class="Matricular" >Matricular</a>
+            <a href="javascript:void(0);" id="<?php echo $rSqlP['idPer'];?>" class="EditarPer" >Editar</a>
+            <a href="javascript:void(0);" id="<?php echo $rSqlP['idPer'];?>" class="Matricular" >Matricular</a>
         </span>
     </div>
     
@@ -98,11 +98,11 @@ $qSqlY = $Prd->gYear();;
 while($rSqlY=mysql_fetch_array($qSqlY)){
 	if ($rSqlY['ActualYear']==1){
 		?>
-    <option selected="selected"><? echo $rSqlY['Year']; ?></option>
+    <option selected="selected"><?php echo $rSqlY['Year']; ?></option>
     <?
 	} else {
 		?>
-    <option><? echo $rSqlY['Year']; ?></option>
+    <option><?php echo $rSqlY['Year']; ?></option>
     <?
 	}
 }

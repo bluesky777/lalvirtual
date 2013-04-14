@@ -327,12 +327,12 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 			
 			?>
 			
-			<div class="NomMatPerd" title="<? echo $ComentarioIndics; ?>">
-				<? echo $rSqlMat['NombreMateria']; ?>
+			<div class="NomMatPerd" title="<?php echo $ComentarioIndics; ?>">
+				<?php echo $rSqlMat['NombreMateria']; ?>
 			</div>
 			
 			<div class="CantMatPer">
-            	<? echo $ContPerdidos; ?>
+            	<?php echo $ContPerdidos; ?>
             </div>
 			
 			<?			

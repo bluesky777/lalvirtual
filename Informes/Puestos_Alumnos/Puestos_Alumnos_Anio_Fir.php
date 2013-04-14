@@ -37,23 +37,23 @@ $Calcs->gtbPuestos($idGrupo, $TablaPuestos, $TablaMaterias, $PromGrupo);
     foreach ($TablaMaterias as $KeyMat => $valMat) {
 		
 		?>
-        <div class="cell" width="26"><b><? echo $valMat['AbreviaturaMateria']; ?></b></div>
+        <div class="cell" width="26"><b><?php echo $valMat['AbreviaturaMateria']; ?></b></div>
 		<?
 	}
 	?>
 	<div class="cell" width="53"><b>TOTAL</b></div>
   </div>
   <div class="row">
-    <div class="cell" width="26"><? echo $valAlu['NO']; ?></div>
-        <div class="cell" width="26"><? echo $valAlu['NombresAlum']." ".$valAlu['NombresAlum']; ?></div>
+    <div class="cell" width="26"><?php echo $valAlu['NO']; ?></div>
+        <div class="cell" width="26"><?php echo $valAlu['NombresAlum']." ".$valAlu['NombresAlum']; ?></div>
       <?
 	  foreach ($valAlu['Materias'] as $KeyDef => $valDef) {
 	  ?>
-	  	<div class="cell" width="26"><? echo $valDef['Definitiva']; ?></div>
+	  	<div class="cell" width="26"><?php echo $valDef['Definitiva']; ?></div>
       <?
 	  }
 	  ?>
-        <div class="cell" width="26"><b><? echo $valAlu['PromedioAlum']; ?></b></div>
+        <div class="cell" width="26"><b><?php echo $valAlu['PromedioAlum']; ?></b></div>
 		<?
 	?>
 	</div>
