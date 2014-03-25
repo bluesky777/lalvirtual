@@ -520,14 +520,15 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 		while ($rSqlIdPer = mysql_fetch_array($qSqlIdPers)) {
 			if($rSqlIdPer['Periodo'] == $Periodo){
 
+				
 				$sqlMalo="select n.Nota, n.idAlumno, i.idIndic, i.Indicador, c.idCompet 
 					from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, 
-					tbgrupoalumnos ga, tbalumnos a 
+					tbgrupoalumnos ga, tbgrupos g 
 					where n.idIndic=i.idIndic and i.CompetenciaIndic=c.idCompet 
-					and c.MateriaGrupoCompet=mg.idMaterGrupo and a.idAlum=ga.idAlumno and a.idAlum=n.idAlumno 
-					and n.idAlumno=".$idAlum." and c.PeriodoCompet=".$rSqlIdPer['idPer']." and n.Nota<70
-					and ga.idPeriodo=".$rSqlIdPer['idPer'];
-				
+					and c.MateriaGrupoCompet=mg.idMaterGrupo and ga.idAlumno=n.idAlumno 
+					and n.idAlumno=".$idAlum." and c.PeriodoCompet=".$rSqlIdPer['idPer']." and n.Nota<70 
+					and g.idGrupo=ga.idGrupo and mg.idGrupo=g.idGrupo and ga.idPeriodo=".$rSqlIdPer['idPer'];
+					
 				//echo $sqlMalo."<br>";
 
 				$qSqlMalo=$con->queryx($sqlMalo, "No se trajeron las notas totales. ");
