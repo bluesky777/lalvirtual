@@ -28,7 +28,7 @@ $con=Conectar();
   while($rSqlM=mysql_fetch_array($qSqlM)){
   ?>
     <tr>
-    	<td><?php echo $rSqlM['OrdenMater']; ?></td>
+    	<td contenteditable="true" data-idmat="<?php echo $rSqlM['idMaterGrupo']; ?>" class="ordenMat"><?php echo $rSqlM['OrdenMater']; ?></td>
         <td>
 		
         <select name="idMateria<?php echo $rSqlM['idMaterGrupo']; ?>"  style="width:200px;background-color:#DDFFFF;" >
@@ -83,7 +83,7 @@ $con=Conectar();
        	  <input type="text" name="CreditosMater<?php echo $rSqlM['idMaterGrupo']; ?>" value="<?php echo $rSqlM['CreditosMater']; ?>" size="3">
         </td>
         <td>
-        	<a href="javascript:void(0);" id="../Editar_Materia_Inscrita.php?idMatGr=<?php echo $rSqlM['idMaterGrupo']; ?>" class="Editar" title="Editar asignatura asignada">
+        	<a href="javascript:void(0);" id="../Editar_Materia_Inscrita.php?idMatGr=<?php echo $rSqlM['idMaterGrupo']; ?>" class="EditarAsig" title="Editar asignatura asignada">
                 <img src="../img/icono_editar.jpg" width="15" height="16" /></a> 
             <a href="javascript:void(0);" id="<?php echo $rSqlM['idMaterGrupo']; ?>" class="Eliminar" title="Editar asignatura asignada">
                 <img src="../img/icono_eliminar.gif" width="16" height="19" /></a> 

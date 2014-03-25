@@ -6,7 +6,6 @@ $Prd=new clsPeriodos();
 /*
 ?>
 <!DOCTYPE html>
-<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -45,7 +44,7 @@ $Prd=new clsPeriodos();
             OPCIONES
         </span>
     </div>
-    <?
+    <?php
 
 	$qSqlP=$Prd->gPeriodos();
 	while($rSqlP=mysql_fetch_array($qSqlP)){
@@ -73,7 +72,7 @@ $Prd=new clsPeriodos();
         </span>
     </div>
     
-    <?
+    <?php
 	}
     ?>
 
@@ -90,8 +89,8 @@ $Prd=new clsPeriodos();
   <form class="NuevoPer">
   	<div>
     <p>Año
-  <select>
-  <?
+  <select id="slYear">
+  <?php
 
 $qSqlY = $Prd->gYear();;
 
@@ -99,18 +98,18 @@ while($rSqlY=mysql_fetch_array($qSqlY)){
 	if ($rSqlY['ActualYear']==1){
 		?>
     <option selected="selected"><?php echo $rSqlY['Year']; ?></option>
-    <?
+    <?php
 	} else {
 		?>
     <option><?php echo $rSqlY['Year']; ?></option>
-    <?
+    <?php
 	}
 }
 ?>
   </select>
 
 	<label>Periodo</label>
-        <select>
+        <select id="slPeriodo">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -132,20 +131,18 @@ while($rSqlY=mysql_fetch_array($qSqlY)){
         
     <div>
 		<label>Actual</label>
-        <select>
-        	<option>Si</option>
-            <option>No</option>
+        <select id="slActual">
+        	<option value="1">Si</option>
+            <option value="0">No</option>
         </select>
         
     </div>
 
-    <input type="submit" value="Crear Periodo">
+    <input type="submit" value="Crear Periodo" id="btnCrPeriodo">
   </form>
 
 <br>
 <hr>
-</body>
-</html>
-<?
+<?php
 $Prd->Cerrar();
 ?>

@@ -49,8 +49,8 @@ $idGrupo = (isset($_GET['idGrupo'])) ? $_GET['idGrupo'] : 10 ;
 
 echo '<input type="hidden" value="'.$idGrupo.'" id="hdIdGrupPuest">';
 
-$Period=$Calcs->gLastPeriodo($idGrupo);
-$qSqlContAl=$Calcs->gContAlumnosxNomGrupo($idGrupo, $Period);
+$Period = $Calcs->gLastPeriodo($idGrupo);
+$qSqlContAl = $Calcs->gContAlumnosxNomGrupo($idGrupo, $Period);
 
 $rSqlAl=mysql_fetch_assoc($qSqlContAl);
 
@@ -59,7 +59,7 @@ $NomGr=$rSqlAl['NombreGrupo'];
 $ContAlu=$rSqlAl['cuantos'];
 
 if ($ContAlu==0){
-    echo "<div class='AnunNoAlum'>Aun no hay alumnos matriculados en el periodo <b>". $Period ."</b> para el grupo ".$NomGr=$rSqlAl['NombreGrupo']."</div>";
+    echo "<div class='AnunNoAlum'>Aun no hay alumnos matriculados en el periodo <b>". $Calcs->lastPeriodo ."</b> para el grupo ".$NomGr=$rSqlAl['NombreGrupo']."</div>";
     die();
 }
 
@@ -124,7 +124,7 @@ while($rSqlAl=mysql_fetch_array($qSqlAl)){
 		
 		while($rSqlMalo=mysql_fetch_array($qSqlMalo)){
 
-			$ComentarioIndics.="Per".$rSqlMalo['PeriodoCompet']."-".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
+			$ComentarioIndics.="Per".$rSqlMalo['Periodo']."-".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 			$ContPerdidos+=1;
 			
 		} //// while indicadores perdidos de la materia
@@ -176,7 +176,7 @@ while($rSqlAl=mysql_fetch_array($qSqlAl)){
 <input type="button" id="btPuestExc" value="Ver Excel">
 
 <div class="piepag">
-	Los alumnos mostrados son los activos en el periodo <?php echo $Period; ?><br>
+	Los alumnos mostrados son los activos en el periodo <?php echo clsPorcentajesAnio::$lastPeriodo; ?><br>
 	Los números entre paréntesis son la cantidad de Indicadores pendientes.<br>
 	&lt;Reporte generado en My Virtual College&gt;
 </div>

@@ -3,6 +3,7 @@ require_once("../../verificar_sesion.php");
 require_once("../clsCalcularPorc.php");
 require_once("../../php/pdf-php/class.ezpdf.php");
 
+set_time_limit(0);
 
 $Calcs=new clsCalcularPorc();
 $Calcs->Conectar();
@@ -67,9 +68,9 @@ $Titles = array(
 	"DefMateria"=>"DefMateria"
 );
 
-echo '<pre>'; 
-print_r($TablaxAlum);
-exit;
+//echo '<pre>'; 
+//print_r($TablaxAlum);
+//exit;
 
 //Para cada alumno, una hoja
 foreach ($TablaxAlum as $keyA => $Alumno) {
@@ -77,7 +78,7 @@ foreach ($TablaxAlum as $keyA => $Alumno) {
 
 	$pdf->ezImage("../../img/Colegio/LogoLAL.jpg", 0, 50, 'none', 'left');
 	$pdf->addTextWrap(50,800,280,16,"<b>LICEO ADVENTISTA LIBERTAD</b>",'center');
-	
+die("Probando 1");	
 	$pdf->addTextWrap(10,790,300,8,utf8_decode("La suscrita Rectora y secretaria del LAL, reconocida oficialmente por la Secretaria"),'center');
 	$pdf->addTextWrap(10,782,300,8,utf8_decode("de Educación Departamental, mediante Resolución 503 de 2003,  los estudios correspondientes"),'center');
 	$pdf->addTextWrap(10,774,300,8,utf8_decode("a los programas de Educación  Preescolar, Basica Primaria, Basica Secundaria y Media, con"),'center');

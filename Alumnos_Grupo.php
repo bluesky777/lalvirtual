@@ -2,7 +2,7 @@
 require_once("verificar_sesion.php");
 require_once("conexion.php");
 
-$con=Conectar();
+$con = Conectar();
 ?>
 <html>
 <head>
@@ -95,7 +95,7 @@ echo $rSqlProf['NombresProf']." ".$rSqlProf['ApellidosProf'];
     	<td>Orden</td>
         <td>No Matr</td>
         <td>Apellidos y Nombres</td>
-        <td>No documento</td>
+        <td>Boletin</td>
         <td>Sexo</td>
         <td>Fecha Nacimiento</td>
         <td>Telefono o Celular</td>
@@ -122,7 +122,10 @@ while($rSql=mysql_fetch_array($qSql)){
 			<?php echo $rSql['ApellidosAlum']; ?> <?php echo $rSql['NombresAlum']; ?>
         	</a>
         </td>
-        <td><?php echo $rSql['DocAlum']; ?></td>
+        <td><a href="Informes/Boletin_Alumno.php?txtIdAlum=<?php echo $rSql['idAlum']; ?>">Ver boletin</a>
+        	<a href="Informes/Boletin_Final/Boletin_Final_Pag.php?idAlum=<?php echo $rSql['idAlum']; ?>&Firm=1"> FINAL</a>
+        	<a href="Informes/Boletin_Final/Boletin_Final_Pag.php?idAlum=<?php echo $rSql['idAlum']; ?>&Firm=0"> F. sin Firma</a>
+        </td>
         <td><?php echo $rSql['SexoAlum']; ?></td>
         <td><?php echo $rSql['FechaNacAlum']; ?></td>
         <td><?php echo $rSql['TelefonoAlum']." - ".$rSql['CelularAlum']; ?></td>

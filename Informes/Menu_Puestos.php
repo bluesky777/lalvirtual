@@ -30,18 +30,7 @@ if(isAdPr()){
 }
 ?>
 <div id="OptPuntajes">
-	<p>
-		<a id="btAllAnio" href="../Informes/Puestos_Alumnos/All_Anio_Puestos.php" title="Puestos por grupos en el año">Puestos por grupos en el año</a>
-	</p>
-	<p>
-		<a id="btAllPeriod" href="../Informes/Puestos_Alumnos/All_Periodo_Puestos.php" title="Puestos por grupos en el periodo">Puestos por grupos en el periodo</a>
-	</p>
-	<p>
-		<a id="btTrPeriod" class='lightajax' href="../Informes/Tres_Primeros.php" title="Tres primeros puestos del periodo">Tres primeros del periodo actual</a>
-	</p>
-	<p>
-		<a id="btTrAnio" class='lightajax' href="../Informes/Tres_Primeros_Anio.php" title="Tres primeros puestos del año">Tres primeros del año</a>
-	</p>
+
 	<p>
 	<?php 
 	$Txt1 = $Txt2 = "";

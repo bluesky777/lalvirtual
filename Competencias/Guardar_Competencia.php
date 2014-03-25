@@ -5,7 +5,7 @@ require_once('../Competencias/clsCompetencias.php');
 
 $Cmp=new clsCompetencias();
 //Cambiar la hora del servidor por la de Colombia
-putenv ("TZ=America/Bogota");
+putenv("TZ=America/Bogota");
 
 if(isset($_POST['OrdenC'])){
     

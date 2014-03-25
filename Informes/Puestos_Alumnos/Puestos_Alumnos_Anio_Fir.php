@@ -3,10 +3,12 @@ require_once("../../verificar_sesion.php");
 require_once("../clsPorcentajesAnio.php");
 
 
-$Calcs=new clsPorcentajesAnio();
+
+$Calcs = new clsPorcentajesAnio();
 $Calcs->Conectar();
 
 $idGrupo = (isset($_GET['idGrupo'])) ? $_GET['idGrupo'] : 10 ;
+
 
 echo '<input type="hidden" value="'.$idGrupo.'" id="hdIdGrupPuest">';
 $Period=$Calcs->gLastPeriodo($idGrupo);
@@ -24,7 +26,7 @@ $Calcs->gtbPuestos($idGrupo, $TablaPuestos, $TablaMaterias, $PromGrupo);
   GRADO <?php echo $NomGr; ?>
  </b></p>
 
-  <?
+  <?php
   foreach ($TablaPuestos as $KeyAlu => $valAlu) {
 	?>
 	<?php
@@ -33,29 +35,27 @@ $Calcs->gtbPuestos($idGrupo, $TablaPuestos, $TablaMaterias, $PromGrupo);
   <div class="row">
     <div class="cell"><b>Puest</b></div>
     <div class="cell"><b>ALUMNO</b></div>
-    <?
+    <?php
     foreach ($TablaMaterias as $KeyMat => $valMat) {
 		
 		?>
         <div class="cell" width="26"><b><?php echo $valMat['AbreviaturaMateria']; ?></b></div>
-		<?
+		<?php
 	}
 	?>
 	<div class="cell" width="53"><b>TOTAL</b></div>
   </div>
   <div class="row">
     <div class="cell" width="26"><?php echo $valAlu['NO']; ?></div>
-        <div class="cell" width="26"><?php echo $valAlu['NombresAlum']." ".$valAlu['NombresAlum']; ?></div>
-      <?
+        <div class="cell" width="26"><?php echo $valAlu['NombresAlum']." ".$valAlu['ApellidosAlum']; ?></div>
+      <?php
 	  foreach ($valAlu['Materias'] as $KeyDef => $valDef) {
 	  ?>
 	  	<div class="cell" width="26"><?php echo $valDef['Definitiva']; ?></div>
-      <?
+      <?php
 	  }
 	  ?>
         <div class="cell" width="26"><b><?php echo $valAlu['PromedioAlum']; ?></b></div>
-		<?
-	?>
 	</div>
 	<?php
 	}
@@ -67,7 +67,7 @@ $Calcs->gtbPuestos($idGrupo, $TablaPuestos, $TablaMaterias, $PromGrupo);
     foreach ($TablaMaterias as $KeyMat => $valMat) {
 		?>
         <div class="cell" width="26"></div>
-		<?
+		<?php
 	}
 	?>
 	<div class="cell" colspan="2"><b><?php echo number_format($PromGrupo, 2); ?></b></div>
@@ -83,3 +83,6 @@ $Calcs->gtbPuestos($idGrupo, $TablaPuestos, $TablaMaterias, $PromGrupo);
 
 <input type="button" id="btPuestAnioFirPdf" value="Ver PDF">
 <input type="button" id="btPuestAnioFirExc" value="Ver Excel">
+<input type="button" id="btPuestAnioFirDobleExc" value="Ver Excel con dobles">
+
+

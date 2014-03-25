@@ -15,7 +15,7 @@ function Conectar(){
 		$hostname="localhost";
 		$database="lalvirtu_myvc";
 		$login="root";
-		$pass="123456";			
+		$pass="";			
 	}
 
 	

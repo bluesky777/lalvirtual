@@ -16,10 +16,11 @@ class clsConexion{
 			$hostname="localhost";
 			$database="lalvirtu_myvc";
 			$login="root";
-			$pass="123456";			
+			$pass="";
 		}
 
-		$this->con=mysql_connect($hostname, $login, $pass) or die("Problemas con la conexión al servidor");
+		$this->con=mysql_connect($hostname, $login, $pass) or die("<meta charset='utf8'><meta>Problemas con la conexión al servidor");
+		//die("No pude");
 		mysql_query("SET NAMES 'utf8'");
 		mysql_select_db($database, $this->con)or die ("No se conecta a la DB");
 		
@@ -161,7 +162,7 @@ class clsConexion{
 				$sqlMat.=" and idProfesor=".$_SESSION['idUsuar'];
 			}
 		}
-
+//echo $sqlMat;
 		$qSqlMat=$this->queryx($sqlMat, "No se pudo traer las materias.");
 		return $qSqlMat;
 	}
@@ -170,7 +171,7 @@ class clsConexion{
 				where n.idIndic=i.idIndic and c.idCompet=i.CompetenciaIndic 
 				and c.PeriodoCompet=".$Per." and n.idAlumno=".$IdAlu ." and 
 				c.MateriaGrupoCompet= ".$idMat;
-
+//die($sqlInd);
 		if($Filtro == 'perdidos'){
 			$sqlInd.=" and n.Nota<".$this->NotaBasica;
 		}
@@ -289,11 +290,11 @@ class clsConexion{
 
 	function PermisoAlumnosVerNotas(){
 
-		$SqlPerm = "select BloqAlumnosVerNotas  
-			from tbyearcolegio where BloqAlumnosVerNotas=1";
+		$SqlPerm = "SELECT BloqAlumnosVerNotas  
+			from tbyearcolegio where Year='".$_SESSION['Year']."' and BloqAlumnosVerNotas=1";
 
 		$qSqlPerm=$this->queryx($SqlPerm, "No se pudo verificar el permiso para los alumnos ver notas. ");
-		if ($qSqlPerm > 0) {
+		if (mysql_num_rows($qSqlPerm) > 0) {
 			return false;
 		}else{
 			return true;

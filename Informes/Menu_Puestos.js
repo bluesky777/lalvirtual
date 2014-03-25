@@ -41,6 +41,7 @@ $(function(){
 
     function exeColorBox(Elem, e, myfunc){
         var datos = "idGrupo="+ $("#frmPorGrado option:selected").val();
+        console.log(datos);
         $(Elem).colorbox({
             xhrError: "Lo sentimos, no se pudo cargar la página",
             data: datos,

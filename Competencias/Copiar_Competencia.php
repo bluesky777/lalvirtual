@@ -1,8 +1,9 @@
 <?php 
-require_once("verificar_sesion.php");
-require_once("conexion.php");
+require_once("../verificar_sesion.php");
+require_once("../php/clsConexion.php");
 
-$con=Conectar();
+$conex = new clsConexion();
+$con = $conex->Conectar();
 
 
 $sqlSel="select idCompet, Competencia, PorcCompet, FechaCreacionCompet, OrdenCompt, idGrupo as GrupoAnt 

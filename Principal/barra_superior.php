@@ -18,42 +18,58 @@
     
         <div class="Opt1">
     
+            <div id="YearNav">
+        
+                <span class="YearNavMenu">
+                    <a href="javascript:void(0);" class="myYear" title="Cambie de año a su gusto y recuerde verificar si es el correcto">Año <?php echo $_SESSION['Year']; ?></a>
+                </span>
+
+                <div class="YearOpciones">
+                    
+                    <span id='2012' class="Yea">
+                        <a href="javascript:void(0);">2012</a>
+                    </span>
+                    <span id='2013' class="Yea">
+                        <a href="javascript:void(0);">2013</a>
+                    </span>
+                    <span id='2014' class="Yea">
+                        <a href="javascript:void(0);">2014</a>
+                    </span>
+                    
+                </div>
+        
+            </div>
+
+        </div>
+
+
+        <div class="Opt2">
+    
             <div id="PeriodoNav">
         
                 <span class="PeriodoNavMenu">
-                    <a href="javascript:void(0);" class="myPer" title="Cambie de periodo a su gusto y recuerde verificar si es el correcto">Per <?php echo $_SESSION['Per'] . "-" . $_SESSION['Year']; ?></a>
+                    <a href="javascript:void(0);" class="myPer" title="Cambie de periodo a su gusto y recuerde verificar si es el correcto">Per <?php echo $_SESSION['Per']; ?></a>
                 </span>
 
                 <div class="PeriodoOpciones">
-                    <?php
-                    $qyear=mysql_query("select Year from tbyearcolegio", $con);
-                    while($regyear=mysql_fetch_array($qyear)){
-                    ?>
                 
-                        <div class="PeriodoOpcion">
-                    
-                            <span class="PeriodoYear">
-                                Año <?php echo $regyear['Year']; ?>
-                            </span>
-                        
-                            <div class="PeriodoPer">
-                                <?php
-                                $sqlper="select idPer, Periodo from tbperiodos where Year=" . $regyear['Year'];
-                                $qper=mysql_query($sqlper, $con) or die("Problema al consultar Periodos. " . mysql_error());
-                                
-                                while($regper=mysql_fetch_array($qper)){
-                                ?>
-                                    <span id='<?php echo $regper['idPer']; ?>' class="Period">
-                                        <a href="javascript:void(0);">Periodo <?php echo $regper['Periodo']; ?></a>
-                                    </span>
-                                <?php
-                                } //while regper
-                                ?>
-                            </div>
+                    <div class="PeriodoOpcion">
+                
+                        <div class="PeriodoPer">
+                            <?php
+                            $sqlper="select idPer, Periodo from tbperiodos where Year=" . $_SESSION['Year'];
+                            $qper=mysql_query($sqlper, $con) or die("Problema al consultar Periodos. " . mysql_error());
+                            
+                            while($regper=mysql_fetch_array($qper)){
+                            ?>
+                                <span id='<?php echo $regper['idPer']; ?>' class="Period">
+                                    <a href="javascript:void(0);">Periodo <?php echo $regper['Periodo']; ?></a>
+                                </span>
+                            <?php
+                            } //while regper
+                            ?>
                         </div>
-                    <?php
-                    } //while regyear
-                    ?> 
+                    </div>
                 </div>
         
             </div>

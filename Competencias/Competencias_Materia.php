@@ -10,7 +10,7 @@ $idMatG=$_GET['idMatG'];
 
 <div class="ContPrincCompet">  <!-- TODO EL CONTENIDO DE ESTA PÁGINA -->
 
-<div id="ContCompetIndic">
+<div id="ContCompetIndic"><!-- ContCompetIndic -->
 
         
 <div id="ListaCompetencias">
@@ -69,7 +69,7 @@ if (isAdPr()){
                     </span>
                 </span>
                 <?php
-                }
+                };
                 ?>
              </div>  <!-- Fin Columna Uno -->
              
@@ -85,7 +85,7 @@ if (isAdPr()){
              
 			</li>         
 		<?php
-		}
+		};
 		?>
         
 		</ul>
@@ -94,7 +94,7 @@ if (isAdPr()){
     
 
 
-    <?
+    <?php
 	} else {
         echo "Aun no ha agregado competencias.";
 	}
@@ -107,7 +107,7 @@ if (isAdPr()){
 
 </div>
 
-</div>
+</div>  <!-- ContCompetIndic -->
         
         
     <!----------------- INDICADORES EN FORMA AJAX ------------------------>
@@ -144,7 +144,7 @@ if (isAdPr()){
 		from tbmateriagrupo mg, tbgrupos g, tbmaterias m 
 		where mg.idProfesor='". $_SESSION['idUsuar']."' and g.idGrupo=mg.idGrupo and m.idMateria=mg.idMateria and g.YearGrupo='". $_SESSION['Year']."'
 		order by g.Grupo";
-echo $sql;
+//echo $sql;
 
 	$qsql=mysql_query($sql, $Cmp::$conex) or die("No hay materias. " . mysql_error() . "<br>" . $sql);
 	while($rsql=mysql_fetch_array($qsql)){
@@ -166,7 +166,7 @@ echo $sql;
 		?>
         <option value="<?php echo $rsql['idPer']; ?>"><?php echo $rsql['Periodo']; ?></option>
         <?php
-		}
+		};
 		?>
   	  </select>
         <input type="submit" value="Copiar">
@@ -174,4 +174,3 @@ echo $sql;
     
     <div id="RespCopyComp"></div>
     
-</div>

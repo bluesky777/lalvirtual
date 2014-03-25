@@ -6,7 +6,13 @@ $Prd=new clsPeriodos();
 
 $idPer=$_GET['idPer']; //echo "idPer -> ".$idPer."<br>";
 $rSqlP=$Prd->gPeriodo($idPer);
-$idPerAnt = $Prd->gPeriodoAnt($rSqlP);
+
+// Borro alternativamente para mostrar el 2014
+//$idPerAnt = $Prd->gPeriodoAnt($rSqlP);
+// Y muestro el periodo del 2013
+$idPerAnt = 8;
+
+
 $PerNow = $idPer;
 
 $sqlAnt="select idAlumno, idGrupo 

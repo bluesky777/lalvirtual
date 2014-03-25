@@ -13,7 +13,7 @@ while($rSqlComp=mysql_fetch_array($qSqlComp)){
 	$nom="idComport" . $rSqlComp["idComport"];
 	$valor=$_POST[$nom];
 	
-	$sql="update tbcomportamiento set NotaComport='".$valor."' where idComport=".$rSqlComp['idComport'].";";
+	$sql="UPDATE tbcomportamiento set NotaComport='".$valor."' where idComport=".$rSqlComp['idComport'].";";
 	
 	$qSql=mysql_query($sql, $con) or die ("No se pudo guardar las notas. ".mysql_error().". ".$sql);
 		

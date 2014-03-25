@@ -89,7 +89,28 @@ $(document).ready(function(){
             $(".PeriodoOpciones").css("display", "none");
         }
     });
-	 
+        
+    $(".myYear").click(function(){
+        if($(".YearOpciones").css("display")=="none"){
+            $(".myYear").addClass("MenuBarraPresionado");
+            $(".YearOpciones").css("display", "block");
+        } else {
+            $(".myYear").removeClass("MenuBarraPresionado");
+            $(".YearOpciones").css("display", "none");
+        }
+    });
+     
+
+    $(".Yea").on("click", function(e){
+
+        var dat=$(this).attr('id');
+        var url = 'Cambiar_Periodo.php?YearSel=' + dat;
+        $.GuardarGet(url, ".Yea", function(){
+            window.location.reload();
+        });
+        e.preventDefault();
+    });
+     
 
     $(".Period").on("click", function(e){
 

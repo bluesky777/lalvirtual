@@ -6,6 +6,26 @@ $("#btNuevo").click(function() {
     $("#txtOrden").focus();
 });
 
+$(".ordenMat").on("focusout", function(e) {
+    var idMatGr = $(this).data("idmat");
+    var ordMat = $(this).html();
+    update_orden(idMatGr, ordMat);
+    
+    e.preventDefault();
+});
+
+$(".ordenMat").on("keypress", function(e) {
+    
+    if(e.keyCode == 13){
+        var idMatGr = $(this).data("idmat");
+        var ordMat = $(this).html();
+        update_orden(idMatGr, ordMat);
+
+        e.preventDefault();
+    }
+    
+});
+
 $("#NuevaMat").on("submit", function(e){
 
     e.preventDefault();
@@ -73,3 +93,21 @@ function vacio(q) {
     }  
     return false  
 }  
+function update_orden(idMatGr, ordMat){
+
+    $.ajax({
+        type: 'POST',
+        url: "../Grupos/update_materia.php", 
+        //data: "idMatGr="+idMatGr+"&OrdenMat="+$(this).html()+"&action=ordenarMateria",
+        data: {idMatGr: idMatGr, OrdenMat: ordMat, action: "ordenarMateria"},
+        success: function (data) {
+            console.log(data);
+            if(data == "Ordenado con exito."){
+                alert("Ordenado con exito, posición:  "+ordMat);
+            }
+        },
+        error: function(data){
+             console.log("Hubo problemas en la red " + data);
+        }
+    });
+}

@@ -8,7 +8,7 @@ $Prd=new clsPeriodos();
 <!--  MENU CONTENEDOR  -->
 <div class="MenuCont">
     
-<?
+<?php
 
 $idPer=$_GET['idPer'];
 
@@ -37,8 +37,11 @@ $qSqlGr=$Prd->gGrupoYear($Year);
 while($rSqlGr=mysql_fetch_array($qSqlGr)){
 	?>
 	<li>
-    	<?
-    	$rSqlCant=$Prd->gCantAlum($rSqlGr['idGrupo'], ($Peri-1), $Year);
+    	<?php
+    	// La comento para matricular en el año.
+    	// $rSqlCant=$Prd->gCantAlum($rSqlGr['idGrupo'], ($Peri-1), $Year);
+    	// Y creo el codigo alternativo para matricular el 2014
+    	$rSqlCant=$Prd->gCantAlum($rSqlGr['idGrupo'], 7, 2013);
 
     	echo $rSqlGr['Grupo'] . " - ". $rSqlGr['NombreGrupo'] . "(". $rSqlCant[0] .")"; 
 		
@@ -49,18 +52,18 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 		
         <ul>
         
-		<?
+		<?php
 		while($rSqlAl=mysql_fetch_array($qSqlAl)){
 			?>
 			<li>
             	<?php echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>
             </li>
-			<?
+			<?php
 		}
 		
 		?>
         </ul>
-        <?
+        <?php
 		}
         ?>
                       
@@ -68,7 +71,7 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
     </li>
 
     	
-	<?	
+	<?php	
 }
 ?>
 
@@ -90,7 +93,7 @@ $qSqlGr=$Prd->gGrupos($Year);
 while($rSqlGr=mysql_fetch_array($qSqlGr)){
 	?>
 	<li>
-    	<?
+    	<?php
     	
 		$rSqlCant=$Prd->gCantAlum2($rSqlGr["idGrupo"], $idPer);
 			
@@ -103,19 +106,19 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 		
         <ul>
         
-		<?
+		<?php
 		
 		while($rSqlAl=mysql_fetch_array($qSqlAl)){
 			?>
 			<li>
             	<?php echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>
             </li>
-			<?
+			<?php
 		}
 		
 		?>
         </ul>
-        <?
+        <?php
 		}
         ?>
                
@@ -123,7 +126,7 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
     </li>
 
     	
-	<?	
+	<?php	
 }
 ?>
 
@@ -134,15 +137,15 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 
 <div class="clear"></div>
 
-<div>
+	<div>
 
-<a href="../Grupos.php" id="MatrPorGrupo">Matricular por grado </a>
+		<a href="../Grupos.php" id="MatrPorGrupo">Matricular por grado </a>
 
-</div>
+	</div>
 
 
 </div> <!--  MENU CONTENEDOR  -->
 
-<?
+<?php
 $Prd->Cerrar();
 ?>

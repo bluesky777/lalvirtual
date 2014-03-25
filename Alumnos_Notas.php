@@ -36,235 +36,33 @@ function Promediar($idComp, $idAlum){
 <title>Insertar Notas</title>
 <script type="text/javascript" src="js/jquery.js" ></script>
 <!-- <script type="text/javascript" src="js/cuenta_regresiva.js"></script> -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-		Promediar();
-		
-		$(".Indicador").hide("slow");
-		
-		$("#LinkEliminar").click(function(){
-            if(confirm("¿Está seguro que desea proseguir? Esto eliminará las notas agregadas a todos los indicadores de esta competencia.")){
-                $.ajax({
-                    type: 'POST',
-                    url: 'Eliminar_Notas_de_Indicador.php',
-                    data: $(this).attr("href"),
-                    success: function(data){
-                            $("#Resultado").html(data);
-                            history.back();
-                    },
-                    beforeSend: function(){
-                            $('#Resultado').html("<img src='img/loader-mini.gif'/><br/>");
-                    },
-                    error: function(data){
-                            $('#Resultado').html("Hubo problemillas " + data);
-                    }
-                });	
-                return false;
-            }
-		});
-		
-		$("#NotasTodas").submit(function() {
-			$.ajax({
-                type: 'POST',
-                url: 'Guardar_Notas.php',
-                data: $(this).serialize(),
-                success: function(data){
-                    $("#Resultado").html(data);
-                },
-                beforeSend: function(){
-                    $('#Resultado').html("<img src='img/loader-mini.gif'/><br/>");
-                },
-                error: function(data){
-                    $('#Resultado').html("Hubo problemillas " + data);
-                }
-	        });
-            $.ajax({
-                type: 'POST',
-                url: 'Guardar_Notas.php',
-                data: $(this).serialize(),
-                success: function(data){
-                    $("#Resultado").html(data);
-                },
-                beforeSend: function(){
-                    $('#Resultado').html("<img src='../img/loader-mini.gif'/><br/>");
-                },
-                error: function(data){
-                	$('#Resultado').html("Hubo problemillas " + data);
-                }
-            });
-            return false;
-		});
-		
-		
-				
-		$(".NotaOnly").focusout(function(e) {
-			
-			Nota=$(this).val();
-			
-			Nombre=$(this).attr('name');
-			
-			PosI=Nombre.indexOf('I');
-			PosA=Nombre.indexOf('A');
-			
-			idInd=Nombre.substring(PosI+1);
-			idAlu=Nombre.substring(PosA+1, PosI);
-			
-			PromediarAlu(idAlu);
-			
-			Datos="idAlu="+idAlu+"&idInd="+idInd+"&Nota="+Nota;
-			
-			$.ajax({
-				type: 'POST',
-				url: 'Guardar_Notas_Only.php',
-				data: Datos,
-				success: function(data){
-					$("#Resultado").html(data);
-					
-				},
-				beforeSend: function(){
-					$('#Resultado').html("<img src='img/loader-mini.gif'/><br/>");
-				},
-				error: function(data){
-					$('#Resultado').html("Hubo problemas en la red."/* + data*/);
-				}
-			});
-            return false;
-		});
-		
-		
-		
-		$("#Atras").click(function(e) {
-            history.back();
-        });
-		
-		
-		
-		
-    });
-		
-function eliminar(Datos){
-	if (confirm("¿Desea eliminar las notas de esta competencia a ?")){
-		alert(Datos);
-		$.ajax({
-			url: "Eliminar_Notas_de_Alumno.php",
-			data: Datos,
-			type: "POST",
-			success: function(resp){
-				alert(resp);
-				history.back();
-			}
-		})
-	}
-}
-
-function PromediarAlu(idAlum){
-	
-	Acumu=0;
-	idAluAnt=0;
-	
-	$(".LaNota").each(function(index, element) {
-        
-		NombreP=$(this).attr('name');
-		
-		if($(this).val()<70){
-			$(this).css({background: '#FF7171'});
-		} else {
-			$(this).css({background: '#FFFFFF'});
-		}
-		
-		PosIp=NombreP.indexOf('I');
-		PosAp=NombreP.indexOf('A');
-		
-		idIndp=NombreP.substring(PosIp+1);
-		idAlup=NombreP.substring(PosAp+1, PosIp);
-		
-		idTh="CodInd"+idIndp;
-		
-		Porc=document.getElementById(idTh).className/100;
-		Notap=$(this).val();
-		
-		valTemp=Porc*Notap
-		
-		if(idAluAnt!=idAlup){
-			Acumu=0;
-		} 
-		
-		Acumu+=valTemp;
-		idAluAnt=idAlup;
-		
-		NomP="Prom"+idAlup;
-		document.getElementById(NomP).innerHTML=Acumu;
-		
-		
-    });
-	//Tomar todos los texts que tengan el codigo del alumno y promediar
-	
-}
-
-function Promediar(){
-	
-	Acumu=0;
-	idAluAnt=0;
-	
-	$(".LaNota").each(function(index, element) {
-        
-		Nombre=$(this).attr('name');
-		
-				
-		if($(this).val()<70){
-			$(this).css({background: '#FF7171'});
-		} else {
-			$(this).css({background: '#FFFFFF'});
-		}
-		
-		PosI=Nombre.indexOf('I');
-		PosA=Nombre.indexOf('A');
-		
-		idInd=Nombre.substring(PosI+1);
-		idAlu=Nombre.substring(PosA+1, PosI);
-		
-		idTh="CodInd"+idInd;
-		
-		Porc=document.getElementById(idTh).className/100;
-		Nota=$(this).val();
-		
-		valTemp=Porc*Nota
-		
-		if(idAluAnt!=idAlu){
-			Acumu=0;
-		} 
-		
-		Acumu+=valTemp;
-		idAluAnt=idAlu;
-		
-		NomP="Prom"+idAlu;
-		document.getElementById(NomP).innerHTML=Acumu;
-		
-		
-    });
-	//Tomar todos los texts que tengan el codigo del alumno y promediar
-	
-}
-
-
-</script>
+<script type="text/javascript" src="js/Alumnos_Notas.js"></script>
 
 <style>
-.LaNota{
-	margin-left:1; 
-	margin-right:1;
-	
-}
-.ResFlot{
-	position: fixed;
-	background: rgb(42, 35, 228);
-	padding: 4px 8px;
-	border-radius: 4px;
-	top: 10px;
-	right: 10px;
-	color: #fff;
-}
+	.LaNota{
+		margin-left:1; 
+		margin-right:1;
+		width: 30px;
+		margin: 0;
+		border: none;
+	}
+	.NotaDef{
+		background: #FCAEAE;
+	}
+	.ResFlot{
+		position: fixed;
+		background: rgb(42, 35, 228);
+		padding: 4px 8px;
+		border-radius: 4px;
+		top: 10px;
+		right: 10px;
+		color: #fff;
+	}
+	td, th{
+		border: none;
+		margin: 0;
+		padding: 0;
+	}
 </style>
 
 </head>
@@ -315,7 +113,7 @@ Cada nota se guardará automáticamente de forma individual, sin embargo puede p
 			
 		?>
         
-       	<th id="CodInd<?php echo $rSqlInd['idIndic']; ?>" title="<?php echo $rSqlInd['Indicador']; ?>" class="<?php echo $rSqlInd['PorcIndic']; ?>">Ind <?php echo $rSqlInd['OrdenIndic']; ?>
+       	<th id="CodInd<?php echo $rSqlInd['idIndic']; ?>" title="<?php echo $rSqlInd['Indicador']; ?>" class="<?php echo $rSqlInd['PorcIndic']; ?>"><?php echo $rSqlInd['OrdenIndic']; ?>
         	  </th>
         <?php
 		

@@ -5,25 +5,32 @@ else
 	include_once ("../../php/clsConexion.php");
 
 
+
 class clsPorcentajesAnio extends clsConexion {
 
-	private $Peri;
+	public $lastPer;
+	static public $lastPeriodo;
+	private $countAlumnos;
 
 	function __construct(){
-		//$this->Conectar();
+		// $this->Conectar();
 	}
 	function gLastPeriodo($idGrupo){
 		$sqlPer = "SELECT * FROM tbperiodos where Year=".$_SESSION['Year']."
 				order by Periodo DESC";
+				//echo $sqlPer;
 		$qSqlPer = $this->queryx($sqlPer, "No se pudo traer la cantidad de alumnos del grupo ".$idGrupo.". ");
 		
 		while ($rSqlPer=mysql_fetch_array($qSqlPer)) {
-			$PeriT = $rSqlPer['Periodo'];
+			$PeriT = $rSqlPer['idPer'];
+			$PeriodoT = $rSqlPer['Periodo'];
 			
 			$qSqlA=$this->gContAlumnosxNomGrupo($idGrupo, $PeriT);
 			$rSqlA = mysql_fetch_array($qSqlA);
 			if ($rSqlA['cuantos'] > 0 ) {
-				$this->Peri=$PeriT;
+				$this->lastPer = $PeriT;
+				clsPorcentajesAnio::$lastPeriodo = $PeriodoT;
+				// echo "Aqui está la variable del periodo actual: " . clsPorcentajesAnio::$lastPeriodo;
 				return $PeriT;	
 			} 
 		}
@@ -34,17 +41,18 @@ class clsPorcentajesAnio extends clsConexion {
 			where a.idAlum=ga.idAlumno and ga.idGrupo='".$idGrupo."' and g.idGrupo=ga.idGrupo 
 			and idPeriodo=".$Per." and Estado=1";
 
-		return $this->queryx($sql, "No se pudo traer la cantidad de alumnos del grupo ".$idGrupo." en el periodo ".$Per.". ");
+		$this->countAlumnos = $this->queryx($sql, "No se pudo traer la cantidad de alumnos del grupo ".$idGrupo." en el periodo ".$Per.". ");
+		return $this->countAlumnos;
 	}
 	function gtbPuestos($idGrupo, &$Tabla, &$tbMat, &$PromGrupo){
-		//Traer las materias para los titulos
+		// Traer las materias para los titulos
 		$qSqlTitulos = $this->gAbrevMatxGrupo($idGrupo);
 		while ( $reg = mysql_fetch_assoc( $qSqlTitulos) ) {
 			$tbMat[]=$reg;
 		}
 
-		//Alumnos con promedio por año
-		$qSqlAl = $this->gPromedioxAlum($idGrupo, $this->Peri);
+		// Alumnos con promedio por año
+		$qSqlAl = $this->gPromedioxAlum($idGrupo, $this->lastPer);
 		$tbAl=array();
 		while ( $reg = mysql_fetch_assoc( $qSqlAl ) ) {
 			$idAlum=$reg['idAlumno'];
@@ -64,10 +72,9 @@ class clsPorcentajesAnio extends clsConexion {
 		}
 		
 		//Definitiva de los alumnos en cada materia
-		$Cuantos=0;  //Cuantos alumnos hay
+		$Cuantos = $this->countAlumnos;  //Cuantos alumnos hay
 		$AcumuladoProm=0;
 		foreach ($tbAl as $key => $value) {
-			$Cuantos++;			
 			$PerdidosAlu=0;  //Para hallar el total de indicadores perdidos por alumno en el año
 			$PromAlu=0;  //Definitiva por alumno sin quitarle decimales
 			$MatsAlu=array();
@@ -106,7 +113,7 @@ class clsPorcentajesAnio extends clsConexion {
 	function gAbrevMatxGrupo($idGrupo){
 		$sql="SELECT idMaterGrupo, AbreviaturaMateria from tbmaterias m, tbmateriagrupo mg 
 			where m.idMateria=mg.idMateria and mg.idGrupo='".$idGrupo."' order by OrdenMater";
-			
+		//echo $sql;
 		return $this->queryx($sql, "No se trajeron las abreviaturas. ");
 	}
 	function gPromxAluxMatxAnio($idMateria, $idAlum){
@@ -131,9 +138,9 @@ class clsPorcentajesAnio extends clsConexion {
 	function gPromedioxAlum($idGrupo, $LastPeriodo, $limite=0, $PromSoloPerActivos=0){
 		$PartePromedio="";
 		if($PromSoloPerActivos==0){
-			$PartePromedio="(SUM(r4.PromedioAlum)/".$LastPeriodo.") PromedioAlumTotal";
+			$PartePromedio="(SUM(r4.PromedioAlum)/".clsPorcentajesAnio::$lastPeriodo.") as PromedioAlumTotal";
 		}else{
-			$PartePromedio="AVG(r4.PromedioAlum) PromedioAlumTotal";
+			$PartePromedio="AVG(r4.PromedioAlum) as PromedioAlumTotal";
 		}
 		$sql="SELECT (@rownum:=@rownum+1) AS NO,PromedioAlumTotal, idAlumno, NombresAlum, ApellidosAlum, NombreGrupo 
 		FROM (select @rownum:=0) r, (SELECT $PartePromedio, r4.idAlumno, NombresAlum, ApellidosAlum, NombreGrupo
@@ -152,7 +159,7 @@ class clsPorcentajesAnio extends clsConexion {
 			        FROM tbcompetencias c, tbindicadores i, tbnotas n, tbmateriagrupo mg, tbmaterias m, tbalumnos a, tbgrupoalumnos ga, tbgrupos g 
 			        WHERE c.idCompet=i.CompetenciaIndic and i.idIndic=n.idIndic 
 			            and mg.idGrupo='".$idGrupo."' and mg.idMaterGrupo=c.MateriaGrupoCompet and mg.idMateria=m.idMateria 
-			            and a.idAlum=n.idAlumno and ga.idAlumno=a.idAlum and ga.idGrupo=g.idGrupo and g.YearGrupo='2012' 
+			            and a.idAlum=n.idAlumno and ga.idAlumno=a.idAlum and ga.idGrupo=g.idGrupo and g.YearGrupo='".$_SESSION['Year']."' 
 			            and g.idGrupo=mg.idGrupo and ga.idPeriodo=c.PeriodoCompet and ga.Estado=1 
 			        /* Aqui sale el valor de cada nota de los alumnos con respecto a la materia */ ) r 
 			    GROUP BY r.CompetenciaIndic, r.idAlumno 
@@ -167,6 +174,8 @@ class clsPorcentajesAnio extends clsConexion {
 			/* Puestos de los alumnos en el grupo */
 			)t
 		";
+
+		//echo "<br>".$sql."<br>";
 		
 		if($limite<>0){ $sql.=" limit 0, ".$limite; }
 		return $this->queryx($sql, "No se pudo traer a los alumnos del grupo ".$idGrupo.". ");
@@ -175,9 +184,9 @@ class clsPorcentajesAnio extends clsConexion {
 
 	function gNotasPerdidas($MatCod, $idAlum){
 		$NotaBas=$this->gNotaBasica();
-		$sql="SELECT distinct n.Nota, n.idNota, n.idAlumno,  i.idIndic, i.Indicador, c.idCompet, c.PeriodoCompet
-			from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, tbgrupoalumnos ga
-			where n.idIndic=i.idIndic and i.CompetenciaIndic=c.idCompet 
+		$sql="SELECT distinct n.Nota, n.idNota, n.idAlumno,  i.idIndic, i.Indicador, c.idCompet, c.PeriodoCompet, p.Periodo
+			from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, tbgrupoalumnos ga, tbperiodos p
+			where n.idIndic=i.idIndic and i.CompetenciaIndic=c.idCompet and p.idPer=c.PeriodoCompet  
 			and c.MateriaGrupoCompet=mg.idMaterGrupo and ga.idAlumno=n.idAlumno 
 			and mg.idMaterGrupo=".$MatCod." and n.idAlumno=".$idAlum." and ga.Estado=1
 			and n.Nota<".$NotaBas;
@@ -212,6 +221,7 @@ class clsPorcentajesAnio extends clsConexion {
 	}
 	function gNombreGrupo($idGrupo){
 		$sql = "SELECT NombreGrupo FROM tbgrupos where idGrupo=".$idGrupo;
+		//echo $sql;
 		$qSql = $this->queryx($sql, "No se pudo traer la información del grupo ".$idGrupo.". ");
 		$rSql = mysql_fetch_assoc($qSql);
 		return $rSql['NombreGrupo'];

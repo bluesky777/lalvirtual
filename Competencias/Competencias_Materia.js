@@ -191,7 +191,7 @@ function copyComp(){
 
     $.ajax({
         type: "POST",
-        url: "../Copiar_Competencia.php",
+        url: "../Competencias/Copiar_Competencia.php",
         data: Datos,
         success: function(resp){
             $('#RespCopyComp').html(resp);

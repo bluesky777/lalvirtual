@@ -99,7 +99,7 @@ class clsCalcularPorc extends clsConexion {
 
 
 			if ($Pt==$rSqlM['idMaterGrupo']) {
-				$MateriaDef[$i]["Periodos"][$rSqlM['PeriodoCompet']]=$rSqlM['DefMateria'];
+				$MateriaDef[$i]["Periodos"][$rSqlM['Periodo']]=$rSqlM['DefMateria'];
 			}else{
 				$Pt=$rSqlM['idMaterGrupo'];
 				$MateriaDef[++$i]=array(
@@ -108,7 +108,7 @@ class clsCalcularPorc extends clsConexion {
 					"AliasMateria" => $rSqlM['AliasMateria'],
 					"CreditosMater" => $rSqlM['CreditosMater'],
 					"Periodos" => array(
-						$rSqlM['PeriodoCompet'] => $rSqlM['DefMateria']
+						$rSqlM['Periodo'] => $rSqlM['DefMateria']
 						)
 					);
 			}
@@ -207,25 +207,26 @@ class clsCalcularPorc extends clsConexion {
 	}
 
 	function gMaterxPerio($idAlumno){
-		$SqlM="SELECT idAlumno, NombreMateria, AliasMateria, idMaterGrupo, idMateria, PeriodoCompet,
+		$SqlM="SELECT idAlumno, NombreMateria, AliasMateria, idMaterGrupo, idMateria, PeriodoCompet, Periodo,
 				CreditosMater, OrdenMater, sum( ValorCompetencia ) DefMateria
 			FROM(
 				SELECT ga.idAlumno, NombreMateria, AliasMateria, mg.idMaterGrupo, mg.idMateria, mg.idProfesor, 
 					mg.CreditosMater, mg.OrdenMater, c.PeriodoCompet, c.Competencia, c.idCompet, 
-					i.idIndic, i.Indicador, i.PorcIndic, 
+					i.idIndic, i.Indicador, i.PorcIndic, p.Periodo, 
 					sum( ((c.PorcCompet/100)*((i.PorcIndic/100)*n.Nota)) ) ValorCompetencia
 				FROM tbgrupoalumnos ga, tbmateriagrupo mg, tbcompetencias c, tbindicadores i,
-					tbnotas n, tbmaterias m
+					tbnotas n, tbmaterias m, tbperiodos p 
 				WHERE mg.idGrupo=ga.idGrupo and m.idMateria=mg.idMateria 
 					and c.MateriaGrupoCompet=mg.idMaterGrupo and i.CompetenciaIndic=c.idCompet 
 					and n.idIndic=i.idIndic	and n.idAlumno=ga.idAlumno and c.PeriodoCompet=ga.idPeriodo
-					and ga.idAlumno=$idAlumno 
+					and ga.idAlumno=". $idAlumno ."  and ga.idPeriodo=p.idPer and p.Year='2013' 
 				group by ga.idAlumno, i.CompetenciaIndic
 			)r
 			group by idAlumno, idMaterGrupo, PeriodoCompet
 			order by OrdenMater, idMaterGrupo, PeriodoCompet";
-
+//echo $SqlM;
 		$qSqlM=$this->queryx($SqlM, "No se pudo traer las definitivas por materias de los periodos.");
+		
 		return $qSqlM;
 	}
 

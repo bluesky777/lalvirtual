@@ -3,7 +3,7 @@ require_once("../conexion.php");
 
 $con=Conectar();
 
-$sql="insert into tbmateriagrupo(idMateria, idGrupo, idProfesor, CreditosMater, OrdenMater)
+$sql = "INSERT into tbmateriagrupo(idMateria, idGrupo, idProfesor, CreditosMater, OrdenMater)
 	 values(".$_POST['txtMateria'].", ".$_POST['txtGrupo'].", ".$_POST['txtProfesor'].", ".$_POST['txtCreditos'].", ".$_POST['txtOrden'].")";
 	 
 //echo $sql;

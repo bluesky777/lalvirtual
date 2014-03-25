@@ -83,7 +83,21 @@ if(($Grupo=='T')or($Grupo=='J')or($Grupo=='1')or($Grupo=='2')){
 <?php //////////////////////////  BOLETIN  //////////////////////////////////////?>
 <div class="Boletin">
 <?php //////////////////////////  ENCABEZADO  //////////////////////////////////////?>
-<div class="Encabezado">
+
+<?php 
+if (isEst() or isAcud()){
+?>
+<div class="Printable">Usted no tiene permisos para imprimir este boletín</div>
+<?php 
+}  // Cierre de isAcud
+?>
+
+
+<?php 
+if (isAdPr()){  
+?>
+
+<div class="Encabezado<?php if (isEst() or isAcud()){ ?> noPrint<?php } ?>">
 
   <div class="LogoColegio">
 	<img src="../img/Colegio/Logo.jpg">
@@ -127,10 +141,17 @@ if(($Grupo=='T')or($Grupo=='J')or($Grupo=='1')or($Grupo=='2')){
 	Titular <?php echo $NomProf." ".$ApellProf; ?>
   </div>
     
-</div><?php //////////////////////////  ENCABEZADO  //////////////////////////////////////?>
+</div>
+<?php 
+}  // Cierre de isAcud
+?>
+
+<?php //////////////////////////  ENCABEZADO  //////////////////////////////////////?>
 
 <?php //////////////////////////  BODY  //////////////////////////////////////?>
-<div class="Body">
+<div class="Body<?php if (isEst() or isAcud()){ ?> noPrint<?php } ?>">
+
+
 <?php //////////////////////////  MATERIA  //////////////////////////////////////?>
 <?php
 
@@ -144,7 +165,7 @@ $qSqlMat = $con->queryx($sqlMat, "No se trajeron las materias del grupo ".$idGru
 
 while($rSqlMat = mysql_fetch_array($qSqlMat)){
 ?>
-  <div class="Materia" style="border-radius: 10; margin-top:5;">
+  <div class="Materia<?php if (isEst() or isAcud()){ ?> noPrint<?php } ?>" style="border-radius: 10; margin-top:5;">
 		<div class="NomMateria"><b><?php echo $rSqlMat['NombreMateria'];?></b></div>
 		<div class="NotMateria">
         
@@ -185,7 +206,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
   </div><?PHP ///////////////////////////////// FIN MATERIA  //////////////////////////////?>
     
     
-    <div class="Competencias"> <?php /////////////////////// COMPETENCIA  //////////////////////////////?>
+    <div class="Competencias<?php if (isEst() or isAcud()){ ?> noPrint<?php } ?>"> <?php /////////////////////// COMPETENCIA  //////////////////////////////?>
     <?php
 	$sqlComp="SELECT * FROM tbcompetencias 
 		where PeriodoCompet=".$_SESSION['PeriodoUsu']." and 
@@ -427,7 +448,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 <tr>    
     <td class="nomMMat"><?php echo ucfirst($MiJuicio->Mayustil($nomMin)); ?></td>
     
-    <?
+    <?php
 	
 	foreach($PeriodoYa as $id_Per => $Periodo){
 
@@ -471,7 +492,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 		            <?php echo $ContPerdidos; ?>
 		        </td>
 				
-				<?		
+				<?php	
        		}
        	}
 	
@@ -481,14 +502,14 @@ foreach($MateriaYa as $id_Mat => $Materia){
 	<td><b><?php echo $TotalMatPer; ?></b></td>
 </tr>	
 
-<?
+<?php
 }  /// foreach que tiene las materias donde tiene indicadores pendientes
 
 ?>
 
 <tr>
 	<td><b>TOTAL</b></td>
-<?
+<?php
 
 $TotalPer=0;
 foreach($PeriodoYa as $id_Per => $Periodo){
@@ -522,7 +543,7 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 
 				?>
 			    <td><b><?php echo $ContPerdidos; ?></b></td>
-				<?
+				<?php
 			}
 		}
 }
@@ -539,7 +560,16 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 
 <div class="clear"></div>
 
+
+
+
+
+<?php 
+if (isAdPr()){  
+?>
+
 <div class="Firmas"><?php //////////////////////////  FIRMAS  //////////////////////////////////////?>
+
 
 <div class="FirmaRector">
 	<img src="../img/Colegio/Firma venus.jpg" alt="" style="width: 100px;">
@@ -548,12 +578,16 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 </div>
 
 
-<div class="Titular">
+<div class="Titular<?php if (isEst() or isAcud()){ ?> noPrint<?php } ?>">
 	<div class="LineaFirma"></div>
     <div class="NombreTitular"><?php echo $NomProf. " " .$ApellProf . "<BR>Titular"; ?></div>
 </div>
 
 </div><?php ///////////////////////////////  TERMINAN FIRMAS  //////////////////////////////////////?>
+
+<?php 
+} 
+?>
 
 </div><?php //////////////////////////  BOLETIN  //////////////////////////////////////?>
 

@@ -6,7 +6,7 @@ $RegPosit=0;
 $RegNegat=0;
 
 $con=Conectar();
-$opt=$_POST['txtTipoUsu'];
+$opt=$_GET['TipoUsu'];
 
 //////////////////////////////////  USUARIOS PROFESORES ///////////////////////////////////////////////////
 switch($opt){
@@ -53,13 +53,11 @@ switch($opt){
         <td><?php echo $login; ?></td>
         <td><?php echo $pass; ?></td>
     </tr>
-            <?php
-			
+			<?php
 			$RegPosit++;
 		} else {
 			$RegNegat++;
 		}
-		
 	}
 ?>    
 </table>
@@ -76,14 +74,16 @@ switch($opt){
         <td>Login</td>
         <td>Password</td>
     </tr>
-    
+
   <?php
-	$sqlAlum="select idAlum, NombresAlum, ApellidosAlum, UsuarioAlum 
+	$sqlAlum="select idAlum, NombresAlum, ApellidosAlum, SexoAlum, UsuarioAlum 
 		from tbalumnos a, tbgrupoalumnos ga, tbperiodos p
 		where a.idAlum=ga.idAlumno and ga.idPeriodo=p.idPer and p.Year=" . $_SESSION['Year'];
+
 	$qSqlAlum=mysql_query($sqlAlum, $con) or die ("No se trajeron los alumnos de este año. " . mysql_error());
 	
 	while($rSqlAlum=mysql_fetch_array($qSqlAlum)){
+		
 		
 		$sqlUsu="select idUsu from tbusuarios where idUsu='".$rSqlAlum['UsuarioAlum']."'";
 		$qSqlUsu=mysql_query($sqlUsu, $con) or die ("No se pudo comprobar si el alumno -(".$rSqlAlum['idAlum']. ")" . $rSqlAlum['NombresAlum']. "- tiene usuario. " . mysql_error());
@@ -94,9 +94,9 @@ switch($opt){
 			$nom = str_replace(' ', '', $rSqlAlum['NombresAlum']);
 			//$cadena = ereg_replace ("([ ]+)", "",  $rSqlAlum['NombresAlum']);  //Este con expresiones regulares también debe servir.
 			$login=$nom . $rSqlAlum['idAlum'];
-			$pass=$rSqlAlum['idAlum']. $nom;
+			$pass= ($rSqlAlum['SexoAlum'] == 'F' ) ? 'josethteamo' : '123';
 			
-			$sqlIns="Insert into tbusuarios(LoginUsu, PassUsu, TipoUsu, ActivoUsu) values('". $login ."', '". $pass ."', '2', '1')";
+			$sqlIns="Insert into tbusuarios(LoginUsu, PassUsu, CifradoUsu, FechaCambioPassUsu, TipoUsu, ActivoUsu, FechaIngresoUsu) values('". $login ."', '". $pass ."', 0, '".date(" Y/m/d h:i:s",time())."', '2', '1', '".date(" Y/m/d h:i:s",time())."')";
 			
 			
 			$qSqlInsUsu=mysql_query($sqlIns, $con) or die ("No se pudo general el usuario para el alumno -(".$rSqlAlum['idAlum']. ")" . $rSqlAlum['NombresAlum']. "-. " . mysql_error());

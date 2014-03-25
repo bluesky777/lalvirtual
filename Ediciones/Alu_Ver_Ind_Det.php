@@ -67,7 +67,9 @@ if($CantiPer==0){
 
 
 while($rSqlPer=mysql_fetch_array($qSqlPer)){
-	$Per=$rSqlPer['Periodo'];
+	
+	$Per=$rSqlPer['idPer'];
+	$Periodo=$rSqlPer['Periodo'];
 
 	$qSqlMat = $Cn->gMatsxPer($Per, $IdAlu, $Filtro);
 	$CantiMat=mysql_num_rows( $qSqlMat );
@@ -78,7 +80,7 @@ while($rSqlPer=mysql_fetch_array($qSqlPer)){
 
 ?>
 	<div class="CnPer" id="CnP<?php echo $Per; ?>">
-		<SPAN class="titPer Az" title="De click para ocultar o mostrar las materias." id="TiP_<?php echo $Per; ?>">PERIODO <?php echo $Per.$TextMas; ?></SPAN>
+		<SPAN class="titPer Az" title="De click para ocultar o mostrar las materias." id="TiP_<?php echo $Per; ?>">PERIODO <?php echo $Periodo.$TextMas; ?></SPAN>
 
 	<?php
 

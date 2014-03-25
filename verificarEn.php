@@ -13,10 +13,10 @@ $con=Conectar();
 
 
 ///////////// CONSULTA A TRAVÉS DE CONTRASEÑA ENCRITADA MD5 /////////////////
-    
-$sqlEn = "select idUsu, TipoUsu, TipoUsuario, LoginUsu, ActivoUsu, PeriodoUsu, Periodo, Year, PerfilImg, PrincipalImg, CifradoUsu 
-from tbtipousuarios, tbusuarios, tbperiodos
-where LoginUsu='" . $_POST["txtLogin"] . "' and PassUsu='" . $_POST["txtPass"] . "' and tbusuarios.TipoUsu=tbtipousuarios.IdTipoUsu and PeriodoUsu=IdPer"; 
+
+$sqlEn = "SELECT idUsu, TipoUsu, TipoUsuario, LoginUsu, ActivoUsu, PeriodoUsu, Periodo, Year, PerfilImg, PrincipalImg, CifradoUsu 
+    FROM tbtipousuarios, tbusuarios, tbperiodos
+    WHERE LoginUsu='" . $_POST["txtLogin"] . "' and PassUsu='" . $_POST["txtPass"] . "' and tbusuarios.TipoUsu=tbtipousuarios.IdTipoUsu and PeriodoUsu=IdPer"; 
 
 
 
@@ -32,7 +32,7 @@ if(mysql_num_rows($q)>0){
 
 
         if ($row['TipoUsu']==2){
-            ////////////////////////////  TIPO ALUMNO /////////////////////////////////////
+            ////////////////////////////  TIPO PROFESOR /////////////////////////////////////
 
             $sqlProf="select * from tbprofesores where UsuarioProf='".$row['idUsu']."'";
             $qSqlProf=mysql_query($sqlProf, $con) or die ("No se trajeron los datos personanles del usuario profesor ingresado.".mysql_error());
@@ -45,12 +45,12 @@ if(mysql_num_rows($q)>0){
                 session_destroy(); 
             } else {
                 $rSqlProf=mysql_fetch_array($qSqlProf);
-                $_SESSION['idUsuar']=$rSqlProf['idProf'];
-                $_SESSION['NombresUsuar']=$rSqlProf['NombresProf'];
-                $_SESSION['ApellidosUsuar']=$rSqlProf['ApellidosProf'];
-                $_SESSION['SexoUsuar']=$rSqlProf['SexoProf'];
-                $_SESSION['FechaNacUsuar']=$rSqlProf['FechaNacProf'];
-                $_SESSION['FacebookUsuar']=$rSqlProf['FacebookProf'];
+                $_SESSION['idUsuar'] = $rSqlProf['idProf'];
+                $_SESSION['NombresUsuar'] = $rSqlProf['NombresProf'];
+                $_SESSION['ApellidosUsuar'] = $rSqlProf['ApellidosProf'];
+                $_SESSION['SexoUsuar'] = $rSqlProf['SexoProf'];
+                $_SESSION['FechaNacUsuar'] = $rSqlProf['FechaNacProf'];
+                $_SESSION['FacebookUsuar'] = $rSqlProf['FacebookProf'];
 
                 $_SESSION['TituloProf']=$rSqlProf['TituloProf'];
                 $_SESSION['TipoProf']=$rSqlProf['TipoProf'];
@@ -128,8 +128,6 @@ if(mysql_num_rows($q)>0){
 
 
         echo "Exitoso"; 
-
-
 
     }else{
 

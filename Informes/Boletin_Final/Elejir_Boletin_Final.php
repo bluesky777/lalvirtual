@@ -65,7 +65,7 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 </form>
  
     
-<?
+<?php
 
 }else{
 	echo "No tiene permisos para ver los boletines";

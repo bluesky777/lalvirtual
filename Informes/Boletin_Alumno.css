@@ -1,3 +1,24 @@
+@media print {
+
+  .noPrint{
+  	display: none;
+  }
+  .Printable{
+  	font-size: 18px;
+  	display: inline-block;
+  	background-color: black;
+  }
+}
+@media screen {
+  body { font-size: 13px }
+  
+  .Printable{
+  	display: none;
+  }
+  
+}
+
+
 .clear{
 	clear:both;
 }

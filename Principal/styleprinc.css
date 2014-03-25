@@ -66,7 +66,7 @@
 
 
 
-.Opt1{
+.Opt1, .opt2{
 	float: left;
 }
 
@@ -98,7 +98,7 @@
 /*///////////// MENU DE PERIODO //////////////////////*/
 
 
-#PeriodoNav, .OptInicio, #OptUsuario, #OptCerrar, #OptLogoMyVc, #BuscadorPeople{
+#PeriodoNav, #YearNav, .OptInicio, #OptUsuario, #OptCerrar, #OptLogoMyVc, #BuscadorPeople{
     float: left; 
     color: #D8DFEA;
 	
@@ -115,19 +115,24 @@
     float: left;
 }
 
+#PeriodoNav .PeriodoNavMenu, #YearNav .YearNavMenu{
+    width: 70px;
+    display: inline-block;
+}
 #PeriodoNav .PeriodoNavMenu{
-    width: 90px;
+    padding-left: 5px; 
+    width: 50px;
     display: inline-block;
 }
 #BuscadorPeople{
-    margin: 0px 50px;
+    margin: 0px 40px;
 }
 #txtBuscardorPeople{
     padding: 4px;
-    width: 315px;
+    width: 200px;
     margin-left: 4px;
 }
-#PeriodoNav .PeriodoNavMenu a{
+#PeriodoNav .PeriodoNavMenu a, #YearNav .YearNavMenu a{
     background-image: url("../img/flecha-abajo.png");
     background-repeat: no-repeat;
     background-position: right;
@@ -141,28 +146,31 @@
     font-weight: bold;
 }
 
-#PeriodoNav .PeriodoNavMenu a, .OptInicio a, #OptCerrar a{
+#PeriodoNav .PeriodoNavMenu a, #YearNav .YearNavMenu a, .OptInicio a, #OptCerrar a{
     display: block;
-    padding: 8px 10px;
+    padding: 8px 5px;
     color: #D8DFEA;
     font-weight: bold;
 	
 }
 
-#PeriodoNav .PeriodoNavMenu a:hover, .OptInicio a:hover, #OptUsuario a:hover, #OptCerrar a:hover{
+#PeriodoNav .PeriodoNavMenu a:hover, #YearNav .YearNavMenu a:hover, 
+.OptInicio a:hover, #OptUsuario a:hover, #OptCerrar a:hover{
     color: #FFFFFF;
 }
 
-#PeriodoNav .PeriodoOpciones{
+#PeriodoNav .PeriodoOpciones, #YearNav .YearOpciones{
     display: none;
     background: #f0eeff;
     position: absolute;
     border-radius: 0px 1px 4px 4px;
     box-shadow: 0px 4px 2px #a7a7a7;
+    z-index: 1000;
 }
 
 
-#PeriodoNav .PeriodoOpciones .PeriodoOpcion .PeriodoYear{
+#PeriodoNav .PeriodoOpciones .PeriodoOpcion .PeriodoYear,
+#YearNav .YearOpciones .Yea{
     color: #060029;
     padding: 10px 15px 3px 15px;
     display: block;

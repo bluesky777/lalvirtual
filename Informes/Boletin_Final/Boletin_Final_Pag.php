@@ -3,16 +3,17 @@ require_once("../../verificar_sesion.php");
 require_once("../clsCalcularPorc.php");
 require_once("../../php/funciones.php");
 
+set_time_limit(0);
 
 $Calcs=new clsCalcularPorc();
 $Calcs->Conectar();
 
 $MiJuicio = new JuicioVal($_SESSION['Year']);
 
-$idAlumno=$_GET['idAlum'];
+$idAlumno = $_GET['idAlum'];
 
-$qSqlA=$Calcs->DatosAlumGrupo($idAlumno);
-$qSqlC=$Calcs->DatosColegio();
+$qSqlA = $Calcs->DatosAlumGrupo($idAlumno);
+$qSqlC = $Calcs->DatosColegio();
 
 $DataAlum = mysql_fetch_assoc($qSqlA);
 $DataColeg = mysql_fetch_assoc($qSqlC);
@@ -26,12 +27,14 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 <!DOTYPE html>
 <html lang="es">
 <head>
-	<title><?php echo $DataAlum['NombresAlum'];?>- Boletin Final</title>
+	<title><?php echo $DataAlum['NombresAlum']; ?>- Boletin Final</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/Boletin_Final.css">
 </head>
 
 <body>
+
+<br><br><br><br><br><br><br><br><br><br>
 	<header>
 		<span class="imgLog">
 			<img src="../../img/Colegio/Logo.jpg">
@@ -99,7 +102,7 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 				$indPer=1;
 				$Sum=0; 
 				$div=0;
-				
+
 				foreach ($Mater['Periodos'] as $keyP => $PerD) {
 					
 					?><div class="cell"><?php
@@ -137,7 +140,13 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 					<?php
 					$indPer++;
 				}
-				$prom = $Sum / $div;
+				
+				//echo "Suma: ".$Sum."<--";
+				$prom = 0;
+
+				if ($Sum != 0) {
+					$prom = $Sum / $div;
+				}
 				$prom = number_format( $prom , 1 );
 
 				if ($prom< $Calcs->gNotaBasica()) {
@@ -244,6 +253,13 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 	</section>
 
 	<footer>
+
+		<div class="observBoletin">
+			<div>Observaciones:</div>
+			<div></div>
+			<div></div>
+		</div>
+
 		<div class="frRec">
 			<?php
 			if($_GET['Firm'] == 0){
@@ -293,3 +309,6 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 	</footer>
 </body>
 </html>
+<?php
+//mysql_close();
+?>
