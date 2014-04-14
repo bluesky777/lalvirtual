@@ -147,7 +147,7 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 				if ($Sum != 0) {
 					$prom = $Sum / $div;
 				}
-				$prom = number_format( $prom , 1 );
+				$prom = number_format( $prom , 0 );
 
 				if ($prom< $Calcs->gNotaBasica()) {
 					if ($Mater['NombreMateria']=="LENGUA CASTELLANA" || $Mater['NombreMateria']=="INGLÉS") {

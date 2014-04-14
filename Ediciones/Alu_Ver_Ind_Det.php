@@ -41,8 +41,15 @@ if (isset($_GET['IdAlu'])){
 	$IdAlu = $_SESSION['idUsuar']; 
 	//Es un alumno y debo verificar si hay permisos para mostrar notas a los alumnos
 	if (!$Cn->PermisoAlumnosVerNotas()){
-		die("Nuestro querido administrador JosethBoom ha bloqueado el acceso de los alumnos a las notas por la creciente cartera en tesorería con la linda profe Patty. Por favor hacer arreglos si ud es uno de los que no está a paz y salvo. Muchas gracias, y disculpa las molestias.");
+		die("Temporalmente bloqueado, favor hablar con la linda Patty.");
 	}
+
+	// O si está a paz y salvo
+	if (!$Cn->isPazYSalvo()) {
+		list ($paz, $deuda) = $Cn->datosPazYSalvo();
+		die('No puedes ver tus notas, no estás a paz y salvo. Debes: $' . $deuda);
+	}
+
 	$Tp=false; //Quiero indicar que No puede editar
 }
 

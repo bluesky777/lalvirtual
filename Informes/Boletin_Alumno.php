@@ -5,11 +5,31 @@ require_once("../verificar_sesion.php");
 require_once("funciones.php");
 include("../php/clsPersonaTotal.php");
 //require_once("verificar_sesion_arriba.php");
+
+?>
+<html>
+<head>
+	
+	<link type="text/css" href="Boletin_Alumno.css" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><?php echo $Apell . " " . $Nomb; ?></title>
+</head>
+
+<body>
+
+<?php
 $con = new clsConexion();
 $con->Conectar();
 if (!$con->PermisoAlumnosVerNotas() and ( $_SESSION['TipoUsu']>2)){
-	die("Nuestro querido administrador JosethBoom ha bloqueado el acceso de los alumnos a las notas por la creciente cartera en tesorería con la linda profe Patty. Por favor hacer arreglos si ud es uno de los que no está a paz y salvo. Muchas gracias, y disculpa las molestias.");
+	die("<h4>Temporalmente bloqueado, favor hablar con la linda Patty.</h4>");
 }
+
+if (!$con->isPazYSalvo() and ( $_SESSION['TipoUsu']>2) ) {
+
+	list ($paz, $deuda) = $con->datosPazYSalvo();
+	die('<h4>No puedes ver tus notas, no estás a paz y salvo. Debes: $' . $deuda . '</h4>');
+}
+
 $MiJuicio = new JuicioVal($_SESSION['Year']);
 
 $idAlum;
@@ -71,15 +91,11 @@ if(($Grupo=='T')or($Grupo=='J')or($Grupo=='1')or($Grupo=='2')){
 	$PonerCaras=true;
 }
 ?>
-<html>
-<head>
-	
-	<link type="text/css" href="Boletin_Alumno.css" rel="stylesheet">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><?php echo $Apell . " " . $Nomb; ?></title>
-</head>
 
-<body>
+
+
+
+
 <?php //////////////////////////  BOLETIN  //////////////////////////////////////?>
 <div class="Boletin">
 <?php //////////////////////////  ENCABEZADO  //////////////////////////////////////?>

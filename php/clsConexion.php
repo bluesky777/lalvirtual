@@ -4,6 +4,8 @@ class clsConexion{
 	public $con;
 	public static $conex;
 	private $NotaBasica;
+	private $paz;
+	private $deuda;
  
 	function Conectar(){
 		
@@ -19,7 +21,7 @@ class clsConexion{
 			$pass="";
 		}
 
-		$this->con=mysql_connect($hostname, $login, $pass) or die("<meta charset='utf8'><meta>Problemas con la conexión al servidor");
+		$this->con=mysql_connect($hostname, $login, $pass) or die("<meta charset='utf8'></meta>BBBBProblemas con la conexión al servidor");
 		//die("No pude");
 		mysql_query("SET NAMES 'utf8'");
 		mysql_select_db($database, $this->con)or die ("No se conecta a la DB");
@@ -299,6 +301,35 @@ class clsConexion{
 		}else{
 			return true;
 		}
+		
+	}
+
+
+	function isPazYSalvo(){
+
+		$SqlPaz = "SELECT PazySalvoAlum, DeudaAlum  
+			from tbalumnos where idAlum='".$_SESSION['idUsuar']."'";
+		//echo $SqlPaz;
+		
+		$qSqlPaz=$this->queryx($SqlPaz, "No se pudo verificar si está a paz y salvo. ");
+
+		while ( $rSqlPaz = mysql_fetch_array($qSqlPaz)) {
+			// ALmacenamos los datos para cuando llamemos la función datosPazYSalvo
+			$this->paz = $rSqlPaz['PazySalvoAlum'];
+			$this->deuda = $rSqlPaz['DeudaAlum'];
+
+			if ($rSqlPaz['PazySalvoAlum'] == 1) {
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		
+	}
+
+	function datosPazYSalvo(){
+		return array($this->paz, $this->deuda);
 		
 	}
 

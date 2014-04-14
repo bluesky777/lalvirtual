@@ -219,7 +219,7 @@ class clsCalcularPorc extends clsConexion {
 				WHERE mg.idGrupo=ga.idGrupo and m.idMateria=mg.idMateria 
 					and c.MateriaGrupoCompet=mg.idMaterGrupo and i.CompetenciaIndic=c.idCompet 
 					and n.idIndic=i.idIndic	and n.idAlumno=ga.idAlumno and c.PeriodoCompet=ga.idPeriodo
-					and ga.idAlumno=". $idAlumno ."  and ga.idPeriodo=p.idPer and p.Year='2013' 
+					and ga.idAlumno=". $idAlumno ."  and ga.idPeriodo=p.idPer and p.Year='".$_SESSION['Year']."' 
 				group by ga.idAlumno, i.CompetenciaIndic
 			)r
 			group by idAlumno, idMaterGrupo, PeriodoCompet

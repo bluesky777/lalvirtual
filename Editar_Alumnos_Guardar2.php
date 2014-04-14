@@ -6,7 +6,7 @@ $con=Conectar();
 //Cambiar la hora del servidor por la de Colombia
 putenv ("TZ=America/Bogota");
 
-$sql="update tbalumnos set PazySalvoAlum=".$_POST['PazySalvo'].", DeudaAlum=".$_POST['txtPension']." where idAlum='".$_POST['txtIdAlum']."'";
+$sql="update tbalumnos set PazySalvoAlum='".$_POST['PazySalvo']."', DeudaAlum='".$_POST['txtPension']."' where idAlum='".$_POST['txtIdAlum']."'";
 
 //echo $sql;
 
