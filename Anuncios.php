@@ -93,3 +93,4 @@ $TipoUsu = $_SESSION['TipoUsu'];
 
 
 </section>
+

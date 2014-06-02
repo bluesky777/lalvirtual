@@ -104,3 +104,9 @@ if (!isAdm() and !isAcud()){
 ?>
 
 </div>
+
+
+
+<input type="button" id="btBolFinales" class="bt1" value="Boletines finales" />
+
+

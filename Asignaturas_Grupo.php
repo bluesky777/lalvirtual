@@ -30,6 +30,7 @@ Seleccione un grupo:
 	?>
 </select>
 
+<a href="#" id="CargarAsignaturas">Cargar asignaturas</a>
 
 <div id="tbGrupoAsig">
     

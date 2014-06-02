@@ -116,12 +116,12 @@
 }
 
 #PeriodoNav .PeriodoNavMenu, #YearNav .YearNavMenu{
-    width: 70px;
+    width: 80px;
     display: inline-block;
 }
 #PeriodoNav .PeriodoNavMenu{
     padding-left: 5px; 
-    width: 50px;
+    width: 60px;
     display: inline-block;
 }
 #BuscadorPeople{

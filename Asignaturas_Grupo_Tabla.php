@@ -80,7 +80,7 @@ $con=Conectar();
             </select>
         </td>
         <td>
-       	  <input type="text" name="CreditosMater<?php echo $rSqlM['idMaterGrupo']; ?>" value="<?php echo $rSqlM['CreditosMater']; ?>" size="3">
+       	  <input type="text" class="inputCredito" data-idmat="<?php echo $rSqlM['idMaterGrupo']; ?>" name="CreditosMater<?php echo $rSqlM['idMaterGrupo']; ?>" value="<?php echo $rSqlM['CreditosMater']; ?>" size="3">
         </td>
         <td>
         	<a href="javascript:void(0);" id="../Editar_Materia_Inscrita.php?idMatGr=<?php echo $rSqlM['idMaterGrupo']; ?>" class="EditarAsig" title="Editar asignatura asignada">

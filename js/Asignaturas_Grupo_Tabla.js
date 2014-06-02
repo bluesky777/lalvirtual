@@ -14,6 +14,27 @@ $(".ordenMat").on("focusout", function(e) {
     e.preventDefault();
 });
 
+
+$(".inputCredito").on("focusout", function(e) {
+    var idMatGr = $(this).data("idmat");
+    var credMat = $(this).val();
+    update_creditos(idMatGr, credMat);
+    
+    e.preventDefault();
+});
+
+$(".inputCredito").on("keypress", function(e) {
+    
+    if(e.keyCode == 13){
+        var idMatGr = $(this).data("idmat");
+        var credMat = $(this).val();
+        update_creditos(idMatGr, credMat);
+
+        e.preventDefault();
+    }
+    
+});
+
 $(".ordenMat").on("keypress", function(e) {
     
     if(e.keyCode == 13){
@@ -103,11 +124,30 @@ function update_orden(idMatGr, ordMat){
         success: function (data) {
             console.log(data);
             if(data == "Ordenado con exito."){
-                alert("Ordenado con exito, posición:  "+ordMat);
+                console.log("Ordenado con exito, posición:  "+ordMat);
             }
         },
         error: function(data){
-             console.log("Hubo problemas en la red " + data);
+             console.log("Hubo problemas al ordenar. " + data);
+        }
+    });
+}
+
+function update_creditos(idMatGr, credMat){
+
+    $.ajax({
+        type: 'POST',
+        url: "../Grupos/update_materia.php", 
+        //data: "idMatGr="+idMatGr+"&OrdenMat="+$(this).html()+"&action=ordenarMateria",
+        data: {idMatGr: idMatGr, CredMat: credMat, action: "cambiarCredito"},
+        success: function (data) {
+            console.log(data);
+            if(data == "Creditos cambiados exitosamente."){
+                console.log("Creditos cambiados exitosamente, créditos:  "+credMat);
+            }
+        },
+        error: function(data){
+             console.log("Hubo problemas al guardar créditos. " + data);
         }
     });
 }

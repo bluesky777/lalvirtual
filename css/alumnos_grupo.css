@@ -4,3 +4,7 @@
 .form-group {
     margin-bottom: 0px;
 }
+tbody td{
+	padding: 0px 2px 0px 8px !important;
+	margin-bottom: 0px;
+}

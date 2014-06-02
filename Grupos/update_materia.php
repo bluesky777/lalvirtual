@@ -13,13 +13,21 @@ $con->Conectar();
 
 
 $idMatGr = $_POST['idMatGr'];
-$OrdenMat = $_POST['OrdenMat'];
 $action = $_POST['action'];
 
 if($action == 'ordenarMateria'){
+	$OrdenMat = $_POST['OrdenMat'];
 	$cons_update = "UPDATE tbmateriagrupo mg SET mg.OrdenMater = '".$OrdenMat ."'  WHERE idMaterGrupo = '".$idMatGr."'";
 	$con->queryx($cons_update, "No se pudo actualizar el orden de la materia.");
 	echo "Ordenado con exito.";
+}
+
+
+if($action == 'cambiarCredito'){
+	$CredMat = $_POST['CredMat'];
+	$cons_update = "UPDATE tbmateriagrupo mg SET mg.CreditosMater = '".$CredMat ."'  WHERE idMaterGrupo = '".$idMatGr."'";
+	$con->queryx($cons_update, "No se pudo guardar el credito de la materia.");
+	echo "Creditos cambiados exitosamente.";
 }
 
 

@@ -11,6 +11,28 @@ $Calcs=new clsCalcularPorc();
 $Calcs->Conectar();
 
 
+
+// Está pidiendo los alumnos del grupo a los datos de un alumno?:
+if ( isset($_GET['idGr']) ) {
+	$sql="SELECT idAlum, NombresAlum from tbalumnos a, tbgrupoalumnos ga 
+		WHERE a.idAlum=ga.idAlumno and ga.idGrupo='".$_GET['idGr']. "' 
+			and ga.idPeriodo='".$_SESSION['PeriodoUsu']."' 
+		ORDER BY ApellidosAlum;";
+
+	$qSql=$Calcs->queryx($sql, "No se trajeron los alumnos. ");
+
+	$datosAl = array();
+
+	while ($rSql = mysql_fetch_assoc($qSql)) {
+		$datosAl[] = $rSql;
+	}
+	echo json_encode( $datosAl );
+	die();
+}
+
+
+
+
 $MiJuicio = new JuicioVal($_SESSION['Year']);
 
 $idAlumno = $_GET['idAlum'];
@@ -27,21 +49,6 @@ $qSqlM=$Calcs->gMaterxPerio($idAlumno);
 $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<title>Boletines finales</title>
-	<meta charset="utf-8" />
-	<script type="text/javascript" src="../../js/jquery.js"></script>
-	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bol_final.css">
-	<link rel="stylesheet" type="text/css" href="css/bol_final_print.css" media="print">
-</head>
-<body>
-
-
-
-<div class="paginas">
 
 <div class="pagina">
 
@@ -327,12 +334,6 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 	</footer>
 	
 </div>
-
-<!-- Cierre de .paginas -->
-</div>
-
-</body>
-</html>
 <?php
 //mysql_close();
 ?>

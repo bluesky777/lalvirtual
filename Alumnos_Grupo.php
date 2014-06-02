@@ -135,7 +135,7 @@ $sql="SELECT * from tbalumnos a, tbgrupoalumnos ga
 <form name="frmGrupos" ID="Formulario" action="" method="post" enctype="multipart/form-data">
 
 -->
-<table id="tbGrupos" class="table table-striped table-hover">
+<table id="tbGrupos" class="table table-striped table-hover table-condensed">
 <thead>
 	<tr>
     	
@@ -165,7 +165,7 @@ while($rSql=mysql_fetch_array($qSql)){
     	<!--<td><input type="hidden" value="<?php echo $rSql['idAlum']; ?>" name="txtIdAlum"><?php echo $rSql['NoMatriculaAlum']; ?></td>
         -->
         <td>
-        	<a href="Editar_Alumnos.php?idAlum=<?php echo $rSql['idAlum']; ?>&NoMat=<?php echo $rSql['NoMatriculaAlum']; ?>&Nom=<?php echo $rSql['NombresAlum']; ?>&Ape=<?php echo $rSql['ApellidosAlum']; ?>&Pazy=<?php echo $rSql['PazySalvoAlum']."&Debe=".$rSql['DeudaAlum']; ?>">
+        	<a href="Editar_Alumnos.php?idAlum=<?php echo $rSql['idAlum']; ?>&NoMat=<?php echo $rSql['NoMatriculaAlum']; ?>&Nom=<?php echo $rSql['NombresAlum']; ?>&Ape=<?php echo $rSql['ApellidosAlum']; ?>&Sex=<?php echo $rSql['SexoAlum']; ?>&Pazy=<?php echo $rSql['PazySalvoAlum']."&Debe=".$rSql['DeudaAlum']; ?>">
 		
 			<?php echo $rSql['ApellidosAlum']; ?> <?php echo $rSql['NombresAlum']; ?>
         	</a>

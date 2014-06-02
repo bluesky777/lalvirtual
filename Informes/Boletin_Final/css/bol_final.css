@@ -1,0 +1,180 @@
+.paginas{
+	margin: auto;
+	text-align: center;
+}
+.pagina{
+	margin: auto;
+	font-size: 12px;
+	line-height: 1;
+	text-align: center;
+	width: 21cm;
+	height: 27cm;
+	page-break-after: always;
+	border: 1px #ccc;
+	position: relative;
+}
+header{
+	display: inline-block;
+	vertical-align: top;
+}
+section{
+	display: inline-block;
+}
+.imgLog{
+	margin: 10px 0 10px 10px;
+	display: inline-block;
+}
+.imgLog img{
+	height:60px;
+}
+.HeCol, .Resol{
+	display: inline-block;
+	width: 500px;
+	text-align: center;
+	vertical-align: top;
+
+}
+.HeCol h3, .HeCol h2, .HeCol p{
+	margin: 0px;
+}
+
+.HeCol p{
+	font-size: 80%;
+	color: #8D8D8D;
+}
+
+#Info{
+
+}
+.tnom{
+	display: inline-block;
+}
+.nom{
+	display: inline-block;
+	font-weight: bold;
+	width: 400px;
+
+}
+#nom, #gr{
+	display: inline-block;
+	margin: 10px;
+	font-size: 110%;
+}
+
+tbody{
+	font-size: 10px;
+}
+tbody tr, tbody td{
+	padding: 4px 0px 0px 0px !important;
+	line-height: 1 !important;
+}
+
+.res{
+	font-weight: bold;
+	border-bottom: 1px #ccc solid;
+}
+
+tfoot td{
+	padding: 4px 0px !important;
+	line-height: 1.1 !important;
+}
+
+
+.cMat, .t{
+	width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: inline-block;
+	text-align: left;
+}
+
+.hNo, .n{
+	width: 20px;
+}
+.hMat{
+	width: 300px;
+}
+
+.hPer, .hCre, .p, .c{
+	width: 37px;
+	overflow: hidden;
+}
+.hCre, .Cre{
+	font-style: italic;
+}
+.hInd, .tbr .i{
+	width: 70px;
+}
+.hDef, .tbr .d{
+	width: 75px;
+}
+.tbr .t{
+	text-align: center !important;
+}
+.diag{
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+footer{
+	text-align: center;
+	margin-top: 20px;
+	position: absolute;
+	bottom: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+
+}
+.observBoletin{
+
+} 
+.observBoletin div{
+	border-bottom-color: #ccc;
+	border-bottom-style: solid;
+	text-align: left;
+	height: 20px;
+}
+
+
+.frRec, .frSec{
+	width: 200px;
+	display: inline-block;
+	padding: 5px;
+	text-align: center;
+}
+.frSec .fr, .frRec .fr{
+	padding: 2px 4px 0px 4px; 
+	border-top: 1px solid #CCC;
+}
+.frRec{
+	margin-right: 20px;
+}
+.frRec img, .frSec img, .EspFr{
+	height: 110px;
+	border: 0px;
+}
+.frSec img{
+	height: 70px;
+}
+.parPerd{
+	font-size: 70%;
+	color: #D00000;
+}
+.parPerd:hover{
+	cursor: pointer;
+	color: #F1212F;
+}
+.infoCol{
+	margin-top: 25px;
+	display:inline-block;
+	font-size: 8px;
+}
+.urlPagCol, .urlMyVC, .Telef{
+	display: inline-block;
+}
+.urlPagCol{
+	margin-right: 450px;
+}

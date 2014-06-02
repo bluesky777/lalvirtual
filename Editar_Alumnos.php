@@ -5,7 +5,7 @@ require_once("conexion.php");
 $con=Conectar();
 
 ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="es">
 <head>
 <script type="text/javascript" src="js/jquery.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -43,6 +43,10 @@ $con=Conectar();
 .Titulos {
 	color: #FFF;
 }
+#Sex{
+  width: 30px;
+}
+
 </style>
 </head>
 
@@ -67,8 +71,8 @@ $con=Conectar();
     <td><input type="text" value="<?php echo $_GET['Ape'];?>" name="txtApellidos" id="Apellidos" /></td>
   </tr>
   <tr>
-    <td align="right" bgcolor="#9D0000" class="Titulos">&nbsp;</td>
-    <td><input type="text" value="" name="txtDoc" id="Doc" /></td>
+    <td align="right" bgcolor="#9D0000" class="Titulos">Sexo(M o F)</td>
+    <td><input type="text" value="<?php if($_GET['Sex']=='') echo 'M'; else echo $_GET['Sex'];?>" name="txtSex" id="Sex" maxlength="1" /></td>
   </tr>
   <tr>
     <td align="right" bgcolor="#9D0000" class="Titulos">Paz y salvo</td>

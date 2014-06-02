@@ -1,0 +1,10 @@
+.noPrint{
+	display: none;
+}
+a:link:after, a:visited:after {
+    content: "";
+}
+a:link, a:visited {color: #781351}
+.pagina{
+	border:0px;
+}
