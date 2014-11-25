@@ -99,7 +99,7 @@ class clsCalcularPorc extends clsConexion {
 
 
 			if ($Pt==$rSqlM['idMaterGrupo']) {
-				$MateriaDef[$i]["Periodos"][$rSqlM['Periodo']]=$rSqlM['DefMateria'];
+				$MateriaDef[$i]["Periodos"][$rSqlM['Periodo']]=array($rSqlM['DefMateria'], $rSqlM['PeriodoCompet']);
 			}else{
 				$Pt=$rSqlM['idMaterGrupo'];
 				$MateriaDef[++$i]=array(
@@ -108,12 +108,10 @@ class clsCalcularPorc extends clsConexion {
 					"AliasMateria" => $rSqlM['AliasMateria'],
 					"CreditosMater" => $rSqlM['CreditosMater'],
 					"Periodos" => array(
-						$rSqlM['Periodo'] => $rSqlM['DefMateria']
+						$rSqlM['Periodo'] => array($rSqlM['DefMateria'], $rSqlM['PeriodoCompet'])
 						)
 					);
 			}
-
-
 
 
 /*
@@ -239,7 +237,7 @@ class clsCalcularPorc extends clsConexion {
 			and c.MateriaGrupoCompet=mg.idMaterGrupo and ga.idAlumno=n.idAlumno 
 			and mg.idMaterGrupo=".$MatCod." and n.idAlumno=".$idAlum." and ga.Estado=1
 			and n.Nota < $NotaBas;";
-			
+		//echo $sql;
 		$qSql=$this->queryx($sql, "No se trajeron las notas perdidas de la materia ".$MatCod.". ");
 		
 		return $qSql;

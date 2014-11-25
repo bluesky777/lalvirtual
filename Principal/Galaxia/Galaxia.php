@@ -9,6 +9,8 @@ $Anu=new clsAnuncios();
 $Gx=new clsGalaxia();
 
 $my=false;
+$tipoU=$_SESSION['TipoUsu'];
+
 
 if (isset($_GET['My'])){
 	$my=true;
@@ -106,7 +108,10 @@ if (!isAdm() and !isAcud()){
 </div>
 
 
-
+<?php if($tipoU==2 or $tipoU==1) { ?>
 <input type="button" id="btBolFinales" class="bt1" value="Boletines finales" />
+<?php
+}
+?>
 
 

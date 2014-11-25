@@ -47,7 +47,9 @@ $DataColeg = mysql_fetch_assoc($qSqlC);
 $qSqlM=$Calcs->gMaterxPerio($idAlumno);
 
 $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
-
+//echo "<pre>";
+//print_r($MateriaDef);
+//echo "</pre>";
 ?>
 
 <div class="pagina">
@@ -123,12 +125,13 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 				$Sum=0; 
 				$div=0;
 
+
 				foreach ($Mater['Periodos'] as $keyP => $PerD) {
-					
+
 					?><td class="cell"><?php
-						
+
 						if($keyP==$indPer){ 
-							$qSqlMalo=$Calcs->gNotasPerdidas($Mater['idMaterGrupo'], $idAlumno, $keyP);
+							$qSqlMalo=$Calcs->gNotasPerdidas($Mater['idMaterGrupo'], $idAlumno, $PerD[1]);
 							
 							$ContP=0;
 							$ParenMsg="";
@@ -136,7 +139,7 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 							if(mysql_num_rows($qSqlMalo)>0){
 								while ($rSqlMalo=mysql_fetch_assoc($qSqlMalo)) {
 									$ContP++;
-									$ParenMsg.="Per".$rSqlMalo['PeriodoCompet']."-".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
+									$ParenMsg.="Per".$keyP." >> ".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 								}
 							}
 							$Paren="";
@@ -144,9 +147,9 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 								$Paren="<span class='parPerd' title='$ParenMsg'>($ContP)</span>";
 								$TotIndPerd+=$ContP;
 							}
-							$ArrMatDef[$keyP] += $PerD;
-							echo number_format($PerD, 0).$Paren;
-							$Sum+=$PerD;
+							$ArrMatDef[$keyP] += $PerD[0];
+							echo number_format($PerD[0], 0).$Paren;
+							$Sum+=$PerD[0];
 							$div++;
 						}else{ 
 							echo 0;
@@ -159,6 +162,7 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 					?></td>
 					<?php
 					$indPer++;
+
 				}
 				
 				//echo "Suma: ".$Sum."<--";

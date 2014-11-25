@@ -1,23 +1,13 @@
 <?php
 require_once("../php/clsConexion.php");
 require_once("../verificar_sesion.php");
+header('Content-Type: text/html; charset=utf-8');
 
 require_once("funciones.php");
 include("../php/clsPersonaTotal.php");
 //require_once("verificar_sesion_arriba.php");
 
-?>
-<html>
-<head>
-	
-	<link type="text/css" href="Boletin_Alumno.css" rel="stylesheet">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><?php echo $Apell . " " . $Nomb; ?></title>
-</head>
 
-<body>
-
-<?php
 $con = new clsConexion();
 $con->Conectar();
 if (!$con->PermisoAlumnosVerNotas() and ( $_SESSION['TipoUsu']>2)){
@@ -92,8 +82,16 @@ if(($Grupo=='T')or($Grupo=='J')or($Grupo=='1')or($Grupo=='2')){
 }
 ?>
 
+<html>
+<head>
+	
+	<link type="text/css" href="Boletin_Alumno.css" rel="stylesheet">
+	<meta charset="utf-8" />
 
+	<title><?php echo $Apell . " " . $Nomb; ?></title>
+</head>
 
+<body>
 
 
 <?php //////////////////////////  BOLETIN  //////////////////////////////////////?>

@@ -12,7 +12,6 @@ $idMatG=$_GET['idMatG'];
 
 <div id="ContCompetIndic"><!-- ContCompetIndic -->
 
-        
 <div id="ListaCompetencias">
 <?php
 if (isAdPr()){
@@ -110,7 +109,7 @@ if (isAdPr()){
 </div>  <!-- ContCompetIndic -->
         
         
-    <!----------------- INDICADORES EN FORMA AJAX ------------------------>
+    <!-------------- INDICADORES EN FORMA AJAX ------------------------>
         
     <div id="ContenedorIndicadores">
         <span class="InfoIndicTemp">
@@ -133,7 +132,7 @@ if (isAdPr()){
     
     <p><b>Opciones:</b>
     </p>
-    
+
     <form name="frmCopiarMat" id="frmCopiarMat" method="post" action="#">
     <input type="hidden" value="<?php echo $idMatG; ?>" name="txtIdMat">Copiar competencias a la materia 
     	<select name="txtMateria" id="SelMateria">
@@ -144,7 +143,7 @@ if (isAdPr()){
 		from tbmateriagrupo mg, tbgrupos g, tbmaterias m 
 		where mg.idProfesor='". $_SESSION['idUsuar']."' and g.idGrupo=mg.idGrupo and m.idMateria=mg.idMateria and g.YearGrupo='". $_SESSION['Year']."'
 		order by g.Grupo";
-//echo $sql;
+echo $sql;
 
 	$qsql=mysql_query($sql, $Cmp::$conex) or die("No hay materias. " . mysql_error() . "<br>" . $sql);
 	while($rsql=mysql_fetch_array($qsql)){
