@@ -1,5 +1,26 @@
 <?php
-require_once("../../verificar_sesion.php");
+session_name("LoginUsuario"); 
+session_start(); //iniciamos la sesión 
+
+//Compruebo que el usuario está logueado 
+if (!isset($_SESSION)){
+	header("location: ../../index.php"); //Nos vamos al menú si ya inicio sesión.
+} else { 
+    //sino, calculamos el tiempo transcurrido 
+    $fechaGuardada = $_SESSION["UltimoAcceso"]; 
+    $ahora = date("Y-n-j H:i:s"); 
+    $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada)); 
+	
+	if($tiempo_transcurrido >= 1200) { 
+     //si pasaron 10 minutos (600 seg) o más 
+      session_destroy(); // destruyo la sesión 
+      header("Location: ../../index.php"); //envío al usuario a la pag. de autenticación 
+	}else { 
+	//sino, actualizo la fecha de la sesión 
+	$_SESSION["UltimoAcceso"] = $ahora; 
+	} 
+} 
+
 require_once("../clsCalcularPorc.php");
 require_once("../../php/funciones.php");
 
@@ -9,6 +30,8 @@ set_time_limit(0);
 
 $Calcs=new clsCalcularPorc();
 $Calcs->Conectar();
+
+
 
 
 $MiJuicio = new JuicioVal($_SESSION['Year']);
@@ -25,8 +48,12 @@ $DataColeg = mysql_fetch_assoc($qSqlC);
 $qSqlM=$Calcs->gMaterxPerio($idAlumno);
 
 $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
-
+//echo "<pre>";
+//print_r($MateriaDef);
+//echo "</pre>";
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -36,9 +63,9 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bol_final.css">
 	<link rel="stylesheet" type="text/css" href="css/bol_final_print.css" media="print">
+
 </head>
 <body>
-
 
 
 <div class="paginas">
@@ -116,12 +143,13 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 				$Sum=0; 
 				$div=0;
 
+
 				foreach ($Mater['Periodos'] as $keyP => $PerD) {
-					
+
 					?><td class="cell"><?php
-						
+
 						if($keyP==$indPer){ 
-							$qSqlMalo=$Calcs->gNotasPerdidas($Mater['idMaterGrupo'], $idAlumno, $keyP);
+							$qSqlMalo=$Calcs->gNotasPerdidas($Mater['idMaterGrupo'], $idAlumno, $PerD[1]);
 							
 							$ContP=0;
 							$ParenMsg="";
@@ -129,7 +157,7 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 							if(mysql_num_rows($qSqlMalo)>0){
 								while ($rSqlMalo=mysql_fetch_assoc($qSqlMalo)) {
 									$ContP++;
-									$ParenMsg.="Per".$rSqlMalo['PeriodoCompet']."-".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
+									$ParenMsg.="Per".$keyP." >> ".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 								}
 							}
 							$Paren="";
@@ -137,9 +165,9 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 								$Paren="<span class='parPerd' title='$ParenMsg'>($ContP)</span>";
 								$TotIndPerd+=$ContP;
 							}
-							$ArrMatDef[$keyP] += $PerD;
-							echo number_format($PerD, 0).$Paren;
-							$Sum+=$PerD;
+							$ArrMatDef[$keyP] += $PerD[0];
+							echo number_format($PerD[0], 0).$Paren;
+							$Sum+=$PerD[0];
 							$div++;
 						}else{ 
 							echo 0;
@@ -152,6 +180,7 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 					?></td>
 					<?php
 					$indPer++;
+
 				}
 				
 				//echo "Suma: ".$Sum."<--";
@@ -327,9 +356,12 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 	</footer>
 	
 </div>
-
+<?php
+//mysql_close();
+?>
 <!-- Cierre de .paginas -->
 </div>
+
 
 </body>
 </html>

@@ -33,7 +33,7 @@ $Calcs->Conectar();
 
 
 
-// Está pidiendo los alumnos del grupo a los datos de un alumno?:
+// Está pidiendo los alumnos del grupo o los datos de un alumno?:
 if ( isset($_GET['idGr']) ) {
 	$sql="SELECT idAlum, NombresAlum from tbalumnos a, tbgrupoalumnos ga 
 		WHERE a.idAlum=ga.idAlumno and ga.idGrupo='".$_GET['idGr']. "' 
