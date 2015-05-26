@@ -94,7 +94,7 @@ class clsAnuncios extends clsPersona {
 			$hostname="localhost";
 			$database="lalvirtu_myvc";
 			$login="root";
-			$pass="123456";			
+			$pass="";			
 		}
 
 		$this->con=mysql_connect($hostname, $login, $pass) or die("Problemas con la conexión al servidor");

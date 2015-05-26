@@ -103,10 +103,10 @@ require_once("barra_superior.php");
         ?>
         
         <li class="OpcionPrinc"><a href="javascript:void(0);" id="../Informes/Boletin_Final/Elejir_Boletin_Final.php" class="OptVerBoletinFinal">Boletines finales</a></li>
-        
+        <li class="OpcionPrinc"><a href="javascript:void(0);" id="../Informes/Certificados_de_estudio/index.php" class="OptVerCertificados">VER CERTIFICADOS ESTUDIANTILES</a></li>
         <?php 
         }
-		?>
+        ?>
         
         
 	<?php if (in_array("Editar estructura grupos", $_SESSION['Privilegios'][0]) or ($tipoU==1)){ ?>
@@ -189,7 +189,21 @@ require_once("barra_superior.php");
 
 <div id="MenuSuper">
     <input type="button" id="CrAnu" class="bt1" value="Crear anuncio" />
+    
+    <?php
+    if (isAdm()){
+    ?>
+        <a href="../Informes/Certificados_de_estudio/index.php" class="bt1 OptVerCertificados" style="padding: 10px">
+            VER CERTIFICADOS ESTUDIANTILES
+        </a>
+    <?php
+    }
+    ?>
 </div>
+
+<br>
+<br>
+
 
 <div id="ContLoaded">
     

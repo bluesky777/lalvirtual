@@ -168,19 +168,27 @@ class clsCalcularPorc extends clsConexion {
 		return $MateriaDef;
 	}
 
-	function DatosAlumGrupo($idAlumno){
+	function DatosAlumGrupo($idAlumno, $year=0){
+
+		if ($year==0) {
+			$year = $_SESSION['Year'];
+		}
+
 		$sqlA="SELECT distinct(a.idAlum), a.NoMatriculaAlum, a.NombresAlum, a.ApellidosAlum, a.SexoAlum, 
-				g.NombreGrupo, g.Grupo 
+				g.NombreGrupo, g.Grupo, g.idGrupo 
 			FROM tbalumnos a, tbgrupoalumnos ga, tbgrupos g 
 			WHERE a.idAlum=ga.idAlumno and g.idGrupo=ga.idGrupo 
-				and g.YearGrupo=".$_SESSION['Year']." and a.idAlum=$idAlumno";
+				and g.YearGrupo=".$year." and a.idAlum=$idAlumno";
 
 		$qSqlA=$this->queryx($sqlA, "No se pudo traer los datos del alumno ".$idAlumno);
 		return $qSqlA;
 	}
 
-	function DatosColegio(){
-		$SqlC="SELECT * FROM tbyearcolegio where Year=".$_SESSION['Year'];
+	function DatosColegio($year=0){
+		if ($year==0) {
+			$year = $_SESSION['Year'];
+		}
+		$SqlC="SELECT * FROM tbyearcolegio where Year=".$year;
 		$qSqlC=$this->queryx($SqlC, "No se trajeron los datos del colegio.");
 		return $qSqlC;
 	}
@@ -204,7 +212,12 @@ class clsCalcularPorc extends clsConexion {
 		return $Sum;
 	}
 
-	function gMaterxPerio($idAlumno){
+	function gMaterxPerio($idAlumno, $year=0){
+
+		if ($year==0) {
+			$year = $_SESSION['Year'];
+		}
+
 		$SqlM="SELECT idAlumno, NombreMateria, AliasMateria, idMaterGrupo, idMateria, PeriodoCompet, Periodo,
 				CreditosMater, OrdenMater, sum( ValorCompetencia ) DefMateria
 			FROM(
@@ -217,7 +230,7 @@ class clsCalcularPorc extends clsConexion {
 				WHERE mg.idGrupo=ga.idGrupo and m.idMateria=mg.idMateria 
 					and c.MateriaGrupoCompet=mg.idMaterGrupo and i.CompetenciaIndic=c.idCompet 
 					and n.idIndic=i.idIndic	and n.idAlumno=ga.idAlumno and c.PeriodoCompet=ga.idPeriodo
-					and ga.idAlumno=". $idAlumno ."  and ga.idPeriodo=p.idPer and p.Year='".$_SESSION['Year']."' 
+					and ga.idAlumno=". $idAlumno ."  and ga.idPeriodo=p.idPer and p.Year='".$year."' 
 				group by ga.idAlumno, i.CompetenciaIndic
 			)r
 			group by idAlumno, idMaterGrupo, PeriodoCompet
@@ -229,8 +242,13 @@ class clsCalcularPorc extends clsConexion {
 	}
 
 
-	function gNotasPerdidas($MatCod, $idAlum, $idPer){
-		$NotaBas=$this->gNotaBasica();
+	function gNotasPerdidas($MatCod, $idAlum, $idPer, $year=0){
+
+		if ($year==0) {
+			$year = $_SESSION['Year'];
+		}
+
+		$NotaBas=$this->gNotaBasica($year);
 		$sql="SELECT distinct n.Nota, n.idNota, n.idAlumno,  i.idIndic, i.Indicador, c.idCompet, c.PeriodoCompet
 			from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, tbgrupoalumnos ga
 			where n.idIndic=i.idIndic and i.CompetenciaIndic=c.idCompet and c.PeriodoCompet=$idPer 

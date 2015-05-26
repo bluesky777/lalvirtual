@@ -34,8 +34,13 @@ class clsConexion{
 		@mysql_close($this->con);
 	}
 
-	function gNotaBasica(){
-		$anio=$_SESSION['Year'];
+	function gNotaBasica($year=0){
+
+		if ($year==0) {
+			$year = $_SESSION['Year'];
+		}
+
+		$anio=$year;
 		$sqlJ="Select ValorInicialJuic from tbjuiciosvalorativos where IntervaloBasicoJuic=1 and YearJuic=".$anio;
 		
 		$this->Conectar();
