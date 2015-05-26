@@ -262,11 +262,11 @@ if ($seccionQ['SeccionNivel'] == 1) {
 			<div style="text-align: left">
 				<?php
 					$meses_ingles = array("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
-					$meses_espanol = array("Enero", "FEB", "MAR", "ABR", "Mayo", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC");
+					$meses_espanol = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 					$mes_actual = str_ireplace($meses_ingles, $meses_espanol, strval(date('M')));
 				?>
 				
-				Dado en TAME (Arauca) a los <?php echo date('d') ?>  Días del mes de <?php echo $mes_actual ?> de <?php echo date('Y') ?> .
+				Dado en TAME (Arauca) a los <?php echo date('d') ?>  Días del mes de <?php echo $mes_actual ?> de <?php echo date('Y') ?>.
 
 			</div>
 
