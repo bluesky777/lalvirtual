@@ -25,6 +25,8 @@ if (!isset($_SESSION)){
 
 require_once("../../php/clsConexion.php");
 
+setlocale (LC_ALL, 'es_ES.ISO8859-1'); 
+
 $Con=new clsConexion();
 $Con->Conectar();
 
@@ -34,7 +36,7 @@ $Con->Conectar();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Boletines finales</title>
+	<title>Certificados</title>
 	<meta charset="utf-8" />
 	<script type="text/javascript" src="../../js/jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
@@ -89,6 +91,10 @@ $(document).on('ready', function(){
 
 
 					var datosEnv = "idAlum=" + data[alum].idAlum + "&year=" + $('#selYear').val();
+
+					if ($('#chkFirmas:checked').length == 1){
+						datosEnv += "&Firm=1";
+					}
 
 
 					// Traemos el boletin de cada alumno:
@@ -146,6 +152,12 @@ $(document).on('ready', function(){
 
 	<div id="selector-grupo" class="form-group">
 		...
+	</div>
+
+	<div class="checkbox">
+	    <label>
+	      <input type="checkbox" id="chkFirmas" checked> Con firmas
+	    </label>
 	</div>
 
 	<a href="javascript:void(0)" id="cargaCerts" class="btn btn-primary">Cargar certificados</a>

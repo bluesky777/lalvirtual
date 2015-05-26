@@ -260,8 +260,13 @@ if ($seccionQ['SeccionNivel'] == 1) {
 			</table>
 			<br><br>
 			<div style="text-align: left">
+				<?php
+					$meses_ingles = array("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
+					$meses_espanol = array("Enero", "FEB", "MAR", "ABR", "Mayo", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC");
+					$mes_actual = str_ireplace($meses_ingles, $meses_espanol, strval(date('M')));
+				?>
 				
-				Dado en TAME (Arauca) a los <?php echo date('d') ?>  Días del mes de <?php echo date('F') ?> de <?php echo date('Y') ?> .
+				Dado en TAME (Arauca) a los <?php echo date('d') ?>  Días del mes de <?php echo $mes_actual ?> de <?php echo date('Y') ?> .
 
 			</div>
 
@@ -271,7 +276,18 @@ if ($seccionQ['SeccionNivel'] == 1) {
 		<footer style="text-align: left; bottom: -200px; left: 100px">
 
 			<div class="frRec" style="text-align: left; ">
-				<img src="../../img/Colegio/Firma venus.jpg" alt="">
+				<?php
+				if (isset($_GET['Firm'])) {
+					if($_GET['Firm'] == 0){
+						echo "<div class='EspFr'></div>";
+					}else{	
+						echo '<img src="../../img/Colegio/Firma venus.jpg" alt="">';
+					}
+				}else{
+					echo "<div class='EspFr'></div>";
+				}
+				
+				?>
 				
 				<div class="fr"><b><?php echo $DataColeg["RectoraCol"]; ?></b></div>
 				<div class="lic" style="padding: 2px 4px 0px 4px;"><?php if($DataColeg["SexoRectCol"]=='M'){
