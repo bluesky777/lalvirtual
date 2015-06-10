@@ -83,7 +83,7 @@ if ($seccionQ['SeccionNivel'] == 1) {
 	<div class="contenido">
 		<header style="font-family: Cambria,Georgia,serif; ">
 			<span class="HeCol">
-				<p>RECONOCIENTO OFICIAL DE ESTUDIOS N° 2563 del 12 de Agosto de 2014 Artículo 87 de la ley 115 de 1994 y el artículo 11 del Decreto 2002 de agosto 03 de 1994
+				<p>RECONOCIENTO OFICIAL DE ESTUDIOS N° 2563 del 12 de Agosto de 2014 Artículo 87 de la ley 115 de 1994 y el artículo 17 del Decreto 1290 del 2009 CÓDIGO DEL DANE: 381794004629
 				</p>
 				<br><br>
 				<h3 style="font-size: 12pt">LA RECTORA DEL LICEO ADVENTISTA LIBERTAD</h3>
