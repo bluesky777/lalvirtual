@@ -95,7 +95,7 @@ class clsCalcularPorc extends clsConexion {
 		$PerD=array();
 		$Pt=0;
 		$i=0;
-		while ($rSqlM=mysql_fetch_assoc($qSqlM)) {
+		while ($rSqlM=mysqli_fetch_assoc($qSqlM)) {
 
 
 			if ($Pt==$rSqlM['idMaterGrupo']) {
@@ -200,7 +200,7 @@ class clsCalcularPorc extends clsConexion {
 		
 		$qSqlAus=$this->queryx($SqlAus, "No se pudo traer las ausencias.");
 
-		$rSqlAus=mysql_fetch_assoc($qSqlAus);
+		$rSqlAus=mysqli_fetch_assoc($qSqlAus);
 		return $rSqlAus['Ausencias'];
 	}
 

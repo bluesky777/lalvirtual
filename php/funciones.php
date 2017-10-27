@@ -14,25 +14,26 @@ class JuicioVal{
 			$login="lalvirtu_admin";
 			$pass="exalted";
 
-			$con=mysql_connect($hostname, $login, $pass) or die("Problemas con la conexión al servidor");
+			$con=mysqli_connect($hostname, $login, $pass) or die("Problemas con la conexión al servidor");
 		}else{
 			$hostname="localhost";
 			$database="lalvirtu_myvc";
 			$login="root";
+			$pass="";
 			
-			$con=mysql_connect($hostname, $login) or die("Problemas con la conexión al servidor");
+			$con=mysqli_connect($hostname, $login, $pass, 'lalvirtu_myvc') or die("Problemas con la conexión al servidor");
 		}
 		
 		
-		mysql_select_db($database, $con)or die ("No se conecta a la db");
+		//mysql_select_db($database, $con)or die ("No se conecta a la db");
 		
 		
 		/////////////////////////// SELECCIONO LOS JUICIOS DE ESTE AÑO //////////////////////
 		
 		$sqlJ="Select * from tbjuiciosvalorativos where YearJuic=".$anio;
-		$qSqlJ=mysql_query($sqlJ, $con)or die("No se trajeron las reglas calificativas del año ".$anio);
+		$qSqlJ=$con->query($sqlJ)or die("No se trajeron las reglas calificativas del año ".$anio);
 		
-		while($reg=mysql_fetch_assoc($qSqlJ)){
+		while($reg=mysqli_fetch_assoc($qSqlJ)){
 			$this->rSqlJ[] = $reg;
 		}
 		

@@ -21,11 +21,12 @@ class clsConexion{
 			$pass="";
 		}
 
-		$this->con=mysql_connect($hostname, $login, $pass) or die("<meta charset='utf8'></meta>BBBBProblemas con la conexión al servidor");
+		$this->con=mysqli_connect($hostname, $login, $pass, $database) or die("<meta charset='utf8'></meta>BBBBProblemas con la conexión al servidor");
 		//die("No pude");
-		mysql_query("SET NAMES 'utf8'");
-		mysql_select_db($database, $this->con)or die ("No se conecta a la DB");
-		
+		//mysqli_query("SET NAMES 'utf8'");
+		//mysqli_select_db($database, $this->con)or die ("No se conecta a la DB");
+		mysqli_set_charset($this->con,"utf8");
+
 		$this::$conex = $this->con;
 		return $this->con;
 	}
@@ -44,23 +45,23 @@ class clsConexion{
 		$sqlJ="Select ValorInicialJuic from tbjuiciosvalorativos where IntervaloBasicoJuic=1 and YearJuic=".$anio;
 		
 		$this->Conectar();
-		$qSqlJ=mysql_query($sqlJ, $this->con)or die("No se calculó la nota básica del año ".$anio);
+		$qSqlJ=$this->queryx($sqlJ, "No se calculó la nota básica del año ".$anio);
 		
-		$Nt=mysql_fetch_array($qSqlJ);
+		$Nt=mysqli_fetch_array($qSqlJ);
 		$this->NotaBasica = $Nt[0];
-		mysql_close($this->con);
+		//mysqli_close($this->con);
 		return $this->NotaBasica;
 	}
 
 	function queryx($sql, $msg){
 		$this->Conectar();
-		$qSql=mysql_query($sql, $this->con) or die($msg."<br>".mysql_error());
+		$qSql= $this->con->query($sql) or die($msg."<br>".mysqli_error($this->con));
 //echo $sql."<br><br>";
 		if (!$qSql){
-	    	echo 'Error: ' . mysql_error();
+	    	echo 'Error: ' . mysqli_error();
       		exit;
 		}
-		mysql_close($this->con);
+		mysqli_close($this->con);
 		return $qSql;
 	}
 
@@ -228,7 +229,7 @@ class clsConexion{
 				$qSqlMalo=mysql_query($sqlMalo, $this->con)or die("No se trajeron las notas de la materia: 
 					".$rSqlMat['idMateria'].". <br>".mysql_error());
 				
-				if(mysql_num_rows($qSqlMalo)>0){
+				if(mysqli_num_rows($qSqlMalo)>0){
 					$PeriodosMatsT ['idPer'] = $rSqlPeriodos['idPer'];
 					$PeriodosMatsT ['Peri'] = $rSqlPeriodos['Periodo'];
 					$PeriodosMatsT ['Mater'] = $rSqlMat['NombreMateria'];

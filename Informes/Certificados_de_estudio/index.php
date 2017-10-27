@@ -140,7 +140,7 @@ $(document).on('ready', function(){
 			//echo $sqlG;
 			$qSqlG = $Con->queryx($sqlG, "No se pudo traer los años. ");
 
-			while($rSqlG = mysql_fetch_array($qSqlG)){
+			while($rSqlG = mysqli_fetch_array($qSqlG)){
 				
 			?>
 			<option value="<?php echo $rSqlG['Year']; ?>"><?php echo $rSqlG['Year']; ?></option>

@@ -13,7 +13,7 @@ $Con->Conectar();
 	//echo $sqlG;
 	$qSqlG = $Con->queryx($sqlG, "No se pudo traer los grupos. ");
 
-	while($rSqlG = mysql_fetch_array($qSqlG)){
+	while($rSqlG = mysqli_fetch_array($qSqlG)){
 		
 	?>
 	<option value="<?php echo $rSqlG['idGrupo']; ?>"><?php echo $rSqlG['NombreGrupo']; ?></option>

@@ -17,7 +17,7 @@ if ( isset($_GET['idGr']) ) {
 	$sqlP = "SELECT * from tbperiodos where Year=" . $_GET['year'] . " LIMIT 1";
 	$qSqlP = $Calcs->queryx($sqlP, "No se trajo el periodo. ");
 
-	$periodo = mysql_fetch_assoc($qSqlP);
+	$periodo = mysqli_fetch_assoc($qSqlP);
 
 	$sql="SELECT idAlum, NombresAlum from tbalumnos a, tbgrupoalumnos ga 
 		WHERE a.idAlum=ga.idAlumno and ga.idGrupo='".$_GET['idGr']. "' 
@@ -28,9 +28,10 @@ if ( isset($_GET['idGr']) ) {
 
 	$datosAl = array();
 
-	while ($rSql = mysql_fetch_assoc($qSql)) {
+	while ($rSql = mysqli_fetch_assoc($qSql)) {
 		$datosAl[] = $rSql;
 	}
+	//echo  $datosAl[0]['idAlum'];
 	echo json_encode( $datosAl );
 	die();
 }
@@ -46,8 +47,8 @@ $idAlumno = $_GET['idAlum'];
 $qSqlA = $Calcs->DatosAlumGrupo($idAlumno, $year);
 $qSqlC = $Calcs->DatosColegio($year);
 
-$DataAlum = mysql_fetch_assoc($qSqlA);
-$DataColeg = mysql_fetch_assoc($qSqlC);
+$DataAlum = mysqli_fetch_assoc($qSqlA);
+$DataColeg = mysqli_fetch_assoc($qSqlC);
 
 
 $qSqlM=$Calcs->gMaterxPerio($idAlumno, $year);
@@ -61,7 +62,7 @@ $sqlSeccion = "SELECT SeccionNivel FROM tbgrupos g
 				inner join tbnivel n on n.OrdenNivel=g.NivelGrupo
 				where g.idGrupo='".$DataAlum['idGrupo']."';";
 $seccionR = $Calcs->queryx($sqlSeccion, "No se trajo la sección. ");
-$seccionQ = mysql_fetch_assoc($seccionR);
+$seccionQ = mysqli_fetch_assoc($seccionR);
 $seccion = "";
 
 
@@ -158,8 +159,8 @@ if ($seccionQ['SeccionNivel'] == 1) {
 								$ContP=0;
 								$ParenMsg="";
 								
-								if(mysql_num_rows($qSqlMalo)>0){
-									while ($rSqlMalo=mysql_fetch_assoc($qSqlMalo)) {
+								if(mysqli_num_rows($qSqlMalo)>0){
+									while ($rSqlMalo=mysqli_fetch_assoc($qSqlMalo)) {
 										$ContP++;
 										$ParenMsg.="Per".$keyP." >> ".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 									}
