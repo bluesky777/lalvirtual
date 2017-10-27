@@ -14,7 +14,7 @@ class clsIndicadores extends clsConexion {
 		$qsqlid=$this->queryx("SELECT idIndic from tbindicadores where
 				OrdenIndic='".$Orden."' and Indicador='".$Indicador."' and 
 				CompetenciaIndic='".$IdComp."' order by idIndic desc;", "No se trajo el codigo.");
-        $rSqlId=mysql_fetch_array($qsqlid);
+        $rSqlId=mysqli_fetch_array($qsqlid);
         
         return $rSqlId[0];
 	}
@@ -88,7 +88,7 @@ class clsIndicadores extends clsConexion {
 		$sqlSel="SELECT idNota from tbnotas where idIndic=" . $idInd;
 		$qSqlSel=$this->queryx($sqlSel, "No se pudieron seleccionar las notas de este indicador.");
 
-		while($rSqlSel=mysql_fetch_array($qSqlSel)){
+		while($rSqlSel=mysqli_fetch_array($qSqlSel)){
 			
 			$sqlDel="DELETE from tbnotas where idNota=".$rSqlSel['idNota'];
 			

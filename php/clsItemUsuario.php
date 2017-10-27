@@ -13,11 +13,11 @@ class clsItemUsuario extends clsConexion {
 
 	    $qSqlPerfil = $this->queryx($sqlPerfil, "No se trajo la imagen de perfil.");
 
-	    $num_r = mysql_num_rows($qSqlPerfil);
+	    $num_r = mysqli_num_rows($qSqlPerfil);
 	    
 	    if($num_r>0){
 
-	        $rSqlPerfil = mysql_fetch_array($qSqlPerfil);
+	        $rSqlPerfil = mysqli_fetch_array($qSqlPerfil);
 	        
 	        $this->CmmImgPerf = $rSqlPerfil['ComentarioImg'];
 

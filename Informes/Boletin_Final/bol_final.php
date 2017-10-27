@@ -44,7 +44,7 @@ if ( isset($_GET['idGr']) ) {
 
 	$datosAl = array();
 
-	while ($rSql = mysql_fetch_assoc($qSql)) {
+	while ($rSql = mysqli_fetch_assoc($qSql)) {
 		$datosAl[] = $rSql;
 	}
 	echo json_encode( $datosAl );
@@ -61,8 +61,8 @@ $idAlumno = $_GET['idAlum'];
 $qSqlA = $Calcs->DatosAlumGrupo($idAlumno);
 $qSqlC = $Calcs->DatosColegio();
 
-$DataAlum = mysql_fetch_assoc($qSqlA);
-$DataColeg = mysql_fetch_assoc($qSqlC);
+$DataAlum = mysqli_fetch_assoc($qSqlA);
+$DataColeg = mysqli_fetch_assoc($qSqlC);
 
 
 $qSqlM=$Calcs->gMaterxPerio($idAlumno);
@@ -157,8 +157,8 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 							$ContP=0;
 							$ParenMsg="";
 							
-							if(mysql_num_rows($qSqlMalo)>0){
-								while ($rSqlMalo=mysql_fetch_assoc($qSqlMalo)) {
+							if(mysqli_num_rows($qSqlMalo)>0){
+								while ($rSqlMalo=mysqli_fetch_assoc($qSqlMalo)) {
 									$ContP++;
 									$ParenMsg.="Per".$keyP." >> ".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 								}
@@ -312,10 +312,14 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 
 		<div class="frRec">
 			<?php
-			if($_GET['Firm'] == 0){
-				echo "<div class='EspFr'></div>";
+			if (isset($_GET['Firm'])) {
+				if($_GET['Firm'] == 0){
+					echo "<div class='EspFr'></div>";
+				}else{
+					echo '<img src="../../img/Colegio/Firma venus.jpg" alt="">';
+				}
 			}else{
-				echo '<img src="../../img/Colegio/Firma venus.jpg" alt="">';
+				echo "<div class='EspFr'></div>";
 			}
 			?>
 			<div class="fr"><?php echo $DataColeg["RectoraCol"]; ?></div>
@@ -326,10 +330,14 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 		
 		<div class="frSec">
 			<?php
-			if($_GET['Firm'] == 0){
-				echo "<div class='EspFr'></div>";
+			if (isset($_GET['Firm'])) {
+				if($_GET['Firm'] == 0){
+					echo "<div class='EspFr'></div>";
+				}else{
+					echo '<img src="../../img/Colegio/Firma Patricia.jpg" alt="">';
+				}
 			}else{
-				echo '<img src="../../img/Colegio/Firma Patricia.jpg" alt="">';
+				echo "<div class='EspFr'></div>";
 			}
 			?>
 			<div class="fr"><?php echo $DataColeg["SecretarioCol"]; ?></div>

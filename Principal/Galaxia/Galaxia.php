@@ -27,7 +27,7 @@ $TipoUsu = $_SESSION['TipoUsu'];
 		<div class="xti">
 			<?php
 			$qSqlAn = $Anu->gAnuncios($idUsu, $TipoUsu);
-			$numAn = mysql_num_rows($qSqlAn);
+			$numAn = mysqli_num_rows($qSqlAn);
 
 			?>
 			<span class="xtit"><a href="#">Anuncios</a></span>
@@ -46,7 +46,7 @@ $TipoUsu = $_SESSION['TipoUsu'];
 			<div class="xlis">
 				<ul>
 			<?php
-			while ($rSqlAn=mysql_fetch_array($qSqlAn)) {
+			while ($rSqlAn=mysqli_fetch_array($qSqlAn)) {
 				?>
 					<li><a href="#" id="idAn:<?php echo $rSqlAn['idAnu']; ?>" class="xkAnu"><?php echo $rSqlAn['ComentEnvioAnu']; ?></a></li>
 				<?php
@@ -89,7 +89,7 @@ if (!isAdm() and !isAcud()){
 			$Act= new clsActividades();
 			$qSqlAc = $Act->gActVigentesxUsu($idUsu, $TipoUsu);
 
-			while ($rSqlAc=mysql_fetch_array($qSqlAc)) {
+			while ($rSqlAc=mysqli_fetch_array($qSqlAc)) {
 				?>
 					<li><a href="#"><?php echo $rSqlAc['TituloAct']; ?></a></li>
 				<?php

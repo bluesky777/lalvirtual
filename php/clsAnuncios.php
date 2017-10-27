@@ -44,14 +44,14 @@ class clsAnuncios extends clsPersona {
 	}
 
 	function Cerrar(){
-		mysql_close($this->con);
+		mysqli_close($this->con);
 	}
 
 	function gCommentsxAnun($idAnu){
 
 		$sqlC="select * from tbanuncios a, tbcomentarios c where a.idAnu=".$idAnu." and a.idAnu=c.AnunCmt;";
 		$qSqlC = $this->queryx($sqlC, "Lo sentimos, no se pudieron traer los <b>comentarios</b>.");
-		$numC = mysql_num_rows($qSqlC);
+		$numC = mysqli_num_rows($qSqlC);
 		
 		$Resp="";
 
@@ -63,7 +63,7 @@ class clsAnuncios extends clsPersona {
 			<div class='CmtsTog' id='CmtsTog_$idAnu'><a href='javascript:void(0);'>Mostrar comentarios.</a>
 			
 			<?php
-			while($rSqlC=mysql_fetch_array($qSqlC)){
+			while($rSqlC=mysqli_fetch_array($qSqlC)){
 				$this->DatosxUsu($rSqlC['UsuCrCmt']);
 				$Uimg=$this->ImgPerf(); $Unom=$this->gNom(); $Uape=$this->gApe();
 			?>
@@ -97,9 +97,9 @@ class clsAnuncios extends clsPersona {
 			$pass="";			
 		}
 
-		$this->con=mysql_connect($hostname, $login, $pass) or die("Problemas con la conexión al servidor");
-		mysql_query("SET NAMES 'utf8'");
-		mysql_select_db($database, $this->con)or die ("No se conecta a la DB");
+		$this->con=mysqli_connect($hostname, $login, $pass, $database) or die("Problemas con la conexión al servidor");
+		
+		mysqli_set_charset($this->con,"utf8");
 
 	}
 

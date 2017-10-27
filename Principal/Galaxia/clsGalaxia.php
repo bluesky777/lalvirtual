@@ -17,7 +17,7 @@ class clsGalaxia extends clsConexion {
 		$Act=new clsActividades();
 		$qSqlM=$Act->gActVigentesxUsu($idUsu, $TipoUsu);
 
-		$ContNumAct= mysql_num_rows($qSqlM);
+		$ContNumAct= mysqli_num_rows($qSqlM);
 		
 		mysql_close($this->con);
 		return $ContNumAct;
@@ -29,9 +29,9 @@ class clsGalaxia extends clsConexion {
 		$qSqlM=$Mat->gMaterias($idUsu, $TipoUsu);
 
 		$ContNumAct=0;
-		while ($rSqlM=mysql_fetch_array($qSqlM)) {
+		while ($rSqlM=mysqli_fetch_array($qSqlM)) {
 			$qSqlA = $Act->gActVigentes($rSqlM['idMateria']);
-			$numAct=mysql_num_rows($qSqlA);
+			$numAct=mysqli_num_rows($qSqlA);
 			$ContNumAct += $numAct;
 		}
 		mysql_close($this->con);

@@ -20,14 +20,14 @@ class clsPeriodos extends clsConexion {
 		$sqlP="Select * from tbperiodos where idPer=".$idPer.";";
 		$qSqlP=$this->queryx($sqlP, "No se pudo traer los periodos.");
 		//echo $sqlP;
-		return mysql_fetch_array($qSqlP);
+		return mysqli_fetch_array($qSqlP);
 	}
 	function gPeriodoAnt($rSqlP){
 		$sqlP_ant="Select * from tbperiodos where Year=".$rSqlP['Year']." order by Periodo desc;";
 		$qSqlP_ant=$this->queryx($sqlP_ant, "No se pudo traer los periodos.");
 		
 		//echo $sqlP_ant;
-		while ($rSqlP_ant = mysql_fetch_array($qSqlP_ant)) {
+		while ($rSqlP_ant = mysqli_fetch_array($qSqlP_ant)) {
 			// echo "<br>Periodo estatico - >".$rSqlP['Periodo']. " Periodo fetch->".$rSqlP_ant['Periodo']."<br><br>";
 			if ($rSqlP_ant['Periodo']<$rSqlP['Periodo']){
 				return $rSqlP_ant['idPer'];
@@ -43,7 +43,7 @@ class clsPeriodos extends clsConexion {
 	function gPeriodoYear($idPer){
 		$sqlP="Select * from tbperiodos where idPer=".$idPer;
 		$qSqlP=$this->queryx($sqlP, "No se pudo traer Los periodos del año ". $idPer);
-		$rSqlP=mysql_fetch_array($qSqlP);
+		$rSqlP=mysqli_fetch_array($qSqlP);
 		return $rSqlP;
 	}
 
@@ -76,7 +76,7 @@ class clsPeriodos extends clsConexion {
 		//echo $sqlCant;
 
 		$qSqlCant=$this->queryx($sqlCant, "No se contaron los alumnos.");
-		$rSqlCant=mysql_fetch_array($qSqlCant);
+		$rSqlCant=mysqli_fetch_array($qSqlCant);
 		return $rSqlCant;
 	}
 
@@ -95,7 +95,7 @@ class clsPeriodos extends clsConexion {
 			and g.idGrupo=" . $idGrupo . " and idPeriodo=". $idPer;
 
 		$qSqlCant=$this->queryx($sqlCant, "No se contaron los alumnos.");
-		$rSqlCant=mysql_fetch_array($qSqlCant);
+		$rSqlCant=mysqli_fetch_array($qSqlCant);
 		return $rSqlCant;
 	}
 

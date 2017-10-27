@@ -10,7 +10,7 @@ $sqlNot="select * from tbnotas where idIndic=".$_POST['idInd']." and idAlumno=".
 		
 $qSqlNota=mysql_query($sqlNot, $con) or("No se pudo traer las notas del alumno id: ". $rSqlAlum['idAlum']);
 
-$nSqlNota=mysql_num_rows($qSqlNota);
+$nSqlNota=mysqli_num_rows($qSqlNota);
 
 
 if($nSqlNota){

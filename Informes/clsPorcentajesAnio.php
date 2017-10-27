@@ -21,12 +21,12 @@ class clsPorcentajesAnio extends clsConexion {
 				//echo $sqlPer;
 		$qSqlPer = $this->queryx($sqlPer, "No se pudo traer la cantidad de alumnos del grupo ".$idGrupo.". ");
 		
-		while ($rSqlPer=mysql_fetch_array($qSqlPer)) {
+		while ($rSqlPer=mysqli_fetch_array($qSqlPer)) {
 			$PeriT = $rSqlPer['idPer'];
 			$PeriodoT = $rSqlPer['Periodo'];
 			
 			$qSqlA=$this->gContAlumnosxNomGrupo($idGrupo, $PeriT);
-			$rSqlA = mysql_fetch_array($qSqlA);
+			$rSqlA = mysqli_fetch_array($qSqlA);
 			if ($rSqlA['cuantos'] > 0 ) {
 				$this->lastPer = $PeriT;
 				clsPorcentajesAnio::$lastPeriodo = $PeriodoT;
@@ -47,14 +47,14 @@ class clsPorcentajesAnio extends clsConexion {
 	function gtbPuestos($idGrupo, &$Tabla, &$tbMat, &$PromGrupo){
 		// Traer las materias para los titulos
 		$qSqlTitulos = $this->gAbrevMatxGrupo($idGrupo);
-		while ( $reg = mysql_fetch_assoc( $qSqlTitulos) ) {
+		while ( $reg = mysqli_fetch_assoc( $qSqlTitulos) ) {
 			$tbMat[]=$reg;
 		}
 
 		// Alumnos con promedio por año
 		$qSqlAl = $this->gPromedioxAlum($idGrupo, $this->lastPer);
 		$tbAl=array();
-		while ( $reg = mysql_fetch_assoc( $qSqlAl ) ) {
+		while ( $reg = mysqli_fetch_assoc( $qSqlAl ) ) {
 			$idAlum=$reg['idAlumno'];
 			$cont=$this->gNotasPerdidasxAlum($idAlum);
 			$Prom=number_format($reg['PromedioAlumTotal'], 1);
@@ -88,7 +88,7 @@ class clsPorcentajesAnio extends clsConexion {
 
 				//Total de indicadores perdidos por materia
 				$qSqlPerd=$this->gNotasPerdidas($MatCod, $idAlum);
-				$num = mysql_num_rows( $qSqlPerd );
+				$num = mysqli_num_rows( $qSqlPerd );
 				$PerdidosAlu+=$num;
 				$PromAlu+=$Pr;
 				$Def=number_format($Pr, 0);
@@ -131,7 +131,7 @@ class clsPorcentajesAnio extends clsConexion {
 			group by R3.MateriaGrupoCompet";
 
 		$qSqlPer = $this->queryx($sqlPer, "No se promedio la materia anual.");
-		$rSqlPer = mysql_fetch_array($qSqlPer);
+		$rSqlPer = mysqli_fetch_array($qSqlPer);
 		
 		return $rSqlPer['Promedio'];
 	}
@@ -201,9 +201,9 @@ class clsPorcentajesAnio extends clsConexion {
 			
 		$qSql= $this->queryx($sql, "No se trajeron las materias ");
 		$Cont=0;
-		while ($rSql=mysql_fetch_array($qSql)) {
+		while ($rSql=mysqli_fetch_array($qSql)) {
 			$qSqlP=$this->gNotasPerdidas($rSql['idMaterGrupo'], $idAlum);
-			$Cont+=mysql_num_rows($qSqlP);
+			$Cont+=mysqli_num_rows($qSqlP);
 		}
 		return $Cont;
 	}
@@ -214,7 +214,7 @@ class clsPorcentajesAnio extends clsConexion {
 			
 		$qSql= $this->queryx($sql, "No se trajeron las materias ");
 		$Grupos=array();
-		while ($rSql=mysql_fetch_assoc($qSql)) {
+		while ($rSql=mysqli_fetch_assoc($qSql)) {
 			$Grupos[]=$rSql;
 		}
 		return $Grupos;
@@ -223,7 +223,7 @@ class clsPorcentajesAnio extends clsConexion {
 		$sql = "SELECT NombreGrupo FROM tbgrupos where idGrupo=".$idGrupo;
 		//echo $sql;
 		$qSql = $this->queryx($sql, "No se pudo traer la información del grupo ".$idGrupo.". ");
-		$rSql = mysql_fetch_assoc($qSql);
+		$rSql = mysqli_fetch_assoc($qSql);
 		return $rSql['NombreGrupo'];
 	}
 

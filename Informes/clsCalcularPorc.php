@@ -17,11 +17,11 @@ class clsCalcularPorc extends clsConexion {
 				order by Periodo DESC";
 		$qSqlPer = $this->queryx($sqlPer, "No se pudo traer la cantidad de alumnos del grupo ".$idGrupo.". ");
 		
-		while ($rSqlPer=mysql_fetch_array($qSqlPer)) {
+		while ($rSqlPer=mysqli_fetch_array($qSqlPer)) {
 			$PeriT = $rSqlPer['Periodo'];
 			
 			$qSqlA=$this->gContAlumnosxNomGrupo($idGrupo, $PeriT);
-			$rSqlA = mysql_fetch_array($qSqlA);
+			$rSqlA = mysqli_fetch_array($qSqlA);
 			if ($rSqlA['cuantos'] > 0 ) {
 				$this->Peri=$PeriT;
 				return $PeriT;	
@@ -59,7 +59,7 @@ class clsCalcularPorc extends clsConexion {
 			)r group by idAlumno, idMaterGrupo, PeriodoCompet;";
 //echo $sqlDef;
 		$qSqlDef=$this->queryx($sqlDef, "No se pudo traer los detalles.");
-		//$rSqlDef= mysql_fetch_assoc($qSqlDef) ;
+		//$rSqlDef= mysqli_fetch_assoc($qSqlDef) ;
 		
 		return $qSqlDef;
 		//return $sqlDef;
@@ -269,9 +269,9 @@ class clsCalcularPorc extends clsConexion {
 			
 		$qSql= $this->queryx($sql, "No se trajeron las materias ");
 		$Cont=0;
-		while ($rSql=mysql_fetch_array($qSql)) {
+		while ($rSql=mysqli_fetch_array($qSql)) {
 			$qSqlP=$this->gNotasPerdidas($rSql['idMaterGrupo'], $idAlum);
-			$Cont+=mysql_num_rows($qSqlP);
+			$Cont+=mysqli_num_rows($qSqlP);
 		}
 		return $Cont;
 	}

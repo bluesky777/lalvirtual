@@ -38,13 +38,13 @@ if (isset($_GET['txtIdAlum'])){
 
 $sqlAl="Select * from tbalumnos where idAlum=".$idAlum;
 $qSqlAl=$con->queryx($sqlAl, "No se trajo los datos del alumnos. ");
-$rSqlAl=mysql_fetch_array($qSqlAl);
+$rSqlAl=mysqli_fetch_array($qSqlAl);
 
 
 $sqlCol="select * from tbyearcolegio where Year=".$_SESSION['Year'];
 
 $qSqlCol=$con->queryx($sqlCol, "No se seleccionó la información del año actual. ");
-$rSqlCol=mysql_fetch_array($qSqlCol);
+$rSqlCol=mysqli_fetch_array($qSqlCol);
 
 $sqlGr="select g.NombreGrupo, g.Grupo, g.idGrupo, p.idProf, p.NombresProf, p.ApellidosProf
 		from tbgrupos g, tbgrupoalumnos ga, tbprofesores p, tbalumnos a 
@@ -52,7 +52,7 @@ $sqlGr="select g.NombreGrupo, g.Grupo, g.idGrupo, p.idProf, p.NombresProf, p.Ape
 			" and g.TitularGrupo=p.idProf and a.idAlum=".$idAlum;	
 			
 $qSqlGr=$con->queryx($sqlGr, "No se trajo la información del grupo.");
-$rSqlGr=mysql_fetch_array($qSqlGr);
+$rSqlGr=mysqli_fetch_array($qSqlGr);
 
 
 
@@ -177,7 +177,7 @@ $sqlMat = "select * from tbmaterias m, tbmateriagrupo mg, tbgrupos g
 $qSqlMat = $con->queryx($sqlMat, "No se trajeron las materias del grupo ".$idGrupo.". ");
 
 
-while($rSqlMat = mysql_fetch_array($qSqlMat)){
+while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 ?>
   <div class="Materia<?php if (isEst() or isAcud()){ ?> noPrint<?php } ?>" style="border-radius: 10; margin-top:5;">
 		<div class="NomMateria"><b><?php echo $rSqlMat['NombreMateria'];?></b></div>
@@ -206,7 +206,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	$qSqlComp=$con->queryx($sqlNotComp, "No se calcularon las competencias de la materia: ".$rSqlMat['idMaterGrupo'].". ");
 	
 	$PromMat=0;
-	while($rSqlComp=mysql_fetch_array($qSqlComp)){
+	while($rSqlComp=mysqli_fetch_array($qSqlComp)){
 		$PromMat+=$rSqlComp['Valores'];
 	}
 	
@@ -233,7 +233,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	
 	$iComp=1;
 	
-	while($rSqlComp=mysql_fetch_array($qSqlComp)){
+	while($rSqlComp=mysqli_fetch_array($qSqlComp)){
 		
 		?>
         <div class="Competencia">
@@ -261,7 +261,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	
 	$qSqlInd=$con->queryx($sqlInd, "No se hizo el segundo calculo de las competencias de la materia: ".$rSqlMat['idMaterGrupo'].". ");
 
-	$rSqlInd=mysql_fetch_array($qSqlInd);
+	$rSqlInd=mysqli_fetch_array($qSqlInd);
 
 		?>
         
@@ -288,7 +288,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 		
 		$iInd=1;
 		
-		while($rSqlIndi=mysql_fetch_array($qSqlIndi)){
+		while($rSqlIndi=mysqli_fetch_array($qSqlIndi)){
     	?>
         <div class="ContInd">
 		<div class="NomIndicador"><?php echo $iInd++."-".ucfirst($MiJuicio->Mayustil($rSqlIndi['Indicador'])); ?></div>
@@ -335,7 +335,7 @@ $sqlDisc="Select * from tbcomportamiento where MateriaGrupoComport=".$idGrupo. "
 
 $qSqlDisc=$con->queryx($sqlDisc, "No se trajo el comportamiento del alumno: ". $idAlum.". ");
 
-$rSqlDisc=mysql_fetch_array($qSqlDisc);
+$rSqlDisc=mysqli_fetch_array($qSqlDisc);
 
 $idComportamiento=$rSqlDisc['idComport'];
 ?>
@@ -355,7 +355,7 @@ $sqlFraDisc="Select * from tbfrases f, tbfrasescomportamiento fc
 
 $qSqlFraDisc=$con->queryx($sqlFraDisc, "No se trajeron las frases de comportamiento. ");
 
-while($rSqlFraDisc=mysql_fetch_array($qSqlFraDisc)){
+while($rSqlFraDisc=mysqli_fetch_array($qSqlFraDisc)){
 
 ?>
 	<div class="Frase"><?php echo $rSqlFraDisc['Frase']; ?></div>
@@ -384,7 +384,7 @@ $MateriaYa=array();
 $PeriodoYa=array();
 
 
-while($rSqlMat = mysql_fetch_array($qSqlMat)){
+while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 	
 	
 	$sqlPeriodos="select idPer, Periodo, Year from tbperiodos where Year=".$_SESSION['Year'];
@@ -392,7 +392,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	$qSqlPeriodos=$con->queryx($sqlPeriodos, "No se trajeron los periodos del año " .$_SESSION['Year']);
 	
 
-	while($rSqlPeriodos=mysql_fetch_array($qSqlPeriodos)){
+	while($rSqlPeriodos=mysqli_fetch_array($qSqlPeriodos)){
 		
 		$sqlMalo="select n.Nota, n.idAlumno, i.idIndic, i.Indicador, c.idCompet 
 			from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, 
@@ -405,7 +405,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 			
 		$qSqlMalo=$con->queryx($sqlMalo, "No se trajeron las notas de la materia: ".$rSqlMat['idMateria']);
 		
-		if(mysql_num_rows($qSqlMalo)>0){
+		if(mysqli_num_rows($qSqlMalo)>0){
 			
 			if(!in_array($rSqlMat['idMateria'], $MateriaYa)){
 				$MateriaYa[]=$rSqlMat['idMateria'];
@@ -455,7 +455,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 	
 	$qSqlNomM=$con->queryx($sqlNomM,"No se trajo el nombre de la materia ".$id_Mat);
 	
-	$rSqlNomM=mysql_fetch_array($qSqlNomM);
+	$rSqlNomM=mysqli_fetch_array($qSqlNomM);
 	
 	$nomMin=strtolower($rSqlNomM['NombreMateria']);
 	?>
@@ -469,7 +469,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 		$sqlIdPers = "SELECT * FROM tbperiodos WHERE Year='".$_SESSION['Year'] ."';";
 		$qSqlIdPers=$con->queryx($sqlIdPers, "No se trajeron los periodos del año ".$_SESSION['Year'] );
 
-		while ($rSqlIdPer = mysql_fetch_array($qSqlIdPers)) {
+		while ($rSqlIdPer = mysqli_fetch_array($qSqlIdPers)) {
 			if($rSqlIdPer['Periodo'] == $Periodo){
 				$sqlMalo="select n.Nota, n.idAlumno, i.idIndic, i.Indicador, c.idCompet 
 					from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, 
@@ -491,7 +491,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 				$qSqlMalo=$con->queryx($sqlMalo, "No se trajeron las notas de la materia: ".$Materia);
 						
 			
-				while($rSqlMalo=mysql_fetch_array($qSqlMalo)){
+				while($rSqlMalo=mysqli_fetch_array($qSqlMalo)){
 
 					$ComentarioIndics.=$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 					$ContPerdidos+=1;
@@ -531,7 +531,7 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 		$sqlIdPers = "SELECT * FROM tbperiodos WHERE Year='".$_SESSION['Year'] ."';";
 		$qSqlIdPers=$con->queryx($sqlIdPers, "No se trajeron los periodos del año ".$_SESSION['Year'] );
 
-		while ($rSqlIdPer = mysql_fetch_array($qSqlIdPers)) {
+		while ($rSqlIdPer = mysqli_fetch_array($qSqlIdPers)) {
 			if($rSqlIdPer['Periodo'] == $Periodo){
 
 				
@@ -548,7 +548,7 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 				$qSqlMalo=$con->queryx($sqlMalo, "No se trajeron las notas totales. ");
 				$ContPerdidos=0;
 			
-				while($rSqlMalo=mysql_fetch_array($qSqlMalo)){
+				while($rSqlMalo=mysqli_fetch_array($qSqlMalo)){
 
 					$ContPerdidos+=1;
 								

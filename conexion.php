@@ -19,9 +19,9 @@ function Conectar(){
 	}
 
 	
-	$con=mysql_connect($hostname, $login, $pass) or die("Problemas con la conexión al servidor");
-	mysql_query("SET NAMES 'utf8'");
-	mysql_select_db($database, $con)or die ("No se conecta a la DB");
+	$con=mysqli_connect($hostname, $login, $pass, $database) or die("Problemas con la conexión al servidor");
+	
+	mysqli_set_charset($con,"utf8");
 	
 	return $con;
         

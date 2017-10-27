@@ -26,13 +26,13 @@ if (isset($_GET['txtIdAlum'])){
 
 $sqlAl="Select * from tbalumnos where idAlum=".$idAlum;
 $qSqlAl=mysql_query($sqlAl, $con) or die("No se trajo los datos del alumnos.".mysql_error().". ".$sqlAl);
-$rSqlAl=mysql_fetch_array($qSqlAl);
+$rSqlAl=mysqli_fetch_array($qSqlAl);
 
 
 $sqlCol="select * from tbyearcolegio where Year=".$_SESSION['Year'];
 
 $qSqlCol=mysql_query($sqlCol, $con) or die("No se seleccionó la información del año actual. ".mysql_error().". ".$sqlCol);
-$rSqlCol=mysql_fetch_array($qSqlCol);
+$rSqlCol=mysqli_fetch_array($qSqlCol);
 
 $sqlGr="select g.NombreGrupo, g.Grupo, g.idGrupo, p.idProf, p.NombresProf, p.ApellidosProf
 		from tbgrupos g, tbgrupoalumnos ga, tbprofesores p, tbalumnos a 
@@ -40,7 +40,7 @@ $sqlGr="select g.NombreGrupo, g.Grupo, g.idGrupo, p.idProf, p.NombresProf, p.Ape
 			" and g.TitularGrupo=p.idProf and a.idAlum=".$idAlum;	
 			
 $qSqlGr=mysql_query($sqlGr, $con)or die("No se trajo la información del grupo.".mysql_error()." ".$sqlGr);
-$rSqlGr=mysql_fetch_array($qSqlGr);
+$rSqlGr=mysqli_fetch_array($qSqlGr);
 
 
 
@@ -140,7 +140,7 @@ $sqlMat = "select * from tbmaterias m, tbmateriagrupo mg, tbgrupos g
 $qSqlMat = mysql_query($sqlMat, $con) or die("No se trajeron las materias del grupo ".$idGrupo.". ".mysql_error()." <br>".$sqlMat);
 
 
-while($rSqlMat = mysql_fetch_array($qSqlMat)){
+while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 ?>
   <div class="Materia" style="border-radius: 10; margin-top:5;">
 		<div class="NomMateria"><b><?php echo $rSqlMat['NombreMateria'];?></b></div>
@@ -169,7 +169,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	$qSqlComp=mysql_query($sqlNotComp,$con) or die ("No se calcularon las competencias de la materia: ".$rSqlMat['idMaterGrupo'].". ".mysql_error());
 	
 	$PromMat=0;
-	while($rSqlComp=mysql_fetch_array($qSqlComp)){
+	while($rSqlComp=mysqli_fetch_array($qSqlComp)){
 		$PromMat+=$rSqlComp['Valores'];
 	}
 	
@@ -196,7 +196,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	
 	$iComp=1;
 	
-	while($rSqlComp=mysql_fetch_array($qSqlComp)){
+	while($rSqlComp=mysqli_fetch_array($qSqlComp)){
 		
 		?>
         <div class="Competencia">
@@ -224,7 +224,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	
 	$qSqlInd=mysql_query($sqlInd,$con) or die ("No se hizo el segundo calculo de las competencias de la materia: ".$rSqlMat['idMaterGrupo'].". ".mysql_error());
 
-	$rSqlInd=mysql_fetch_array($qSqlInd);
+	$rSqlInd=mysqli_fetch_array($qSqlInd);
 
 		?>
         
@@ -251,7 +251,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 		
 		$iInd=1;
 		
-		while($rSqlIndi=mysql_fetch_array($qSqlIndi)){
+		while($rSqlIndi=mysqli_fetch_array($qSqlIndi)){
     	?>
         <div class="ContInd">
 		<div class="NomIndicador"><?php echo $iInd++."-".ucfirst($MiJuicio->Mayustil($rSqlIndi['Indicador'])); ?></div>
@@ -299,7 +299,7 @@ $sqlDisc="Select * from tbcomportamiento where MateriaGrupoComport=".$idGrupo. "
 $qSqlDisc=mysql_query($sqlDisc, $con)or die("No se trajo el comportamiento del alumno: "
 		. $idAlum.". ".mysql_error()." ".$sqlDisc);
 
-$rSqlDisc=mysql_fetch_array($qSqlDisc);
+$rSqlDisc=mysqli_fetch_array($qSqlDisc);
 
 $idComportamiento=$rSqlDisc['idComport'];
 ?>
@@ -319,7 +319,7 @@ $sqlFraDisc="Select * from tbfrases f, tbfrasescomportamiento fc
 
 $qSqlFraDisc=mysql_query($sqlFraDisc, $con)or die("No se trajeron las frases de comportamiento. ".mysql_error()." ".$sqlFraDisc);
 
-while($rSqlFraDisc=mysql_fetch_array($qSqlFraDisc)){
+while($rSqlFraDisc=mysqli_fetch_array($qSqlFraDisc)){
 
 ?>
 	<div class="Frase"><?php echo $rSqlFraDisc['Frase']; ?></div>
@@ -348,7 +348,7 @@ $MateriaYa=array();
 $PeriodoYa=array();
 
 
-while($rSqlMat = mysql_fetch_array($qSqlMat)){
+while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 	
 	
 	$sqlPeriodos="select idPer, Periodo, Year from tbperiodos where Year=".$_SESSION['Year'];
@@ -357,7 +357,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 		trajeron los periodos del año " .$_SESSION['Year'].". <br>" . mysql_error());
 	
 
-	while($rSqlPeriodos=mysql_fetch_array($qSqlPeriodos)){
+	while($rSqlPeriodos=mysqli_fetch_array($qSqlPeriodos)){
 		
 		$sqlMalo="select n.Nota, n.idAlumno, i.idIndic, i.Indicador, c.idCompet 
 			from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, 
@@ -372,7 +372,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 		$qSqlMalo=mysql_query($sqlMalo, $con)or die("No se trajeron las notas de la materia: 
 			".$rSqlMat['idMateria'].". ".mysql_error());
 		
-		if(mysql_num_rows($qSqlMalo)>0){
+		if(mysqli_num_rows($qSqlMalo)>0){
 			
 			if(!in_array($rSqlMat['idMateria'], $MateriaYa)){
 				$MateriaYa[]=$rSqlMat['idMateria'];
@@ -424,7 +424,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 	$qSqlNomM=mysql_query($sqlNomM,$con)or die("No se trajo el nombre de la 
 			materia ".$id_Mat.". ".mysql_error());
 	
-	$rSqlNomM=mysql_fetch_array($qSqlNomM);
+	$rSqlNomM=mysqli_fetch_array($qSqlNomM);
 	
 	$nomMin=strtolower($rSqlNomM['NombreMateria']);
 	?>
@@ -453,7 +453,7 @@ foreach($MateriaYa as $id_Mat => $Materia){
 			".$Materia.". ".mysql_error());
 				
 	
-		while($rSqlMalo=mysql_fetch_array($qSqlMalo)){
+		while($rSqlMalo=mysqli_fetch_array($qSqlMalo)){
 
 			$ComentarioIndics.=$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 			$ContPerdidos+=1;
@@ -501,7 +501,7 @@ foreach($PeriodoYa as $id_Per => $Periodo){
 		$qSqlMalo=mysql_query($sqlMalo, $con)or die("No se trajeron las notas totales. ".mysql_error());
 		$ContPerdidos=0;
 		
-		while($rSqlMalo=mysql_fetch_array($qSqlMalo)){
+		while($rSqlMalo=mysqli_fetch_array($qSqlMalo)){
 
 			$ContPerdidos+=1;
 						

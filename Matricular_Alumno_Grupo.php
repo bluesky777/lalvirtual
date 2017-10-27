@@ -37,13 +37,13 @@ $con=Conectar();
       </tr>
   </thead>
   <tbody>
-  <?
+  <?php
 
 
   $sql="select idAlum, NoMatriculaAlum, NombresAlum, ApellidosAlum, FechaNacAlum from tbalumnos";
-  $qSql=mysql_query($sql, $con) or die("No se trajeron los alumnos de este grupo. " .mysql_error());
+  $qSql=$con->query($sql) or die("No se trajeron los alumnos de este grupo. " .mysqli_error($con));
 
-  while($rSql=mysql_fetch_array($qSql)){
+  while($rSql=mysqli_fetch_array($qSql)){
   ?>
       <tr>
         <td><?php echo $rSql['idAlum']; ?></td>
@@ -57,9 +57,9 @@ $con=Conectar();
 				where idAlumno='".$rSql['idAlum']."' and idGrupo='".$_GET['idGrupo']."' 
 					and idPeriodo='".$_SESSION['PeriodoUsu']."'";
 
-  			$qSqlGrAlum=mysql_query($sqlGrAlum, $con) or die("No se pudo hacer la verificación del alumno en el grupo. " . mysql_error() . $sqlGrAlum);
+  			$qSqlGrAlum=$con->query($sqlGrAlum) or die("No se pudo hacer la verificación del alumno en el grupo. " . mysqli_error($con) . $sqlGrAlum);
 			
-			$rSqlGrAlum=mysql_num_rows($qSqlGrAlum);
+			$rSqlGrAlum=mysqli_num_rows($qSqlGrAlum);
 
 			$sw="";
 			$idGrTemp="";
@@ -68,10 +68,10 @@ $con=Conectar();
 				$sqlGr="SELECT ga.idGrupo, Grupo from tbgrupos g, tbgrupoalumnos ga 
 				where g.idGrupo=ga.idGrupo and idAlumno='".$rSql['idAlum']."' and idPeriodo='".$_SESSION['PeriodoUsu']."'";
 				
-				$qSqlGr=mysql_query($sqlGr, $con) or die ("No se pudo traer los grupos. " .mysql_error());
-				$numgr=mysql_num_rows($qSqlGr);
+				$qSqlGr=$con->query($sqlGr) or die ("No se pudo traer los grupos. " .mysqli_error($con));
+				$numgr=mysqli_num_rows($qSqlGr);
 				
-				while($rSqlGr=mysql_fetch_array($qSqlGr)){
+				while($rSqlGr=mysqli_fetch_array($qSqlGr)){
 					
 					if(!($rSqlGr['idGrupo']==$_GET['idGrupo'])){
 						$sw=$rSqlGr['Grupo'];

@@ -18,11 +18,11 @@ from tbtipousuarios, tbusuarios, tbperiodos
 where LoginUsu='" . $_POST["txtLogin"] . "' and PassUsu='" . $_POST["txtPass"] . "' and tbusuarios.TipoUsu=tbtipousuarios.IdTipoUsu and PeriodoUsu=IdPer"; 
 
 
-$q=mysql_query($sqlSe, $con) or die ("Consulta fallida : " . mysql_error());
+$q=$con->query($sqlSe) or die ("Consulta fallida : " . mysqli_error( $con));
 
-if(mysql_num_rows($q)>0){  ///////// CONTRASEÑA AUN NO ENCRIPTADA //////////////
+if(mysqli_num_rows($q)>0){  ///////// CONTRASEÑA AUN NO ENCRIPTADA //////////////
     
-    $row=mysql_fetch_array($q);
+    $row=mysqli_fetch_array($q);
     if ($row["ActivoUsu"]==1){
         
         EstablecerUsu($row, $con);
@@ -63,13 +63,13 @@ function EstablecerUsu($rArray, $con){
 
     $sqlPerfil= "select NombreImg from tbimagenes where idImg = '" . $_SESSION['PerfilImg'] ."'";
 
-    $qSqlPerfil = mysql_query($sqlPerfil, $con) or die ("No se trajo la imágen de perfil. " . mysql_error());
+    $qSqlPerfil =  $con->query($sqlPerfil) or die ("No se trajo la imágen de perfil. " . mysqli_error( $con));
 
-    $num_r = mysql_num_rows($qSqlPerfil);
+    $num_r = mysqli_num_rows($qSqlPerfil);
 
     if($num_r>0){
 
-        $rSqlPerfil = mysql_fetch_array($qSqlPerfil);
+        $rSqlPerfil = mysqli_fetch_array($qSqlPerfil);
 
         if ($rSqlPerfil['NombreImg'] == "" or $rSqlPerfil['NombreImg'] == null){
             $_SESSION['PerfilImg']="Indefinida";

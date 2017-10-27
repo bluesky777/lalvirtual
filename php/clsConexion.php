@@ -71,7 +71,7 @@ class clsConexion{
 	function gLastId(){
 		/*
 		$qsqlid=$this->queryx("SELECT last_insert_id();", "No se trajo el codigo.");
-        $rSqlId=mysql_fetch_array($qsqlid);
+        $rSqlId=mysqli_fetch_array($qsqlid);
         return $rSqlId[0];
         */
         return mysql_insert_id();
@@ -81,7 +81,7 @@ class clsConexion{
 		$sqlAlu="select * from tbalumnos a, tbgrupoalumnos ga 
 				where a.idAlum=ga.idAlumno and ga.idPeriodo=".$_SESSION['PeriodoUsu']." 
 				ORDER BY ApellidosAlum";
-		$qSqlAlu=mysql_query($sqlAlu, $this->con)or die("No se pudo traer los alumnos.".mysql_error());
+		$qSqlAlu=$this->queryx($sqlAlu,"No se pudo traer los alumnos.".mysqli_error($this->con));
 
 		return $qSqlAlu;
 	}
@@ -96,7 +96,7 @@ class clsConexion{
 				CONCAT(a.ApellidosAlum, ' ', a.NombresAlum) like '%".$term."%'
 				order by label";
 
-			$qSqlAlu=mysql_query($sqlAlu, $this->con)or die("No se pudo traer los alumnos.".mysql_error());
+			$qSqlAlu=$this->queryx($sqlAlu, "No se pudo traer los alumnos.".mysqli_error($this->con));
 
 		} elseif ($_SESSION['TipoUsu'] == 2) {
 			$sqlAlu="select distinct a.idAlum as id, CONCAT(a.NombresAlum,' ',a.ApellidosAlum) as label  
@@ -108,7 +108,7 @@ class clsConexion{
 				g.YearGrupo=".$_SESSION['Year']." and g.idGrupo=mg.idGrupo and mg.idProfesor=".$_SESSION['idUsuar']."
 				order by label";
 
-			$qSqlAlu=mysql_query($sqlAlu, $this->con)or die("No se pudo traer los alumnos.".mysql_error());
+			$qSqlAlu=$this->queryx($sqlAlu,"No se pudo traer los alumnos.".mysqli_error($this->con));
 		}
 
 		return $qSqlAlu;
@@ -122,14 +122,14 @@ class clsConexion{
 		    group by a.idAlum
 		    order by label;";
 		    
-		$qSql=mysql_query($sql, $this->con)or die("No se pudo traer los alumnos.".mysql_error());
+		$qSql=$this->queryx($sql,"No se pudo traer los alumnos.".mysqli_error($this->con));
 
 		return $qSql;
 	}
 
 	function EdiNotaAl($nota, $idN){
 		$sqlNo="Update tbnotas set Nota =".$nota." where idNota=".$idN;
-		mysql_query($sqlNo, $this->con)or die("No se pudo guardar la nota. ".mysql_error());
+		$this->queryx($sqlNo,"No se pudo guardar la nota. ".mysqli_error($this->con));
 
 		return true;
 	}
@@ -206,14 +206,14 @@ class clsConexion{
 
 		$PeriodosMats=array();
 
-		while($rSqlMat = mysql_fetch_array($qSqlMat)){
+		while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 			
 			$sqlPeriodos="select idPer, Periodo, Year from tbperiodos where Year=".$_SESSION['Year'];
 			
-			$qSqlPeriodos=mysql_query($sqlPeriodos, $this->con)or die("No se 
-				trajeron los periodos del año " .$_SESSION['Year'].". <br>" . mysql_error());
+			$qSqlPeriodos=$this->queryx($sqlPeriodos,"No se 
+				trajeron los periodos del año " .$_SESSION['Year'].". <br>" . mysqli_error($this->con));
 			
-			while($rSqlPeriodos=mysql_fetch_array($qSqlPeriodos)){
+			while($rSqlPeriodos=mysqli_fetch_array($qSqlPeriodos)){
 
 				$sqlMalo="select n.Nota, n.idAlumno, i.idIndic, i.Indicador, c.idCompet 
 					from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, 
@@ -226,8 +226,8 @@ class clsConexion{
 				if ($_SESSION['TipoUsu']==2){
 					$sqlMalo.=" and idProfesor=".$_SESSION['idUsuar'];
 				}
-				$qSqlMalo=mysql_query($sqlMalo, $this->con)or die("No se trajeron las notas de la materia: 
-					".$rSqlMat['idMateria'].". <br>".mysql_error());
+				$qSqlMalo=$this->queryx($sqlMalo,"No se trajeron las notas de la materia: 
+					".$rSqlMat['idMateria'].". <br>".mysqli_error($this->con));
 				
 				if(mysqli_num_rows($qSqlMalo)>0){
 					$PeriodosMatsT ['idPer'] = $rSqlPeriodos['idPer'];
@@ -302,7 +302,7 @@ class clsConexion{
 			from tbyearcolegio where Year='".$_SESSION['Year']."' and BloqAlumnosVerNotas=1";
 
 		$qSqlPerm=$this->queryx($SqlPerm, "No se pudo verificar el permiso para los alumnos ver notas. ");
-		if (mysql_num_rows($qSqlPerm) > 0) {
+		if (mysqli_num_rows($qSqlPerm) > 0) {
 			return false;
 		}else{
 			return true;
@@ -319,7 +319,7 @@ class clsConexion{
 		
 		$qSqlPaz=$this->queryx($SqlPaz, "No se pudo verificar si está a paz y salvo. ");
 
-		while ( $rSqlPaz = mysql_fetch_array($qSqlPaz)) {
+		while ( $rSqlPaz = mysqli_fetch_array($qSqlPaz)) {
 			// ALmacenamos los datos para cuando llamemos la función datosPazYSalvo
 			$this->paz = $rSqlPaz['PazySalvoAlum'];
 			$this->deuda = $rSqlPaz['DeudaAlum'];
@@ -340,7 +340,7 @@ class clsConexion{
 	}
 
 	function PerConPerdidos($queryPerds, $Per){
-		while ($res=mysql_fetch_assoc($queryPerds)) {
+		while ($res=mysqli_fetch_assoc($queryPerds)) {
 			if ($res['Periodo']==$Per) {
 				return " (notas pendientes)";
 			}

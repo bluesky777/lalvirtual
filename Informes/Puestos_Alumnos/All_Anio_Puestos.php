@@ -35,7 +35,7 @@ foreach ($Grupos as $key => $value) {
 
     $qSqlContAl=$Calcs->gContAlumnosxNomGrupo($idGrupo, $Peri);   
 
-    $rSqlAl=mysql_fetch_array($qSqlContAl);
+    $rSqlAl=mysqli_fetch_array($qSqlContAl);
     $NomGr=$rSqlAl['NombreGrupo'];
     $ContAlu=$rSqlAl['cuantos'];
 

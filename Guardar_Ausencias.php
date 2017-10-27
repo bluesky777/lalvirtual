@@ -10,7 +10,7 @@ $sqlL="select idAlumno from tbgrupoalumnos
 
 $qSqlL=mysql_query($sqlL, $con) or die("No se trajeron los alumnos. ".mysql_error());
 
-while($rSqlL=mysql_fetch_array($qSqlL)){
+while($rSqlL=mysqli_fetch_array($qSqlL)){
 	
 		
 	$sqlA="select idAus, CantidadAus from tbausencias where idAlumno=". $rSqlL['idAlumno']. " 
@@ -19,12 +19,12 @@ while($rSqlL=mysql_fetch_array($qSqlL)){
 	$qSqlA=mysql_query($sqlA, $con) or die("No se trajo la nota del alumno ".$rSqlL['idAlumno']."</br>".mysql_error());
 
   
-	$num=mysql_num_rows($qSqlA);
+	$num=mysqli_num_rows($qSqlA);
 	
 	$idTemp="Nota".$rSqlL['idAlumno'];
 	
 	if ($num>0){
-		$rSqlA=mysql_fetch_array($qSqlA);
+		$rSqlA=mysqli_fetch_array($qSqlA);
 		
 		$sqlEx="update tbausencias set CantidadAus='". $_POST[$idTemp] ."' where idAus=". $rSqlA['idAus'];
 

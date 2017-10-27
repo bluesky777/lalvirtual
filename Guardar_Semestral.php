@@ -11,7 +11,7 @@ $sqlE="select ex.idExa 	from tbexamenessem ex
 	
 $qSqlE=mysql_query($sqlE, $con) or die("No se consulto el examnen.</br>".mysql_error());
 
-$rSqlE=mysql_fetch_array($qSqlE);
+$rSqlE=mysqli_fetch_array($qSqlE);
 	
 $idExam=0;
 	
@@ -23,7 +23,7 @@ $sqlL="select idAlum, NombresAlum, ApellidosAlum
 $qSqlL=mysql_query($sqlL, $con) or die ("No se trajo el listado de alumnos para modificarlos. ".mysql_error());
 
 
-while($rSqlL=mysql_fetch_array($qSqlL)){
+while($rSqlL=mysqli_fetch_array($qSqlL)){
 	
 	$sqlA="select n.Nota, ex.idExa 
 		from tbexamenessem ex, tbnotasemes n 
@@ -34,7 +34,7 @@ while($rSqlL=mysql_fetch_array($qSqlL)){
 	$qSqlA=mysql_query($sqlA, $con) or die("No se consulto la nota del alumno ".$rSqlL['NombresAlum']."</br>".mysql_error());
 
   
-  $num=mysql_num_rows($qSqlA);
+  $num=mysqli_num_rows($qSqlA);
   
   $sqlEx; //Declaro
   

@@ -28,8 +28,8 @@ $qSql=mysql_query($sql, $con) or die("No se trajeron los alumnos.");
 $salida_xml="<?xml version=\"1.0\" ?>\n";
 $salida_xml.="<informacion>\n";
 
-for($x=0; $x=mysql_num_rows($qSql); $x++){
-	$rSql=mysql_fetch_assoc($qSql);
+for($x=0; $x=mysqli_num_rows($qSql); $x++){
+	$rSql=mysqli_fetch_assoc($qSql);
 	$salida_xml.="\t<Alumno>\n";
 	$salida_xml.="\t\t<Nombres>" . $qSql['NombresAlum']. "<\Nombres>\n";
 	$salida_xml.="\t\t<Apellidos>" . $qSql['ApellidosAlum'] . "<\Apellidos>\n";

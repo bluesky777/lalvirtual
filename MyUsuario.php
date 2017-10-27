@@ -214,7 +214,7 @@ $UbicaRel="../img/";
                     <?
                     $sqlTipDoc="select * from tbtipodocu";
                     $qSqlTipDoc=mysql_query($sqlTipDoc, $con);
-                    while ($rSqlTipDoc = mysql_fetch_array($qSqlTipDoc)) {
+                    while ($rSqlTipDoc = mysqli_fetch_array($qSqlTipDoc)) {
                         
                     ?>
                     <option value="<?php echo $rSqlTipDoc['idTipoDoc'];?>"><?php echo $rSqlTipDoc['InicialesDoc'];?></option>
@@ -239,7 +239,7 @@ $UbicaRel="../img/";
                     <?
                     $sqlTipDoc="select * from tbtipodocu";
                     $qSqlTipDoc=mysql_query($sqlTipDoc, $con);
-                    while ($rSqlTipDoc = mysql_fetch_array($qSqlTipDoc)) {
+                    while ($rSqlTipDoc = mysqli_fetch_array($qSqlTipDoc)) {
                         
                     ?>
                     <option value="<?php echo $rSqlTipDoc['idTipoDoc'];?>"><?php echo $rSqlTipDoc['InicialesDoc'];?></option>

@@ -58,9 +58,9 @@
                         <div class="PeriodoPer">
                             <?php
                             $sqlper="select idPer, Periodo from tbperiodos where Year=" . $_SESSION['Year'];
-                            $qper=mysql_query($sqlper, $con) or die("Problema al consultar Periodos. " . mysql_error());
+                            $qper=$con->query($sqlper) or die("Problema al consultar Periodos. " . mysqli_error($con));
                             
-                            while($regper=mysql_fetch_array($qper)){
+                            while($regper=mysqli_fetch_array($qper)){
                             ?>
                                 <span id='<?php echo $regper['idPer']; ?>' class="Period">
                                     <a href="javascript:void(0);">Periodo <?php echo $regper['Periodo']; ?></a>

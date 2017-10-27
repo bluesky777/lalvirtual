@@ -28,7 +28,7 @@ if($TipoUsu == 2){
 
 	$qsql=$Mater->gMaterias($idUsu, $TipoUsu);
 	
-	while($rsql=mysql_fetch_array($qsql)){
+	while($rsql=mysqli_fetch_array($qsql)){
 	
 	$InfNot=$Mater->NotiCompet($rsql['idMaterGrupo']);
 		
@@ -159,7 +159,7 @@ if($TipoUsu == 2){
 $num_r = 0;
 if($TipoUsu == 1 or $TipoUsu == 2){ 
 	$qSqlGr=$Mater->gComportamiento($idUsu);
-	$num_r = mysql_num_rows($qSqlGr);
+	$num_r = mysqli_num_rows($qSqlGr);
 }
 
 if($num_r>0){
@@ -170,7 +170,7 @@ if($num_r>0){
 			Comportamiento:
 		</div>
 		<?php
-		$rSqlGr=mysql_fetch_array($qSqlGr);
+		$rSqlGr=mysqli_fetch_array($qSqlGr);
 		?>
 		<div class="ComportList">
 			<a href="../Comportamiento_Titular.php?idProf=<?php echo $idUsu. "&idGrupo=".$rSqlGr['idGrupo']; ?>">
@@ -186,7 +186,7 @@ if($num_r>0){
 		<div class="Titulo1">Comportamientos:</div>
 		<?php
 
-		while($rSqlGr=mysql_fetch_array($qSqlGr)){
+		while($rSqlGr=mysqli_fetch_array($qSqlGr)){
 		?>
 			<div class="ComportList">
 			<a href="../Comportamiento_Titular.php?idProf=<?php echo $idUsu. "&idGrupo=".$rSqlGr['idGrupo']; ?>">

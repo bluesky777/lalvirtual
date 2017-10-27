@@ -62,7 +62,7 @@ $con=Conectar();
 
 
                 $qSqlTipoAnun=mysql_query($sqlTipoAnun, $con) or die("No se pudo traer los tipos de anuncios.");
-                while ($rSqlTipoAnun=mysql_fetch_array($qSqlTipoAnun)) {
+                while ($rSqlTipoAnun=mysqli_fetch_array($qSqlTipoAnun)) {
                 ?>
                 <option value="<?php echo $rSqlTipoAnun['idTipoAnun'];?>"><?php echo $rSqlTipoAnun['AnuncioTipoAnun'];?></option>
                 <?php

@@ -13,13 +13,13 @@ class clsHallarDatos {
 		$sql = "select idGrupo from tbcompetencias c, tbmateriagrupo mg 
 			where mg.idMaterGrupo=c.MateriaGrupoCompet and c.idCompet=".$idComp;
 
-		$qSql=mysql_query($sql, $cn) or die("No se trajo el grupo. ".mysql_error());
+		$qSql=$cn->query($sql) or die("No se trajo el grupo. ".mysqli_error($cn));
 
 		if (!$qSql){
-	    	echo 'Error: ' . mysql_error();
+	    	echo 'Error: ' . mysqli_error($cn);
       		exit;
 		}
-		$rSql=mysql_fetch_array($qSql);
+		$rSql=mysqli_fetch_array($qSql);
 		
 		return $rSql["idGrupo"];
 

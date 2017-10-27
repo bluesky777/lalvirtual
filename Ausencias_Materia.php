@@ -9,7 +9,7 @@ $sqlM="select NombreMateria, g.idGrupo, NombreGrupo from tbgrupos g, tbmaterias 
 	 
 $qSqlM=mysql_query($sqlM, $con)or die ("No se trajo la información del grupo.".mysql_error());
 
-$rSqlM=mysql_fetch_array($qSqlM);
+$rSqlM=mysqli_fetch_array($qSqlM);
 
 ?>
 
@@ -45,7 +45,7 @@ $qSqlL=mysql_query($sqlL, $con) or die ("No se trajo el listado de alumnos. ".my
 $i=0;
 $sw=0;
 
-while($rSqlL=mysql_fetch_array($qSqlL)){
+while($rSqlL=mysqli_fetch_array($qSqlL)){
 	
 	$i++;
 	
@@ -55,10 +55,10 @@ while($rSqlL=mysql_fetch_array($qSqlL)){
   $qSqlA=mysql_query($sqlA, $con) or die("No se trajo la nota del alumno ".$rSqlL['NombresAlum']."</br>".mysql_error());
 
   
-  $num=mysql_num_rows($qSqlA);
+  $num=mysqli_num_rows($qSqlA);
   
   if ($num>0){
-	$rSqlA=mysql_fetch_array($qSqlA);    
+	$rSqlA=mysqli_fetch_array($qSqlA);    
   } else {
 	$rSqlA['CantidadAus']=0;
   }

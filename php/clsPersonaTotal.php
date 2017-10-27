@@ -32,13 +32,13 @@ class clsPersona extends clsConexion {
 
 		$sql = "select * from tbusuarios u, tbtipousuarios tu where u.TipoUsu=tu.idTipoUsu and u.idUsu=".$idUsu;
 
-		$qSql=mysql_query($sql, $this->cn) or die("No se trajo el usuario. ".mysql_error());
+		$qSql=$this->cn->query($sql) or die("No se trajo el usuario. ".mysqli_error($this->cn));
 
 		if (!$qSql){
-	    	echo 'Error: ' . mysql_error();
+	    	echo 'Error: ' . mysqli_error($this->cn);
       		exit;
 		}
-		$rSql=mysql_fetch_array($qSql);
+		$rSql=mysqli_fetch_array($qSql);
 		$rSqlT;
 		switch ($rSql['TipoUsu']) {
 			case 1:
@@ -52,8 +52,8 @@ class clsPersona extends clsConexion {
 			case 2 or 5:
 				$sqlT = "select * from tbprofesores p, tbusuarios u 
 						where UsuarioProf=idUsu and idUsu=".$idUsu;
-				$qSqlT=mysql_query($sqlT, $this->cn) or die("No se trajo los datos del profesor. ".mysql_error());
-				$rSqlT=mysql_fetch_array($qSqlT);
+				$qSqlT=$this->cn->query($sqlT) or die("No se trajo los datos del profesor. ".mysqli_error($this->cn));
+				$rSqlT=mysqli_fetch_array($qSqlT);
 				$this->Sexo = $rSqlT['SexoProf'];
 				$this->Nombre = $rSqlT['NombresProf'];
 				$this->Apellido = $rSqlT['ApellidosProf'];
@@ -62,8 +62,8 @@ class clsPersona extends clsConexion {
 			case 3:
 				$sqlT = "select * from tbalumnos p, tbusuarios u 
 						where UsuarioAlum=idUsu and idUsu=".$idUsu;
-				$qSqlT=mysql_query($sqlT, $cn) or die("No se trajo los datos del alumno. ".mysql_error());
-				$rSqlT=mysql_fetch_array($qSqlT);
+				$qSqlT=$this->cn->query($sqlT) or die("No se trajo los datos del alumno. ".mysqli_error($this->cn));
+				$rSqlT=mysqli_fetch_array($qSqlT);
 				$this->Sexo = $rSqlT['SexoAlum'];
 				$this->Nombre = $rSqlT['NombreProf'];
 				$this->Apellido = $rSqlT['ApellidosProf'];
@@ -72,8 +72,8 @@ class clsPersona extends clsConexion {
 			case 4:
 				$sqlT = "select * from tbacudientes p, tbusuarios u 
 						where UsuarioAcud=idUsu and idUsu=".$idUsu;
-				$qSqlT=mysql_query($sqlT, $cn) or die("No se trajo los datos del acudiente. ".mysql_error());
-				$rSqlT=mysql_fetch_array($qSqlT);
+				$qSqlT=$this->cn->query($sqlT) or die("No se trajo los datos del acudiente. ".mysqli_error($this->cn));
+				$rSqlT=mysqli_fetch_array($qSqlT);
 				$this->Sexo = $rSqlT['SexoAcud'];
 				$this->Nombre = $rSqlT['NombresProf'];
 				$this->Apellido = $rSqlT['ApellidosProf'];
@@ -96,13 +96,13 @@ class clsPersona extends clsConexion {
 
 	    $sqlPrin= "select NombreImg from tbimagenes where idImg = '" . $this->rSqlU['PrincipalImg'] ."'";
 
-	    $qSqlPrin = mysql_query($sqlPrin, $this->cn) or die ("No se trajo la imágen de perfil. " . mysql_error());
+	    $qSqlPrin = mysqli_query($sqlPrin) or die ("No se trajo la imágen de perfil. " . mysqli_error($this->cn));
 
-	    $num_r = mysql_num_rows($qSqlPrin);
+	    $num_r = mysqli_num_rows($qSqlPrin);
 	    
 	    if($num_r>0){
 
-	        $rSqlPrin = mysql_fetch_array($qSqlPrin);
+	        $rSqlPrin = mysqli_fetch_array($qSqlPrin);
 	        
 	        $this->CmmImgPerf = $rSql['ComentarioImg'];
 
@@ -146,13 +146,13 @@ class clsPersona extends clsConexion {
 
 	    $sqlPerfil= "select NombreImg, ComentarioImg from tbimagenes where idImg = '" . $this->rSqlU['PerfilImg'] ."'";
 
-	    $qSqlPerfil = mysql_query($sqlPerfil, $this->cn) or die ("No se trajo la imágen de perfil. " . mysql_error());
+	    $qSqlPerfil = $this->cn->query($sqlPerfil) or die ("No se trajo la imágen de perfil. " . mysqli_error($this->cn));
 
-	    $num_r = mysql_num_rows($qSqlPerfil);
+	    $num_r = mysqli_num_rows($qSqlPerfil);
 	    
 	    if($num_r>0){
 
-	        $rSqlPerfil = mysql_fetch_array($qSqlPerfil);
+	        $rSqlPerfil = mysqli_fetch_array($qSqlPerfil);
 	        
 	        $this->CmmImgPerf = $rSqlPerfil['ComentarioImg'];
 
@@ -264,9 +264,9 @@ class clsPersona extends clsConexion {
 				)r4 group by r4.MateriaGrupoCompet
 			)r";
 
-		$qSqlPr=mysql_query($sqlPr, $this->cn)or die("No se pudo el promedio del alumno. ".mysql_error());
+		$qSqlPr=$this->cn->query($sqlPr)or die("No se pudo el promedio del alumno. ".mysqli_error($this->cn));
 
-		$rSqlPr=mysql_fetch_array($qSqlPr);
+		$rSqlPr=mysqli_fetch_array($qSqlPr);
 
 		return $rSqlPr['Puntaje'];	
 	}

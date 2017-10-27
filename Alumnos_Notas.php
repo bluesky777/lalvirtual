@@ -12,8 +12,8 @@ $idGru = $idGr->idGrxIdComp($idComp);
 $sqlComp="select c.Competencia, m.NombreMateria, NombreGrupo from tbcompetencias c, tbmateriagrupo mg, tbmaterias m, tbgrupos g
 		where idCompet=".$idComp." and c.MateriaGrupoCompet=mg.idMaterGrupo and m.idMateria=mg.idMateria and g.idGrupo=mg.idGrupo";
 
-$qSqlComp=mysql_query($sqlComp, $con) or die("No se pudo consultar la competencia ".$idComp);
-$rSqlComp=mysql_fetch_array($qSqlComp);
+$qSqlComp=$con->query($sqlComp) or die("No se pudo consultar la competencia ".$idComp);
+$rSqlComp=mysqli_fetch_array($qSqlComp);
 
 function Promediar($idComp, $idAlum){
 	
@@ -22,8 +22,8 @@ function Promediar($idComp, $idAlum){
 		where c.idCompet=".$idComp. " and n.idAlumno=".$idAlum." 
 		and n.idIndic=i.idIndic and i.CompetenciaIndic=c.idCompet";
 			
-	$qSqlPr=mysql_query($sqlPr, $con) or die("No se trajo las notas" . mysql_error());
-	$rSqlPr=mysql_fetch_array($qSqlPr);
+	$qSqlPr=$con->query($sqlPr) or die("No se trajo las notas" . mysqli_error($con));
+	$rSqlPr=mysqli_fetch_array($qSqlPr);
 
 	return $rSqlPr['Prom'];
 }
@@ -90,7 +90,7 @@ $sqlAlum="select a.idAlum, a.NombresAlum NomA, a.ApellidosAlum ApeA, g.idGrupo,
 $sqlInd="select * from tbindicadores i where i.CompetenciaIndic=".$idComp." order by OrdenIndic;";
 
 
-$qSqlInd = mysql_query($sqlInd, $con) or die ("Pailas con los indicadores. " . mysql_error());
+$qSqlInd = $con->query($sqlInd) or die ("Pailas con los indicadores. " . mysqli_error($con));
 
 if(isAdPr()){
 ?>
@@ -109,7 +109,7 @@ Cada nota se guardará automáticamente de forma individual, sin embargo puede p
         
         <?php
 		
-	while ($rSqlInd = mysql_fetch_array($qSqlInd)){
+	while ($rSqlInd = mysqli_fetch_array($qSqlInd)){
 			
 		?>
         
@@ -126,9 +126,9 @@ Cada nota se guardará automáticamente de forma individual, sin embargo puede p
   <tbody>
   	<?php
 	$i=1;
-	$qSqlAlum = mysql_query($sqlAlum, $con) or die ("No se trajeron los alumnos". mysql_error());
+	$qSqlAlum = $con->query($sqlAlum) or die ("No se trajeron los alumnos". mysqli_error($con));
 	$sw=0;
-	while ($rSqlAlum=mysql_fetch_array($qSqlAlum)){
+	while ($rSqlAlum=mysqli_fetch_array($qSqlAlum)){
 
 		if($sw==0){
 			$sw=1;
@@ -141,22 +141,22 @@ Cada nota se guardará automáticamente de forma individual, sin embargo puede p
         
 		<?php
 
-		$qSqlInd = mysql_query($sqlInd, $con) or die ("Pailas con los indicadores. " . mysql_error()); //Ejecutamos otra vez
+		$qSqlInd = $con->query($sqlInd) or die ("Pailas con los indicadores. " . mysqli_error($con)); //Ejecutamos otra vez
 		
-		while($rSqlInd = mysql_fetch_array($qSqlInd)){
+		while($rSqlInd = mysqli_fetch_array($qSqlInd)){
 			
 			$sqlNot="select * from tbnotas 
 				where idIndic=".$rSqlInd['idIndic']." and idAlumno=".$rSqlAlum['idAlum'];
 				
-			$qSqlNot=mysql_query($sqlNot, $con) or die ("No se pudo traer 
+			$qSqlNot=$con->query($sqlNot) or die ("No se pudo traer 
 				el indicador ".$rSqlInd['idIndic']." del alumno:".$rSqlAlum['idAlum']);
 				
-			$nSqlNot=mysql_num_rows($qSqlNot);
+			$nSqlNot=mysqli_num_rows($qSqlNot);
 
 			if($nSqlNot==0){
 				$sqlInsNot="insert into tbnotas(idIndic, idAlumno, Nota) values('". $rSqlInd['idIndic']."', '".$rSqlAlum['idAlum']."','". $rSqlInd['NotaPorDefecto']."')";
 				
-				$qSqlInsNot=mysql_query($sqlInsNot, $con) or die("No se ingresó nota por defecto en indicador " . $rSqlInd['idIndic'] . " - " . mysql_error(). $sqlInsNot);
+				$qSqlInsNot=$con->query($sqlInsNot) or die("No se ingresó nota por defecto en indicador " . $rSqlInd['idIndic'] . " - " . mysqli_error($con). $sqlInsNot);
 				
 
 			?>
@@ -167,7 +167,7 @@ Cada nota se guardará automáticamente de forma individual, sin embargo puede p
         	<?php
 			} else {
 				
-				$rSqlNot=mysql_fetch_array($qSqlNot);
+				$rSqlNot=mysqli_fetch_array($qSqlNot);
 
 				
 			?>
@@ -190,18 +190,18 @@ Cada nota se guardará automáticamente de forma individual, sin embargo puede p
         
 		<?php
 
-		$qSqlInd = mysql_query($sqlInd, $con) or die ("Pailas con los indicadores. " . mysql_error()); //Ejecutamos otra vez
+		$qSqlInd = $con->query($sqlInd) or die ("Pailas con los indicadores. " . mysqli_error($con)); //Ejecutamos otra vez
 		
-		while($rSqlInd = mysql_fetch_array($qSqlInd)){
+		while($rSqlInd = mysqli_fetch_array($qSqlInd)){
 			$sqlNot="select * from tbnotas where idIndic=".$rSqlInd['idIndic']." and idAlumno=".$rSqlAlum['idAlum'];
-			$qSqlNot=mysql_query($sqlNot, $con) or die ("No se pudo traer el indicador ".$rSqlInd['idIndic']." del alumno:".$rSqlAlum['idAlum']);
-			$nSqlNot=mysql_num_rows($qSqlNot);
+			$qSqlNot=$con->query($sqlNot) or die ("No se pudo traer el indicador ".$rSqlInd['idIndic']." del alumno:".$rSqlAlum['idAlum']);
+			$nSqlNot=mysqli_num_rows($qSqlNot);
 
 			if($nSqlNot==0){
 				//echo ". ".$nSqlNot." esta vacio. ";
 				$sqlInsNot="insert into tbnotas(idIndic, idAlumno, Nota) values('". $rSqlInd['idIndic']."', '".$rSqlAlum['idAlum']."','". $rSqlInd['NotaPorDefecto']."')";
 				
-				$qSqlInsNot=mysql_query($sqlInsNot, $con) or die("No se ingresó nota por defecto en indicador " . $rSqlInd['idIndic'] . " - " . mysql_error(). $sqlInsNot);
+				$qSqlInsNot=$con->query($sqlInsNot) or die("No se ingresó nota por defecto en indicador " . $rSqlInd['idIndic'] . " - " . mysqli_error($con). $sqlInsNot);
 
 
 			?>
@@ -209,7 +209,7 @@ Cada nota se guardará automáticamente de forma individual, sin embargo puede p
         	<?php
 			} else {
 				
-				$rSqlNot=mysql_fetch_array($qSqlNot);
+				$rSqlNot=mysqli_fetch_array($qSqlNot);
 	
 				?>
         <td><input type="text" name="idNotaA<?php echo $rSqlAlum['idAlum']."I".$rSqlInd['idIndic']; ?>" size="3" maxlength="3" value="<?php echo $rSqlNot['Nota']; ?>" class="NotaOnly LaNota"  title="<?php echo $rSqlInd['Indicador']; ?>"></td>

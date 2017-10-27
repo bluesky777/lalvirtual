@@ -28,7 +28,7 @@ $qSqlDef=$Calcs->gDefAlumnosxGrupo($idGrupo);
 $TablaArreglada=array();
 $TablaxAlum=array();
 $st=0;
-while ($rSqlDef=mysql_fetch_assoc($qSqlDef)) {
+while ($rSqlDef=mysqli_fetch_assoc($qSqlDef)) {
 	if($st==0){
 		$st=$rSqlDef["idAlumno"];
 	}

@@ -19,7 +19,7 @@ $Calcs= new clsPorcentajes();
 $idGrupo = $_GET['idGrupo'];
 $qSqlContAl=$Calcs->gContAlumnosxNomGrupo($idGrupo);
 
-$rSqlAl=mysql_fetch_array($qSqlContAl);
+$rSqlAl=mysqli_fetch_array($qSqlContAl);
 $NomGr=$rSqlAl['NombreGrupo'];
 $ContAlu=$rSqlAl['cuantos'];
 

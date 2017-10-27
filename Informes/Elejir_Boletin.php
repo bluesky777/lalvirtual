@@ -10,7 +10,7 @@ $sqlAlu="select * from tbalumnos a, tbgrupoalumnos ga
 		ORDER BY ApellidosAlum";
 $qSqlAlu=mysql_query($sqlAlu, $con)or die("No se pudo traer los alumnos.".mysql_error());
 
-$CantiAlu=mysql_num_rows($qSqlAlu);
+$CantiAlu=mysqli_num_rows($qSqlAlu);
 
 if($CantiAlu==0){
     echo "<div class='AnunNoAlum'>Aun no hay alumnos matriculados en el periodo <b>". $_SESSION['Per'] ."</b></div>";
@@ -25,7 +25,7 @@ if($CantiAlu==0){
 <select name="txtIdAlum" id="txtIdAlum">
 <?php
 
-while($rSqlAlu=mysql_fetch_array($qSqlAlu)){
+while($rSqlAlu=mysqli_fetch_array($qSqlAlu)){
 
 ?>
 	<option value="<?php echo $rSqlAlu['idAlum']; ?>"><?php echo $rSqlAlu['ApellidosAlum']." ".$rSqlAlu['NombresAlum'];?></option>
@@ -47,7 +47,7 @@ Ver boletines de un grupo:
 <?php
 $sqlGr="select * from tbgrupos";
 $qSqlGr=mysql_query($sqlGr, $con)or die("No se pudieron traer los grupos.".mysql_error());
-while($rSqlGr=mysql_fetch_array($qSqlGr)){
+while($rSqlGr=mysqli_fetch_array($qSqlGr)){
 
 ?>
 	<option value="<?php echo $rSqlGr['idGrupo']; ?>"><?php echo $rSqlGr['NombreGrupo'];?></option>

@@ -53,7 +53,7 @@ $idCompe=$_GET['idComp'] ;
 
 $sql="select Competencia from tbcompetencias where idCompet='" .$idCompe . "'";
 $qSql=mysql_query($sql, $con) or die ("No se pudo traee el nombre de la competencia;" . mysql_error());
-$rSql=mysql_fetch_array($qSql);
+$rSql=mysqli_fetch_array($qSql);
 ?>
 Competencia: <i><b><?php echo $rSql['Competencia']; ?></b></i>
 <br>

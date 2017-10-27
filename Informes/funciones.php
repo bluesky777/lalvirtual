@@ -29,7 +29,7 @@ class JuicioVal{
 		$sqlJ="Select * from tbjuiciosvalorativos where YearJuic=".$anio;
 		$qSqlJ=mysql_query($sqlJ, $con)or die("No se trajeron las reglas calificativas para del año ".$anio);
 		
-		while($reg=mysql_fetch_assoc($qSqlJ)){
+		while($reg=mysqli_fetch_assoc($qSqlJ)){
 			$this->rSqlJ[] = $reg;
 		}
 		

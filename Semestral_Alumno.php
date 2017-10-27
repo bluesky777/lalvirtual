@@ -65,10 +65,10 @@ $sqlS="select idSemest from tbsemestrales s
 
 $qSqlS=mysql_query($sqlS, $con) or die("Pailas con el semestre. ". mysql_error());;
 
-$NumS=mysql_num_rows($qSqlS);
+$NumS=mysqli_num_rows($qSqlS);
 
 if($NumS>0){
-	$rSqlS=mysql_fetch_array($qSqlS);
+	$rSqlS=mysqli_fetch_array($qSqlS);
 }else{
 	
 	$sqlCre="INSERT INTO `tbsemestrales` (`Semestre`, `FechaInicio`, `FechaFin`, `ActualSemest`, `Year`) VALUES (".$Semestre.", '". date('Y-m-d') ."', '', 1, ".$_SESSION['Year'].");";
@@ -78,7 +78,7 @@ if($NumS>0){
 	// YA QUE CREE semestre, vuelvo a consultar
 	$qSqlS=mysql_query($sqlS, $con);
 	
-	$rSqlS=mysql_fetch_array($qSqlS);
+	$rSqlS=mysqli_fetch_array($qSqlS);
 }
 
 $idSem=$rSqlS['idSemest'];
@@ -93,12 +93,12 @@ $sqlM="select NombreMateria, NombreGrupo, Semestral, ex.idExa, ex.Semestral
 
 $qSqlM=mysql_query($sqlM, $con) or die ("No se trajo datos de materia y examen. ".mysql_error());
 
-$numM=mysql_num_rows($qSqlM);
+$numM=mysqli_num_rows($qSqlM);
 
 $rSqlM; //Declaro
 
 if ($numM>0){
-	$rSqlM=mysql_fetch_array($qSqlM);
+	$rSqlM=mysqli_fetch_array($qSqlM);
 	
 } else {
 	
@@ -110,7 +110,7 @@ if ($numM>0){
 	
 	$qSqlM=mysql_query($sqlM, $con) or die ("No se trajo los datos insertados. ".mysql_error());
 
-	$rSqlM=mysql_fetch_array($qSqlM);
+	$rSqlM=mysqli_fetch_array($qSqlM);
 }
 
 ?>
@@ -152,7 +152,7 @@ $qSqlL=mysql_query($sqlL, $con) or die ("No se trajo el listado de alumnos. ".my
 $i=0;
 $sw=0;
 
-while($rSqlL=mysql_fetch_array($qSqlL)){
+while($rSqlL=mysqli_fetch_array($qSqlL)){
 	$i++;
 	$sqlA="select n.Nota 
 		from tbnotasemes n 
@@ -161,10 +161,10 @@ while($rSqlL=mysql_fetch_array($qSqlL)){
   $qSqlA=mysql_query($sqlA, $con) or die("No se trajo la nota del alumno ".$rSqlL['NombresAlum']."</br>".mysql_error());
 
   
-  $num=mysql_num_rows($qSqlA);
+  $num=mysqli_num_rows($qSqlA);
   
   if ($num>0){
-	$rSqlA=mysql_fetch_array($qSqlA);    
+	$rSqlA=mysqli_fetch_array($qSqlA);    
   } else {
 	$rSqlA['Nota']=0;
   }

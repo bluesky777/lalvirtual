@@ -22,14 +22,14 @@ class clsPorcentajes extends clsConexion {
 	function gtbPuestos($idGrupo, &$Tabla, &$tbMat){
 		//Traer las materias para los titulos
 		$qSqlTitulos = $this->gAbrevMatxGrupo($idGrupo);
-		while ( $reg = mysql_fetch_assoc( $qSqlTitulos) ) {
+		while ( $reg = mysqli_fetch_assoc( $qSqlTitulos) ) {
 			$tbMat[]=$reg;
 		}
 
 		//Alumnos con promedio por periodo
 		$qSqlAl = $this->gPromedioxAlum($idGrupo);
 		$tbAl=array();
-		while ( $reg = mysql_fetch_assoc( $qSqlAl ) ) {
+		while ( $reg = mysqli_fetch_assoc( $qSqlAl ) ) {
 			$idAlum=$reg['idAlumno'];
 			$cont=$this->gNotasPerdidasxAlum($idAlum);
 			$Prom=number_format($reg['PromedioAlum'], 1);
@@ -54,11 +54,11 @@ class clsPorcentajes extends clsConexion {
 				$MatCod=$value2['idMaterGrupo'];
 
 				$qSqlD=$this->gDefinitivaAlum($MatCod, $idAlum);
-				$rSqlD=mysql_fetch_assoc($qSqlD);
+				$rSqlD=mysqli_fetch_assoc($qSqlD);
 
 				//Total de indicadores perdidos por materia
 				$qSqlPerd=$this->gNotasPerdidas($MatCod, $idAlum);
-				$num = mysql_num_rows( $qSqlPerd );
+				$num = mysqli_num_rows( $qSqlPerd );
 
 				$Def=number_format($rSqlD['Valores'], 0);
 				if ($num>0){
@@ -170,9 +170,9 @@ class clsPorcentajes extends clsConexion {
 			
 		$qSql= $this->queryx($sql, "No se trajeron las materias ");
 		$Cont=0;
-		while ($rSql=mysql_fetch_array($qSql)) {
+		while ($rSql=mysqli_fetch_array($qSql)) {
 			$qSqlP=$this->gNotasPerdidas($rSql['idMaterGrupo'], $idAlum);
-			$Cont+=mysql_num_rows($qSqlP);
+			$Cont+=mysqli_num_rows($qSqlP);
 		}
 		return $Cont;
 	}

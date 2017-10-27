@@ -74,7 +74,7 @@ $sqlA="select * from tbanuncios where ReceptoresAnu='Administradores' order by F
 
 $qSqlA=mysql_query($sqlP, $con)or die("No se pudo traer los profesores.".mysql_query().". ".$sqlP);
 
-while($rSqlA=mysql_fetch_array($qSqlA)){
+while($rSqlA=mysqli_fetch_array($qSqlA)){
 	
 	if($rSqlA['VistoAdmin']==0){
 		?>

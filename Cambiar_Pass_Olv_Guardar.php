@@ -30,18 +30,18 @@ switch ($Oper) {
 
         $sqlUsu="select idUsu, LoginUsu from tbusuarios where EmailUsu='".$destinatario."'";
         $qSqlUsu=mysql_query($sqlUsu, $con)or die("No se pudo comparar el email de usuario. ".  mysql_error());
-        $num=mysql_num_rows($qSqlUsu);
+        $num=mysqli_num_rows($qSqlUsu);
         
         if($num>1){
             mysql_free_result($qSqlUsu);
             die("Existe más de un usuario asociado a este email, comuniquese con el administrador.");
         }
         
-        $rSqlUsu=mysql_fetch_array($qSqlUsu);
+        $rSqlUsu=mysqli_fetch_array($qSqlUsu);
         $idUsu=$rSqlUsu["idUsu"];
         $sqlCol="select SitioWebMyVc, NombreColegio, NombreCortoCole from tbyearcolegio where Year=".date('Y');
         $qSqlCol=mysql_query($sqlCol, $con)or die("No se trajo el Sitio. ".  mysql_error());
-        $rSqlCol=  mysql_fetch_array($qSqlCol);
+        $rSqlCol=  mysqli_fetch_array($qSqlCol);
         $NomCor=$rSqlCol['NombreCortoCole'];
         
         $codConfirm=rand(0000000000, 9999999999).$idUsu;

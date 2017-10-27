@@ -75,7 +75,7 @@ if (isset($_GET['Oper'])){
 	<select name="Tipo">
 		<?php
 		$qSqlTip = $Act->TiposActividad();
-	while($rSqlTip = mysql_fetch_array($qSqlTip)){
+	while($rSqlTip = mysqli_fetch_array($qSqlTip)){
 		?>
 		<option value="<?php echo $rSqlTip['idTipAct']; ?>" title="<?php echo $rSqlTip['DescTipAct']; ?>"><?php echo $rSqlTip['TipoActividad']; ?></option>
 		<?php

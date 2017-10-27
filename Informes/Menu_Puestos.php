@@ -18,8 +18,8 @@ if(isAdPr()){
 		
 	$sqlGr="select * from tbgrupos g where g.YearGrupo='". $_SESSION['Year']."'	order by g.OrdenGrupo";
 
-	$qsqlGr=mysql_query($sqlGr, $con) or die("Pailitas, no hay materias. " . mysql_error() . "<br />" . $sqlGr);
-	while($rsqlGr=mysql_fetch_array($qsqlGr)){
+	$qsqlGr=$con->query($sqlGr) or die("Pailitas, no hay materias. " . mysqli_error($con) . "<br />" . $sqlGr);
+	while($rsqlGr=mysqli_fetch_array($qsqlGr)){
 		?>
 	  <option value="<?php echo $rsqlGr['idGrupo']; ?>"><?php echo $rsqlGr['NombreGrupo']; ?></option>
 	  <?php

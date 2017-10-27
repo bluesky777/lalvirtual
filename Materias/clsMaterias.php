@@ -60,7 +60,7 @@ class clsMaterias extends clsConexion {
 		
 		$qSqlNC=$this->queryx($sqlNC, "XX Porcentajes de Competencias XX");
 		
-		$CantC=mysql_num_rows($qSqlNC);
+		$CantC=mysqli_num_rows($qSqlNC);
 		
 		$InfN['CComp']=$CantC;
 		
@@ -70,7 +70,7 @@ class clsMaterias extends clsConexion {
 			
 			$CantIndicad=0;
 			
-			while($rSqlNC=mysql_fetch_array($qSqlNC)){ // WHILE  $rSqlNC
+			while($rSqlNC=mysqli_fetch_array($qSqlNC)){ // WHILE  $rSqlNC
 				
 			 $SumC+=$rSqlNC['PorcCompet'];
 			 
@@ -110,7 +110,7 @@ class clsMaterias extends clsConexion {
 		
 		$qSqlNA=$this->queryx($sqlNA, "XX Cantidad de ausencias XX");
 		
-		$rSqlNA=mysql_fetch_array($qSqlNA);
+		$rSqlNA=mysqli_fetch_array($qSqlNA);
 		
 		$InfN['CAus']=$rSqlNA['CantAus'];
 		
@@ -135,12 +135,12 @@ class clsMaterias extends clsConexion {
 		 $sqlNI="select idIndic, PorcIndic from tbindicadores where CompetenciaIndic=".$idCMat;
 		 $qSqlNI = $this->queryx($sqlNI, "XX Porcentajes de indicadores XX");
 		 
-		 $InfTemp['Cant']=mysql_num_rows($qSqlNI);
+		 $InfTemp['Cant']=mysqli_num_rows($qSqlNI);
 
 				 
 		 if($InfTemp['Cant']>0){  // SI NUM_ROWS $qSqlNI
 
-		  while($rSqlNI=mysql_fetch_array($qSqlNI)){  // WHILE  $rSqlNI
+		  while($rSqlNI=mysqli_fetch_array($qSqlNI)){  // WHILE  $rSqlNI
 			
 			$InfTemp['Porc'] += $rSqlNI['PorcIndic'];
 			

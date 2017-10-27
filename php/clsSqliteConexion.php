@@ -31,7 +31,7 @@ class clsSqliteConexion extends clsConexion{
 		
 		$qSqlG= $this->queryx($sqlG, "No se pudo traer los grupos. ");
 		$tbAlum=array();
-		while ($rSqlG=mysql_fetch_assoc($qSqlG)) {
+		while ($rSqlG=mysqli_fetch_assoc($qSqlG)) {
 			$idGrupo=$rSqlG['idGrupo'];
 			$sql="SELECT (@rownum:=@rownum+1) AS No, idAlumno, NombresAlum, ApellidosAlum 
 				from (select @rownum:=0) r, tbalumnos a, tbgrupoalumnos ga 
@@ -39,7 +39,7 @@ class clsSqliteConexion extends clsConexion{
 				and ga.idPeriodo=".$_SESSION['PeriodoUsu']." and Estado=1";
 			
 			$qSql= $this->queryx($sql, "No se pudo traer la cantidad de alumnos del grupo ".$idGrupo.". ");
-			while ($rSqlG=mysql_fetch_assoc($qSqlG)) {
+			while ($rSqlG=mysqli_fetch_assoc($qSqlG)) {
 				$tbAlum[]=$rSqlG;
 			}
 		}
@@ -181,14 +181,14 @@ class clsSqliteConexion extends clsConexion{
 
 		$PeriodosMats=array();
 
-		while($rSqlMat = mysql_fetch_array($qSqlMat)){
+		while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 			
 			$sqlPeriodos="select idPer, Periodo, Year from tbperiodos where Year=".$_SESSION['Year'];
 			
 			$qSqlPeriodos=mysql_query($sqlPeriodos, $this->con)or die("No se 
 				trajeron los periodos del año " .$_SESSION['Year'].". <br>" . mysql_error());
 			
-			while($rSqlPeriodos=mysql_fetch_array($qSqlPeriodos)){
+			while($rSqlPeriodos=mysqli_fetch_array($qSqlPeriodos)){
 
 				$sqlMalo="select n.Nota, n.idAlumno, i.idIndic, i.Indicador, c.idCompet 
 					from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg, 
@@ -204,7 +204,7 @@ class clsSqliteConexion extends clsConexion{
 				$qSqlMalo=mysql_query($sqlMalo, $this->con)or die("No se trajeron las notas de la materia: 
 					".$rSqlMat['idMateria'].". <br>".mysql_error());
 				
-				if(mysql_num_rows($qSqlMalo)>0){
+				if(mysqli_num_rows($qSqlMalo)>0){
 					$PeriodosMatsT ['idPer'] = $rSqlPeriodos['idPer'];
 					$PeriodosMatsT ['Peri'] = $rSqlPeriodos['Periodo'];
 					$PeriodosMatsT ['Mater'] = $rSqlMat['NombreMateria'];
@@ -272,7 +272,7 @@ class clsSqliteConexion extends clsConexion{
 	}
 
 	function PerConPerdidos($queryPerds, $Per){
-		while ($res=mysql_fetch_assoc($queryPerds)) {
+		while ($res=mysqli_fetch_assoc($queryPerds)) {
 			if ($res['Periodo']==$Per) {
 				return " (notas pendientes)";
 			}

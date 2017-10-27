@@ -26,7 +26,7 @@ if($_POST['Oper']==1){ /////////////////////////// PRIMERA VEZ QUE SE INVOCA EST
 	$sqlSel="SELECT idNota from tbnotas where idIndic=" . $_POST['idInd'];
 	$qSqlSel=mysql_query($sqlSel, $con)or die("No se pudieron seleccionar las notas de este indicador.");
 	
-	while($rSqlSel=mysql_fetch_array($qSqlSel)){
+	while($rSqlSel=mysqli_fetch_array($qSqlSel)){
 		$sqlDel="delete from tbnotas where idNota=".$rSqlSel['idNota'];
 		$qSqlDel=mysql_query($sqlDel, $con)or die("No se pudo eliminar la nota: ".$rSqlSel['idNota'].". ".mysql_error());
 	}

@@ -5,7 +5,7 @@ require_once("../php/clsConexion.php");
 $Cn = new clsConexion();
 $Cn->Conectar();
 		
-$CantiAlu=mysql_num_rows( $Cn->gAlPer() );
+$CantiAlu=mysqli_num_rows( $Cn->gAlPer() );
 
 if($CantiAlu==0){
     echo "<div class='AnunNoAlum'>Aun no hay alumnos matriculados en el periodo <b>". $_SESSION['Per'] ."</b></div>";

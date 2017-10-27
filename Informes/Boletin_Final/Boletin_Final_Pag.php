@@ -41,8 +41,8 @@ $idAlumno = $_GET['idAlum'];
 $qSqlA = $Calcs->DatosAlumGrupo($idAlumno);
 $qSqlC = $Calcs->DatosColegio();
 
-$DataAlum = mysql_fetch_assoc($qSqlA);
-$DataColeg = mysql_fetch_assoc($qSqlC);
+$DataAlum = mysqli_fetch_assoc($qSqlA);
+$DataColeg = mysqli_fetch_assoc($qSqlC);
 
 
 $qSqlM=$Calcs->gMaterxPerio($idAlumno);
@@ -154,8 +154,8 @@ $MateriaDef=$Calcs->tbMateriaxPer($qSqlM);
 							$ContP=0;
 							$ParenMsg="";
 							
-							if(mysql_num_rows($qSqlMalo)>0){
-								while ($rSqlMalo=mysql_fetch_assoc($qSqlMalo)) {
+							if(mysqli_num_rows($qSqlMalo)>0){
+								while ($rSqlMalo=mysqli_fetch_assoc($qSqlMalo)) {
 									$ContP++;
 									$ParenMsg.="Per".$keyP." >> ".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 								}

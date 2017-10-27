@@ -32,14 +32,14 @@ if (isAdPr()){
 
 	$qComp=$Cmp->gCompetencias($idMatG);
 	
-	$numC=mysql_num_rows($qComp);
+	$numC=mysqli_num_rows($qComp);
 
 	if($numC>0){
 		
 		?>
             
         <?php
-        while ($rComp=mysql_fetch_array($qComp)){
+        while ($rComp=mysqli_fetch_array($qComp)){
             $idTe = $rComp['idCompet'];
         ?> 
             
@@ -146,7 +146,7 @@ if (isAdPr()){
 echo $sql;
 
 	$qsql=mysql_query($sql, $Cmp::$conex) or die("No hay materias. " . mysql_error() . "<br>" . $sql);
-	while($rsql=mysql_fetch_array($qsql)){
+	while($rsql=mysqli_fetch_array($qsql)){
 		?>
     	  <option value="<?php echo $rsql['idMaterGrupo']; ?>"><?php echo $rsql['NombreMateria'] . " - ". $rsql['Grupo']; ?></option>
     	  <?php
@@ -161,7 +161,7 @@ echo $sql;
 		order by idPer";
 	
 	$qsql=mysql_query($sql, $Cmp::$conex) or die("Pailitas, no hay periodos. " . mysql_error() . "<br />" . $sql);
-	while($rsql=mysql_fetch_array($qsql)){
+	while($rsql=mysqli_fetch_array($qsql)){
 		?>
         <option value="<?php echo $rsql['idPer']; ?>"><?php echo $rsql['Periodo']; ?></option>
         <?php

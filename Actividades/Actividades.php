@@ -17,7 +17,7 @@ if(isAdPr()){
 <?php
 }
 $qSqlAct = $Act->gActividades($idMat);
-if(mysql_num_rows($qSqlAct) == 0){
+if(mysqli_num_rows($qSqlAct) == 0){
 	echo "No hay actividades propuestas en esta materia.";
 	die();
 }
@@ -26,7 +26,7 @@ if(mysql_num_rows($qSqlAct) == 0){
 	<ul id="ltAct">
 		<?php
 		$cont=0;
-		while($rSqlAct=mysql_fetch_array($qSqlAct)){
+		while($rSqlAct=mysqli_fetch_array($qSqlAct)){
 			$cont++;
 			$idA=$rSqlAct['idAct'];
 		?>

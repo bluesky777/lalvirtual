@@ -6,9 +6,9 @@ $con=Conectar();
 
 $sqlG="select * from tbgrupos where YearGrupo=".$_SESSION['Year']. " order by OrdenGrupo";
 
-$qSlqG=mysql_query($sqlG, $con) or die ("No se pudo traer los grupos. " . mysql_error());
+$qSlqG=$con->query($sqlG) or die ("No se pudo traer los grupos. " . mysql_error());
 
-$rG=mysql_num_rows($qSlqG);
+$rG=mysqli_num_rows($qSlqG);
 ?>
 <center>
 <h2>Modificar grupos</h2>
@@ -35,7 +35,7 @@ $rG=mysql_num_rows($qSlqG);
 
 <?php
 
-while($rSqlG=mysql_fetch_array($qSlqG)){
+while($rSqlG=mysqli_fetch_array($qSlqG)){
 ?>
 
 	<tr>
@@ -74,11 +74,11 @@ while($rSqlG=mysql_fetch_array($qSlqG)){
         <td>
             <?php
             $sqlNiv="Select * from tbnivel";
-            $qSqlNiv=mysql_query($sqlNiv, $con) or die ("No se trajeron los niveles. " . mysql_error());
+            $qSqlNiv=$con->query($sqlNiv) or die ("No se trajeron los niveles. " . mysql_error());
             ?>
             <select name="NivelGrupo<?php echo $rSqlG['idGrupo']; ?>" title="Cambie el nivel del grupo">
 				<?php
-                while($rSqlNiv=mysql_fetch_array($qSqlNiv)){
+                while($rSqlNiv=mysqli_fetch_array($qSqlNiv)){
                     if($rSqlNiv['OrdenNivel']==$rSqlG['NivelGrupo']){
                 ?>
                     <option selected value="<?php echo $rSqlNiv['OrdenNivel']; ?>"><?php echo $rSqlNiv['NombreNivel']; ?></option>
@@ -99,9 +99,9 @@ while($rSqlG=mysql_fetch_array($qSlqG)){
         <select name="TitularGrupo<?php echo $rSqlG['idGrupo']; ?>" class="SeleTitular">
         <?php
 		$sqlProf="select * from tbprofesores p, tbyearprofesores yp where yp.idYear=".$_SESSION['Year']. " and p.idProf=yp.idProfesor";
-		$qSqlProf=mysql_query($sqlProf, $con) or die ("Pailander con los profesores" . mysql_error());
+		$qSqlProf=$con->query($sqlProf) or die ("Pailander con los profesores" . mysqli_error( $con));
 		
-		while($rSqlProf= mysql_fetch_array($qSqlProf)){
+		while($rSqlProf= mysqli_fetch_array($qSqlProf)){
 			if ($rSqlProf['idProf']==$rSqlG['TitularGrupo']){
 		?>
             <option selected value="<?php echo $rSqlProf['idProf']; ?>"><?php echo $rSqlProf['NombresProf']; ?> <?php echo $rSqlProf['ApellidosProf']; ?>

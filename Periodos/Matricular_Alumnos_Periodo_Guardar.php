@@ -31,11 +31,11 @@ $qSqlNow=$Prd->queryx($sqlNow, "No se trajeron los alumnos actuales");
 
 $Cont=0;
 
-while($rAnt=mysql_fetch_array($qSqlAnt)){
+while($rAnt=mysqli_fetch_array($qSqlAnt)){
 	
 	$sw=0;
 	
-	while($rNow=mysql_fetch_array($qSqlNow)){
+	while($rNow=mysqli_fetch_array($qSqlNow)){
 		
 		if($rNow['idAlumno']==$rAnt['idAlumno']){
 			$sw=1;

@@ -34,7 +34,7 @@ $Year=$rSqlP["Year"];
 
 $qSqlGr=$Prd->gGrupoYear($Year);
 
-while($rSqlGr=mysql_fetch_array($qSqlGr)){
+while($rSqlGr=mysqli_fetch_array($qSqlGr)){
 	?>
 	<li>
     	<?php
@@ -47,13 +47,13 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 		
 		$qSqlAl=$Prd->gAlumnos($rSqlGr['idGrupo'], ($Peri-1), $Year);
 		
-		if (($numAl=mysql_num_rows($qSqlAl))>0){
+		if (($numAl=mysqli_num_rows($qSqlAl))>0){
 		?>
 		
         <ul>
         
 		<?php
-		while($rSqlAl=mysql_fetch_array($qSqlAl)){
+		while($rSqlAl=mysqli_fetch_array($qSqlAl)){
 			?>
 			<li>
             	<?php echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>
@@ -90,7 +90,7 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 <?php
 $qSqlGr=$Prd->gGrupos($Year);
 
-while($rSqlGr=mysql_fetch_array($qSqlGr)){
+while($rSqlGr=mysqli_fetch_array($qSqlGr)){
 	?>
 	<li>
     	<?php
@@ -101,14 +101,14 @@ while($rSqlGr=mysql_fetch_array($qSqlGr)){
 		
 		$qSqlAl=$Prd->gAlumnos2($rSqlGr['idGrupo'], $idPer);
 		
-		if (($numAl=mysql_num_rows($qSqlAl))>0){
+		if (($numAl=mysqli_num_rows($qSqlAl))>0){
 		?>
 		
         <ul>
         
 		<?php
 		
-		while($rSqlAl=mysql_fetch_array($qSqlAl)){
+		while($rSqlAl=mysqli_fetch_array($qSqlAl)){
 			?>
 			<li>
             	<?php echo $rSqlAl['ApellidosAlum'] . " " . $rSqlAl['NombresAlum']; ?>

@@ -144,7 +144,7 @@ Frases de observaciones
 <?php
 $sqlF="Select * from tbfrases where YearFrase='".$_SESSION['Year'] ."'";
 $qSqlF=mysql_query($sqlF, $con)or die("No se trajeron las frases. ".mysql_error());
-while($rSql=mysql_fetch_array($qSqlF)){
+while($rSql=mysqli_fetch_array($qSqlF)){
 ?>
   <tr>
 	<td><?php echo $rSql["idFrase"]; ?></td>
@@ -156,7 +156,7 @@ while($rSql=mysql_fetch_array($qSqlF)){
 
 		$qSqlA=mysql_query($sqlA, $con) or die("No se tiene al alumno ".$_GET['idAlum']. ". ".mysql_error());
 		
-		$rSqlA=mysql_fetch_array($qSqlA);
+		$rSqlA=mysqli_fetch_array($qSqlA);
 		
 	?>
     <a href="NomAlum='<?php echo $rSqlA["NombresAlum"]; ?>'&idFrase=<?php echo $rSql["idFrase"]; ?>&idComport=<?php echo $_GET["idComport"]; ?>" id="<?php echo $rSqlA["NombresAlum"]?>" class="AgregarFraseAlum"><?php echo $rSql["Frase"]; ?></a>

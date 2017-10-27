@@ -11,7 +11,7 @@ if (isset( $_GET['Pasar'] )){
 	$sqlFra = "SELECT * FROM tbfrases f where f.YearFrase='2012'";
 	$qSqlFra = mysql_query($sqlFra, $con) or die("No se trajeron las frases.");
 
-	while ($rSqlFra = mysql_fetch_array($qSqlFra)) {
+	while ($rSqlFra = mysqli_fetch_array($qSqlFra)) {
 
 		$sql="INSERT into tbfrases(Frase, TipoFrase, YearFrase) values('".$rSqlFra['Frase']."','".$rSqlFra['TipoFrase']."','2013');";
 

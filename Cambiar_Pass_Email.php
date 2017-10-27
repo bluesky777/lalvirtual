@@ -14,7 +14,7 @@ switch ($Oper) {
         
         $sqlEm="select LoginUsu, ConfirmCodUsu from tbusuarios where ConfirmCodUsu='".$_GET['conf']."'";
         $qSqlEm=mysql_query($sqlEm, $con)or die("No se consultó el codigo de confirmación. ".  mysql_error());
-        $rSqlEm=mysql_fetch_array($qSqlEm);
+        $rSqlEm=mysqli_fetch_array($qSqlEm);
         $Login=$rSqlEm['LoginUsu'];
         
         $num=mysql_numrows($qSqlEm);
@@ -131,7 +131,7 @@ switch ($Oper) {
         
         $sqlUAnt="select LoginUsu from tbusuarios where `idUsu`='".$idUsu."';";
         $qSqlUAnt=  mysql_query($sqlUAnt, $con);
-        $rSqlUAnt=  mysql_fetch_array($qSqlUAnt);
+        $rSqlUAnt=  mysqli_fetch_array($qSqlUAnt);
         
         $sqlCam="UPDATE `tbusuarios` SET LoginUsu='".$Log."', `PassUsu`='".$pass."', `ConfirmCodUsu`='', `RejectCodUsu`='' WHERE `idUsu`='".$idUsu."';";
         

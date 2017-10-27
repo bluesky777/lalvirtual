@@ -8,7 +8,7 @@ $max=3500000;
 
 $sqlU="select LoginUsu from tbusuarios where idUsu=".$_POST['idUsu'];
 $rSqlU=mysql_query($sqlU, $con);
-$qSqlU=mysql_fetch_array($rSqlU);
+$qSqlU=mysqli_fetch_array($rSqlU);
 
 $NomUsu=$qSqlU['LoginUsu'];
 

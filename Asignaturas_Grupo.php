@@ -14,7 +14,7 @@ Seleccione un grupo:
 
 <select name="Grupo" id="Grupos">
 	<?php
-	while($rSqlG=mysql_fetch_array($qSqlG)){
+	while($rSqlG=mysqli_fetch_array($qSqlG)){
 		
 		if($rSqlG['idGrupo']==$_GET['idGrupo']){
 			    

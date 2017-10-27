@@ -16,7 +16,7 @@ $idGrupo="";
 
 
 
-while($rSqlA=mysql_fetch_array($qSqlA)){
+while($rSqlA=mysqli_fetch_array($qSqlA)){
 	
 	$sqlComport="SELECT idComport from tbcomportamiento 
 		where MateriaGrupoComport=".$rSqlA['idGrupo']." and PeriodoComport='".$_SESSION['PeriodoUsu']."' 
@@ -25,7 +25,7 @@ while($rSqlA=mysql_fetch_array($qSqlA)){
 	
 	$qSqlComport=mysql_query($sqlComport, $con) or die("No se pudo comprobar si el alumno ".$rSqlA['idAlum']." tiene comportamiento de este periodo. ".mysql_error());
 	
-	$nSqlComport=mysql_num_rows($qSqlComport);
+	$nSqlComport=mysqli_num_rows($qSqlComport);
 	
 	if($nSqlComport==0){
 		
@@ -134,7 +134,7 @@ while($rSqlA=mysql_fetch_array($qSqlA)){
 
 	$qSqlDis=mysql_query($sqlDis, $con) or die ("No se trajeron los alumnos. ".mysql_error());
 
-	while($rSqlDis=mysql_fetch_array($qSqlDis)){
+	while($rSqlDis=mysqli_fetch_array($qSqlDis)){
 
 		$idComport=$rSqlDis['idComport'];
 		{
@@ -152,7 +152,7 @@ while($rSqlA=mysql_fetch_array($qSqlA)){
 				
 				$qSqlFra=mysql_query($sqlFra,$con)or die("No se trajeron las frases.".mysql_error());
 				
-				while($rSqlFra=mysql_fetch_array($qSqlFra)){
+				while($rSqlFra=mysqli_fetch_array($qSqlFra)){
 				?>
 				<li>
 				<?php echo $rSqlFra['Frase']; ?> 

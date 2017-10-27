@@ -47,7 +47,7 @@ $Prd=new clsPeriodos();
     <?php
 
 	$qSqlP=$Prd->gPeriodos();
-	while($rSqlP=mysql_fetch_array($qSqlP)){
+	while($rSqlP=mysqli_fetch_array($qSqlP)){
 	
 	?>
     <div class="FilasPer">
@@ -94,7 +94,7 @@ $Prd=new clsPeriodos();
 
 $qSqlY = $Prd->gYear();;
 
-while($rSqlY=mysql_fetch_array($qSqlY)){
+while($rSqlY=mysqli_fetch_array($qSqlY)){
 	if ($rSqlY['ActualYear']==1){
 		?>
     <option selected="selected"><?php echo $rSqlY['Year']; ?></option>

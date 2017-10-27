@@ -20,11 +20,11 @@ $sqlEn = "SELECT idUsu, TipoUsu, TipoUsuario, LoginUsu, ActivoUsu, PeriodoUsu, P
 
 
 
-$q=mysql_query($sqlEn, $con) or die ("Consulta fallida : " . mysql_error());
+$q=$con->query($sqlEn) or die ("Consulta fallida : " . mysql_error($con));
 
-if(mysql_num_rows($q)>0){
+if(mysqli_num_rows($q)>0){
 
-    $row=mysql_fetch_array($q);
+    $row=mysqli_fetch_array($q);
 
     if ($row["ActivoUsu"]==1){
 
@@ -35,8 +35,8 @@ if(mysql_num_rows($q)>0){
             ////////////////////////////  TIPO PROFESOR /////////////////////////////////////
 
             $sqlProf="select * from tbprofesores where UsuarioProf='".$row['idUsu']."'";
-            $qSqlProf=mysql_query($sqlProf, $con) or die ("No se trajeron los datos personanles del usuario profesor ingresado.".mysql_error());
-            $num=mysql_num_rows($qSqlProf);
+            $qSqlProf=$con->query($sqlProf) or die ("No se trajeron los datos personanles del usuario profesor ingresado.".mysql_error($con));
+            $num=mysqli_num_rows($qSqlProf);
 
             if ($num==0){
                 echo "Lo sentimos, Usuario no ha sido asignado a ningún profesor.";
@@ -44,7 +44,7 @@ if(mysql_num_rows($q)>0){
                 //Cierra la sesión 
                 session_destroy(); 
             } else {
-                $rSqlProf=mysql_fetch_array($qSqlProf);
+                $rSqlProf=mysqli_fetch_array($qSqlProf);
                 $_SESSION['idUsuar'] = $rSqlProf['idProf'];
                 $_SESSION['NombresUsuar'] = $rSqlProf['NombresProf'];
                 $_SESSION['ApellidosUsuar'] = $rSqlProf['ApellidosProf'];
@@ -57,11 +57,11 @@ if(mysql_num_rows($q)>0){
 
                 $sqlPriv="select Privilegio, FechaLimite from tbusuariopriv up, tbprivilegios p where up.idUsu=". $_SESSION['idUsuar'] ." and up.idPriv=p.idPriv";
 
-                $qSqlPriv=mysql_query($sqlPriv, $con) or die ("No se pudo consultar los privilegio de este usuario. ".mysql_error());
+                $qSqlPriv=mysqli_query($sqlPriv, $con) or die ("No se pudo consultar los privilegio de este usuario. ".mysql_error());
 
                 $Privilegios[]=array();
 
-                while($rPriv=mysql_fetch_array($qSqlPriv)){
+                while($rPriv=mysqli_fetch_array($qSqlPriv)){
 
                     if ($rPriv['FechaLimite']=="" or $rPriv['FechaLimite'] > date('Y-m-d H:i:s')){
                         $Privilegios[]=$rPriv['Privilegio'];
@@ -81,16 +81,16 @@ if(mysql_num_rows($q)>0){
 
             {
                     $sqlAlum="select * from tbalumnos where UsuarioAlum='".$row['idUsu']."'";
-                    $qSqlAlum=mysql_query($sqlAlum, $con) or die ("No se trajeron los datos personales del usuario alumno ingresado.".mysql_error());
+                    $qSqlAlum=$con->query($sqlAlum, $con) or die ("No se trajeron los datos personales del usuario alumno ingresado.".mysql_error($con));
 
-                    $num=mysql_num_rows($qSqlAlum);
+                    $num=mysqli_num_rows($qSqlAlum);
                     if ($num==0){  //Usuario asignado a algún Alumno?
                             echo "Lo sentimos, este Usuario no ha sido asignado a ningún alumno.";
                             session_unset(); 
                             //Cierra la sesión 
                             session_destroy(); 
                     } else {
-                            $rSqlAlum=mysql_fetch_array($qSqlAlum);
+                            $rSqlAlum=mysqli_fetch_array($qSqlAlum);
                             $_SESSION['idUsuar']=$rSqlAlum['idAlum'];
                             $_SESSION['NombresUsuar']=$rSqlAlum['NombresAlum'];
                             $_SESSION['ApellidosUsuar']=$rSqlAlum['ApellidosAlum'];
@@ -109,7 +109,7 @@ if(mysql_num_rows($q)>0){
                             //Array temporal para almacenar los privilegios de usuario
                             $Privilegios[]=array();
 
-                            while($rPriv=mysql_fetch_array($qSqlPriv)){
+                            while($rPriv=mysqli_fetch_array($qSqlPriv)){
 
                                     if ($rPriv['FechaLimite']=="" or $rPriv['FechaLimite'] > date('Y-m-d H:i:s'))
                                     {

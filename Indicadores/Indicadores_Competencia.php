@@ -52,7 +52,7 @@ if(isAdPr()){
 
 $qsql=$Indis->gIndicadores($idComp);
 
-while($rsql = mysql_fetch_array($qsql)){
+while($rsql = mysqli_fetch_array($qsql)){
     
 ?>
 <li id="OrdenI_<?php echo $rsql['idIndic']; ?>">

@@ -30,7 +30,7 @@ $idGrupo = (isset($_GET['idGrupo'])) ? $_GET['idGrupo'] : 10 ;
 $Period=$Calcs->gLastPeriodo($idGrupo);
 $qSqlContAl=$Calcs->gContAlumnosxNomGrupo($idGrupo, $Period);
 
-$rSqlAl=mysql_fetch_array($qSqlContAl);
+$rSqlAl=mysqli_fetch_array($qSqlContAl);
 
 $NomGr=$rSqlAl['NombreGrupo'];
 
@@ -42,7 +42,7 @@ if ($ContAlu==0){
 }
 $qSqlAl=$Calcs->gPromedioxAlum($idGrupo, $Period, 3);
 $DatosPuest = array();
-while($rSqlAl=mysql_fetch_assoc($qSqlAl)){
+while($rSqlAl=mysqli_fetch_assoc($qSqlAl)){
 	$DatosPuest[]=$rSqlAl;
 }
 ?>

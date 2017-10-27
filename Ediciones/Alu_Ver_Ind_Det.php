@@ -9,12 +9,12 @@ if(isset($_GET['term'])){
 
 	$qSqlAlu = $Cn->BusAluxPerxProf( $_GET['term'] );
 
-	if(mysql_num_rows($qSqlAlu)==0){
+	if(mysqli_num_rows($qSqlAlu)==0){
 	    echo "Sin alumnos matriculados";
 	    die();
 	}
 	$r = array();
-	while($row=mysql_fetch_assoc($qSqlAlu)){
+	while($row=mysqli_fetch_assoc($qSqlAlu)){
 		$r[] = $row;
 	}
 	echo json_encode( $r );
@@ -65,7 +65,7 @@ if($Tp) {
 <input type="hidden" value="<?php echo $NtBas; ?>" id="NotaBasic" />
 <?php 
 $qSqlPer = $Cn->gPers();
-$CantiPer=mysql_num_rows( $qSqlPer );
+$CantiPer=mysqli_num_rows( $qSqlPer );
 
 if($CantiPer==0){
     echo "<div class='AnunNoPer'>Aun no hay periodos en este año <b>". $_SESSION['Year'] ."</b></div>";
@@ -73,13 +73,13 @@ if($CantiPer==0){
 }
 
 
-while($rSqlPer=mysql_fetch_array($qSqlPer)){
+while($rSqlPer=mysqli_fetch_array($qSqlPer)){
 	
 	$Per=$rSqlPer['idPer'];
 	$Periodo=$rSqlPer['Periodo'];
 
 	$qSqlMat = $Cn->gMatsxPer($Per, $IdAlu, $Filtro);
-	$CantiMat=mysql_num_rows( $qSqlMat );
+	$CantiMat=mysqli_num_rows( $qSqlMat );
 	$TextMas="";
 	if($CantiMat>0 and $Filtro=='perdidos'){
 	    $TextMas=" (notas pendientes)";
@@ -94,7 +94,7 @@ while($rSqlPer=mysql_fetch_array($qSqlPer)){
 		if($CantiMat==0){
 		    echo "<div class='CnMt' style='display:none;'>No hay notas perdidas en este periodo</b></div>";
 		}
-		while($rSqlMat=mysql_fetch_array($qSqlMat)){
+		while($rSqlMat=mysqli_fetch_array($qSqlMat)){
 		?>
 		<div class="CnMt" style="display:none;">
 			<div class="titMate">
@@ -102,7 +102,7 @@ while($rSqlPer=mysql_fetch_array($qSqlPer)){
 			</div>
 			<?php
 			$qSqlInd = $Cn->gIndxMatxAlu($Per, $rSqlMat['idMaterGrupo'], $IdAlu, $Filtro);
-			$CantiInd=mysql_num_rows( $qSqlInd );
+			$CantiInd=mysqli_num_rows( $qSqlInd );
 
 			if($CantiInd==0){
 			    echo "<div class='AnunNoPer'>No hay indicadores para la materia <b> ". $rSqlMat['AliasMateria'].".</b></div>";
@@ -131,7 +131,7 @@ while($rSqlPer=mysql_fetch_array($qSqlPer)){
 				</div>
 				<?php
 
-				while ( $rSqlInd=mysql_fetch_array($qSqlInd)) {
+				while ( $rSqlInd=mysqli_fetch_array($qSqlInd)) {
 				?>
 				<div class="row">
 					<div class="cell"><?php echo ++$Cant; ?></div>

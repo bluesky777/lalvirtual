@@ -25,7 +25,7 @@ class clsCompetencias extends clsConexion {
 		$qsqlid=$this->queryx("SELECT idCompet from tbcompetencias where
 				PeriodoCompet='".$Per."' and Competencia='".$Compet."' and 
 				MateriaGrupoCompet='".$IdMat."' order by idCompet desc;", "No se trajo el codigo.");
-        $rSqlId=mysql_fetch_array($qsqlid);
+        $rSqlId=mysqli_fetch_array($qsqlid);
         
         return $rSqlId[0];
 	}
@@ -73,12 +73,12 @@ class clsCompetencias extends clsConexion {
 		$qSqlSelInd=$this->queryx($sqlSelInd, "No se trajeron los indicadores de esta competencia. ");
 
 
-		while($rSqlSelInd=mysql_fetch_array($qSqlSelInd)){
+		while($rSqlSelInd=mysqli_fetch_array($qSqlSelInd)){
 			$sqlSelN="SELECT idNota from tbnotas where idIndic=" . $rSqlSelInd['idIndic'];
 			
 			$qSqlSelN=$this->queryx($sqlSelN, "No se pudieron seleccionar las notas de este indicador.");
 			
-			while($rSqlSelN=mysql_fetch_array($qSqlSelN)){
+			while($rSqlSelN=mysqli_fetch_array($qSqlSelN)){
 				
 				$sqlDelN="delete from tbnotas where idNota=".$rSqlSelN['idNota'];
 				

@@ -58,9 +58,9 @@ require_once("barra_superior.php");
                     WHERE p.idProf=yp.idProfesor 
                         and idYear=" . $_SESSION['Year'] . " order by NombresProf ";
 
-                $q=mysql_query($sqlprof, $con) or die ("Problema al consultar profesores." . mysql_error());
+                $q=$con->query($sqlprof) or die ("Problema al consultar profesores." . mysqli_error($con));
 
-                while($reg=mysql_fetch_array($q)){
+                while($reg=mysqli_fetch_array($q)){
                 ?>
                     <li>
                         <a href="javascript:void(0);" id="MatProf:<?php echo $reg['idProf']; ?>" class="CargarMaterias" title="<?php echo $reg['NombresProf'] . " " .  $reg['ApellidosProf']; ?>"><?php echo $reg['NombresProf'] . " " .  $reg['ApellidosProf'];  ?></a>

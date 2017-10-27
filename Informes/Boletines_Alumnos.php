@@ -9,7 +9,7 @@ $MiJuicio= new JuicioVal($_SESSION['Year']);
 
 $sqlCol="select * from tbyearcolegio where Year=".$_SESSION['Year'];
 $qSqlCol=mysql_query($sqlCol, $con) or die("No se seleccionó la información del año actual. ".mysql_error().". ".$sqlCol);
-$rSqlCol=mysql_fetch_array($qSqlCol);
+$rSqlCol=mysqli_fetch_array($qSqlCol);
 
 
 $NomCol = $rSqlCol['NombreColegio'];
@@ -25,7 +25,7 @@ $sqlGr="select g.NombreGrupo, g.Grupo, g.idGrupo, p.idProf, p.NombresProf, p.Ape
 		where a.idAlum=ga.idAlumno and ga.idGrupo=g.idGrupo and g.TitularGrupo=p.idProf and g.idGrupo=".$_POST['Grupos'];
 $qSqlGr=mysql_query($sqlGr, $con)or die("No se trajo la información del grupo.".mysql_error()." ".$sqlGr);
 
-while($rSqlGr=mysql_fetch_array($qSqlGr)){               /////////////// EMPEZAMOS A MOTRAR LOS BOLETINES DE TODOS
+while($rSqlGr=mysqli_fetch_array($qSqlGr)){               /////////////// EMPEZAMOS A MOTRAR LOS BOLETINES DE TODOS
 
 
 $Alto = 2550; //Tamaño de una hoja carta en pixeles
@@ -105,7 +105,7 @@ $sqlMat = "select * from tbmaterias m, tbmateriagrupo mg, tbgrupos g
 $qSqlMat = mysql_query($sqlMat, $con) or die("No se trajeron las materias del grupo ".$idGrupo.". ".mysql_error()." ".$sqlMat);
 
 
-while($rSqlMat = mysql_fetch_array($qSqlMat)){
+while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 ?>
   <div class="Materia">
 		<div class="NomMateria"><b><?php echo $rSqlMat['NombreMateria'];?></b></div>
@@ -131,7 +131,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	$qSqlComp=mysql_query($sqlNotComp,$con) or die ("No se calcularon las competencias de la materia: ".$rSqlMat['idMaterGrupo'].". ".mysql_error()." ".$sqlNotComp);
 	
 	$PromMat=0;
-	while($rSqlComp=mysql_fetch_array($qSqlComp)){
+	while($rSqlComp=mysqli_fetch_array($qSqlComp)){
 		$PromMat+=$rSqlComp['Valores'];
 	}
 	
@@ -156,7 +156,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	
 	$iComp=1;
 	
-	while($rSqlComp=mysql_fetch_array($qSqlComp)){
+	while($rSqlComp=mysqli_fetch_array($qSqlComp)){
 		
 		?>
         <div class="Competencia">
@@ -184,7 +184,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 	
 	$qSqlInd=mysql_query($sqlInd,$con) or die ("No se hizo el segundo calculo de las competencias de la materia: ".$rSqlMat['idMaterGrupo'].". ".mysql_error());
 
-	$rSqlInd=mysql_fetch_array($qSqlInd);
+	$rSqlInd=mysqli_fetch_array($qSqlInd);
 
 		?>
         
@@ -211,7 +211,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 		
 		$iInd=1;
 		
-		while($rSqlIndi=mysql_fetch_array($qSqlIndi)){
+		while($rSqlIndi=mysqli_fetch_array($qSqlIndi)){
     	?>
         <div class="ContInd">
 		<div class="NomIndicador"><?php echo $iInd++."-".$rSqlIndi['Indicador']; ?></div>
@@ -258,7 +258,7 @@ $sqlDisc="Select * from tbcomportamiento where MateriaGrupoComport=".$idGrupo. "
 
 $qSqlDisc=mysql_query($sqlDisc, $con)or die("No se trajo el comportamiento del alumno: ". $idAlum.". ".mysql_error()." ".$sqlDisc);
 
-$rSqlDisc=mysql_fetch_array($qSqlDisc);
+$rSqlDisc=mysqli_fetch_array($qSqlDisc);
 
 $idComportamiento=$rSqlDisc['idComport'];
 ?>
@@ -276,7 +276,7 @@ $sqlFraDisc="Select * from tbfrases f, tbfrasescomportamiento fc where f.idFrase
 
 $qSqlFraDisc=mysql_query($sqlFraDisc, $con)or die("No se trajeron las frases de comportamiento. ".mysql_error()." ".$sqlFraDisc);
 
-while($rSqlFraDisc=mysql_fetch_array($qSqlFraDisc)){
+while($rSqlFraDisc=mysqli_fetch_array($qSqlFraDisc)){
 
 ?>
 	<div class="Frase"><?php echo $rSqlFraDisc['Frase']; ?></div>
@@ -296,14 +296,14 @@ while($rSqlFraDisc=mysql_fetch_array($qSqlFraDisc)){
 <?php
 
 
-while($rSqlMat = mysql_fetch_array($qSqlMat)){
+while($rSqlMat = mysqli_fetch_array($qSqlMat)){
 	
 	$sqlPeriodos="select idPer, Periodo, Year from tbperiodos where Year=".$_SESSION['Year'];
 	
 	$qSqlPeriodos=mysql_query($sqlPeriodos, $con)or die("No se trajeron los periodos del año
 		" .$_SESSION['Year'].". <br>" . mysql_error());
 		
-	while($rSqlPeriodos=mysql_fetch_array($qSqlPeriodos)){
+	while($rSqlPeriodos=mysqli_fetch_array($qSqlPeriodos)){
 		
 		$sqlMalo="select n.Nota, n.idAlumno, i.idIndic, i.Indicador, c.idCompet, 
 			from tbnotas n, tbindicadores i, tbcompetencias c, tbmateriagrupo mg,
@@ -320,7 +320,7 @@ while($rSqlMat = mysql_fetch_array($qSqlMat)){
 		$ComentarioIndics="";
 		$ContPerdidos=0;
 		
-		while($rSqlMalo=mysql_fetch_array($qSqlMalo)){
+		while($rSqlMalo=mysqli_fetch_array($qSqlMalo)){
 			
 			$ComentarioIndics.=$rSqlMalo['Indicador']."=".$rSqlMalo['Nota']." \n";
 			$ContPerdidos+=1;

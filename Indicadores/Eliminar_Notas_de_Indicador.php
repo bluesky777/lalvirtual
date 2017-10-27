@@ -13,7 +13,7 @@ $qSqlInd=mysql_query($sqlInd, $con) or die("No se trajeron los indicadores." . m
 
 $i=0;
 
-while($rSqlInd=mysql_fetch_array($qSqlInd)){
+while($rSqlInd=mysqli_fetch_array($qSqlInd)){
 	$sql="delete from tbnotas where idIndic=".$rSqlInd['idIndic'];
 	$qSql=mysql_query($sql, $con) or die("No se pudo eliminar la nota: ".$rSqlInd['idIndic']);
 	$i++;

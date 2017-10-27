@@ -5,7 +5,7 @@ require_once("conexion.php");
 $con=Conectar();
 $sqlprof="select * from tbprofesores where idProf='" .$_GET['idProf']. "'";
 $qprof=mysql_query($sqlprof, $con) or die("Problemas al consultar al profesor.");
-$rprof=mysql_fetch_array($qprof);
+$rprof=mysqli_fetch_array($qprof);
 ?>
 <html>
 <head>
@@ -58,7 +58,7 @@ $sqlMater="select mg.idMaterGrupo, m.idMateria, m.NombreMateria, g.grupo, g.idGr
 	where m.idMateria=mg.idMateria and mg.idProfesor='".$_GET['idProf']."' and mg.idGrupo=g.idgrupo
 	order by g.grupo";
 $qMater=mysql_query($sqlMater, $con) or die ("Pailas con la consulta de materias" . mysql_error());
-while($rowmate=mysql_fetch_array($qMater)){
+while($rowmate=mysqli_fetch_array($qMater)){
 	?>
 	<li>
 		<?php
@@ -68,7 +68,7 @@ while($rowmate=mysql_fetch_array($qMater)){
 			where mg.idMaterGrupo=c.MateriaGrupoCompet and c.PeriodoCompet=p.idPer and mg.idMaterGrupo='". $rowmate['idMaterGrupo']. "'";
 		$qComp=mysql_query($sqlComp, $con) or die ("Pailander con las competencias. " . mysql_error());
 
-		while ($rComp=mysql_fetch_array($qComp)){
+		while ($rComp=mysqli_fetch_array($qComp)){
 		?> 
 			  <div class="<?php echo "cl" . $rComp['idCompet'] . $rComp['idMaterGrupo'] ?>" onClick="OcultarTb();">
               	<input type="hidden" class="IdCompHide" value="<?php echo $rComp['idCompet']; ?>">
@@ -89,7 +89,7 @@ while($rowmate=mysql_fetch_array($qMater)){
 						where idCompet=CompetenciaIndic and idCompet=".$rComp['idCompet'] . " order by OrdenIndic";
 					$qInd=mysql_query($sqlInd, $con) or die ("Problemas con los indicadores de esta Competencia. " . mysql_error());
 					if (mysql_fetch_row($qInd)>0){
-						while($rInd=mysql_fetch_array($qInd)){
+						while($rInd=mysqli_fetch_array($qInd)){
 					?>
 					<tr>
                     	<td><?php echo $rInd['OrdenIndic']; ?></td>

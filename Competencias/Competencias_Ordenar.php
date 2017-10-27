@@ -40,7 +40,7 @@ $qSqlC=mysql_query($sqlC, $con)or die("No se pudo traer las consecuencias.".mysq
 <ul id="test-list">
 <?php
 $i=1;
-while($rSqlC=mysql_fetch_array($qSqlC)){
+while($rSqlC=mysqli_fetch_array($qSqlC)){
 	
 	?>
    

@@ -53,10 +53,10 @@ class clsActividades extends clsConexion {
 	function TiposActividad(){
 		$sql = "select * from tbtipoactividad";
 
-		$qSql=mysql_query($sql, $this->cn) or die("No se trajeron los tipos de actidad. ".mysql_error());
+		$qSql=$this->cn->query($sql) or die("No se trajeron los tipos de actidad. ".mysql_error($this->cn));
 
 		if (!$qSql){
-	    	echo 'Error: ' . mysql_error();
+	    	echo 'Error: ' . mysql_error($this->cn);
       		exit;
 		}
 		
@@ -73,7 +73,7 @@ class clsActividades extends clsConexion {
 		$qSqlCr=mysql_query($sqlCr, $this->cn)or die("No se udo guardar la actividad. $sqlCr <br>".mysql_error());										
 
 		if (!$qSqlCr){
-	    	echo 'Error: ' . mysql_error();
+	    	echo 'Error: ' . mysql_error($this->cn);
       		exit;
 		}
 		return "Actividad guardada.";
@@ -82,12 +82,12 @@ class clsActividades extends clsConexion {
 
 	function gActiv($idA){
 		$sql ="select * from tbactividades where idAct=". $idA;
-		$qSql=mysql_query($sql, $this->cn)or die("No selecciono la actividad. $sql <br>".mysql_error());										
+		$qSql=$this->cn->query($sql)or die("No selecciono la actividad. $sql <br>".mysql_error($this->cn));										
 		if (!$qSql){
-	    	echo 'Error: ' . mysql_error();
+	    	echo 'Error: ' . mysql_error($this->cn);
       		exit;
 		}
-		$rSql=mysql_fetch_array($qSql);
+		$rSql=mysqli_fetch_array($qSql);
 		return $rSql;
 	}
 

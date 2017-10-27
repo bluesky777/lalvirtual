@@ -121,8 +121,8 @@ $sql="SELECT * from tbalumnos a, tbgrupoalumnos ga
 			<?php 
 			$sqlProf="select NombresProf, ApellidosProf from tbprofesores, tbgrupos where idGrupo='".$_GET['idGrupo']."' and TitularGrupo=idProf";
 
-			$qSqlProf=mysql_query($sqlProf, $con) or die("Lo sentimos, no se trajo al titular.".mysql_error());
-			$rSqlProf=mysql_fetch_array($qSqlProf);
+			$qSqlProf=$con->query($sqlProf) or die("Lo sentimos, no se trajo al titular.".mysqli_error($con));
+			$rSqlProf=mysqli_fetch_array($qSqlProf);
 			echo $rSqlProf['NombresProf']." ".$rSqlProf['ApellidosProf'];
 			 ?>
 	 	</small>
@@ -152,11 +152,11 @@ $sql="SELECT * from tbalumnos a, tbgrupoalumnos ga
 <tbody>
 
 <?php
-$qSql=mysql_query($sql, $con) or die ("No se pudo traer los grupos. " . mysql_error());
+$qSql=$con->query($sql) or die ("No se pudo traer los grupos. " . mysqli_error($con));
 
-$r=mysql_num_rows($qSql);
+$r=mysqli_num_rows($qSql);
 $i=1;
-while($rSql=mysql_fetch_array($qSql)){
+while($rSql=mysqli_fetch_array($qSql)){
 ?>
 
 	<tr>

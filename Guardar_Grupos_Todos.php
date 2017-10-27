@@ -9,7 +9,7 @@ $mensajes=array();
 
 $sqlG="select * from tbgrupos where YearGrupo='".$_SESSION['Year']."'";
 $qSqlG=mysql_query($sqlG, $con) or die ("Nada que ver con los grupos a guardar. ". mysql_error());
-while($rSqlG=mysql_fetch_array($qSqlG)){
+while($rSqlG=mysqli_fetch_array($qSqlG)){
     $cNivel="NivelGrupo".$rSqlG['idGrupo'];
     $cGrupo="Grupo".$rSqlG['idGrupo'];
     $cTitular="TitularGrupo".$rSqlG['idGrupo'];

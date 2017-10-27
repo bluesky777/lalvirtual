@@ -15,14 +15,14 @@ if(isset($_GET['PerSel'])){
 
 	$sql = "UPDATE tbusuarios SET PeriodoUsu=". $PerSel ." WHERE idUsu=". $idU;
 
-	$qSql=mysql_query($sql, $con) or die("No se pudo cambiar el periodo Error: " . mysql_error());
+	$qSql=$con->query($sql) or die("No se pudo cambiar el periodo Error: " . mysqli_error($con));
 
 
 	$sqlAc = "select Periodo, Year from tbperiodos where idPer=" . $PerSel;
 
-	$qSqlAc=mysql_query($sqlAc, $con);
+	$qSqlAc=$con->query($sqlAc);
 
-	while ($rSql=mysql_fetch_array($qSqlAc)) {
+	while ($rSql=mysqli_fetch_array($qSqlAc)) {
 		$_SESSION['PeriodoUsu']=$PerSel;
 		$_SESSION['Per']= $rSql['Periodo'];
 		$_SESSION['Year']= $rSql['Year'];
@@ -39,27 +39,27 @@ if(isset($_GET['PerSel'])){
 
 
 		$sqlY = "SELECT * FROM tbperiodos WHERE Year='" .$YearSel. "' limit 1";
-		$qSqlY = mysql_query($sqlY, $con) or die("No se trajo ".mysql_error());
-		$rSqlY = mysql_fetch_array($qSqlY);
+		$qSqlY = $con->query($sqlY) or die("No se trajo ".mysqli_error($con));
+		$rSqlY = mysqli_fetch_array($qSqlY);
 		
 		$sqlP = "SELECT * FROM tbperiodos WHERE idPer='" .$_SESSION['PeriodoUsu']. "'";
-		$qSqlP = mysql_query($sqlP, $con) or die("No se trajo ".mysql_error());
-		$rSqlP = mysql_fetch_array($qSqlP);
+		$qSqlP = $con->query($sqlP) or die("No se trajo ".mysqli_error($con));
+		$rSqlP = mysqli_fetch_array($qSqlP);
 
 		$PeriodoAnt = $rSqlP['Periodo'];
 
 		// Periodo al cual lo voy a agregar	
 		$sqlPn = "SELECT * FROM tbperiodos WHERE Periodo='" .$PeriodoAnt. "' AND Year='".$YearSel."'";
-		$qSqlPn = mysql_query($sqlPn, $con) or die("No se trajo ".mysql_error());
-		$rSqlPn = mysql_fetch_array($qSqlPn);
+		$qSqlPn = mysqli_query($sqlPn) or die("No se trajo ".mysqli_error($con));
+		$rSqlPn = mysqli_fetch_array($qSqlPn);
 
 		$idPerNew = 0;
 
-		if ( mysql_num_rows($qSqlPn) == 0 ){
+		if ( mysqli_num_rows($qSqlPn) == 0 ){
 			// Periodo al cual lo voy a agregar	
 			$sqlPn = "SELECT * FROM tbperiodos WHERE Year='".$YearSel."' limit 1";
-			$qSqlPn = mysql_query($sqlPn, $con) or die("No se trajo ".mysql_error());
-			$rSqlPn = mysql_fetch_array($qSqlPn);
+			$qSqlPn = $con->query($sqlPn) or die("No se trajo ".mysqli_error($con));
+			$rSqlPn = mysqli_fetch_array($qSqlPn);
 
 			$idPerNew = $rSqlPn['idPer'];
 		}else{
@@ -68,7 +68,7 @@ if(isset($_GET['PerSel'])){
 		
 		$sql = "UPDATE tbusuarios SET PeriodoUsu=". $idPerNew ." WHERE idUsu=". $idU;
 		
-		$qSql=mysql_query($sql, $con) or die("No se pudo cambiar el periodo Error: " . mysql_error());
+		$qSql=$con->query($sql) or die("No se pudo cambiar el periodo Error: " . mysqli_error($con));
 
 
 		$_SESSION['PeriodoUsu'] = $idPerNew;

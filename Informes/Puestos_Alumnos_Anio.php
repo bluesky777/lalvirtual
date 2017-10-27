@@ -52,7 +52,7 @@ echo '<input type="hidden" value="'.$idGrupo.'" id="hdIdGrupPuest">';
 $Period = $Calcs->gLastPeriodo($idGrupo);
 $qSqlContAl = $Calcs->gContAlumnosxNomGrupo($idGrupo, $Period);
 
-$rSqlAl=mysql_fetch_assoc($qSqlContAl);
+$rSqlAl=mysqli_fetch_assoc($qSqlContAl);
 
 $NomGr=$rSqlAl['NombreGrupo'];
 
@@ -76,7 +76,7 @@ if ($ContAlu==0){
 	$qSqlNomMat = $Calcs->gAbrevMatxGrupo($idGrupo);
 	
 	$MatCods=array();
-	while($rSqlNomMat=mysql_fetch_array($qSqlNomMat)){
+	while($rSqlNomMat=mysqli_fetch_array($qSqlNomMat)){
 		
 		$MatCods[]=$rSqlNomMat['idMaterGrupo'];
 		?>
@@ -96,7 +96,7 @@ $Listados=array();
 $qSqlAl=$Calcs->gPromedioxAlum($idGrupo, $Period);
 $i = $sw = $PorcGr = 0;
 
-while($rSqlAl=mysql_fetch_array($qSqlAl)){
+while($rSqlAl=mysqli_fetch_array($qSqlAl)){
 
   ?>
   <div class="row <?php if($sw==0){ echo "cAlter"; $sw=1;}else{ echo $sw=0; }?>" >
@@ -122,7 +122,7 @@ while($rSqlAl=mysql_fetch_array($qSqlAl)){
 		
 		$qSqlMalo=$Calcs->gNotasPerdidas($MatCod, $rSqlAl['idAlumno']);
 		
-		while($rSqlMalo=mysql_fetch_array($qSqlMalo)){
+		while($rSqlMalo=mysqli_fetch_array($qSqlMalo)){
 
 			$ComentarioIndics.="Per".$rSqlMalo['Periodo']."-".$rSqlMalo['Indicador']." =".$rSqlMalo['Nota']." \n";
 			$ContPerdidos+=1;

@@ -126,7 +126,7 @@ $(document).ready(function() {
 $sql="select * from tbusuarios";
 $qSql=mysql_query($sql, $con)or die("Pailas con los usuarios. ".mysql_error());
 
-while($rSql=mysql_fetch_array($qSql)){
+while($rSql=mysqli_fetch_array($qSql)){
 ?>	
 <tr id="<?php echo $rSql['idUsu']; ?>">
 	<td class="center"><?php echo $rSql['idUsu']; ?></td>

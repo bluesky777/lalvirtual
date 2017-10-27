@@ -25,7 +25,7 @@ $con=Conectar();
   <?php
   $sqlM="select * from tbmateriagrupo where idGrupo=" . $_GET['idGrupo'] . " order by OrdenMater";
   $qSqlM=mysql_query($sqlM, $con) or die("No se trajo las materias asignadas al grupo");
-  while($rSqlM=mysql_fetch_array($qSqlM)){
+  while($rSqlM=mysqli_fetch_array($qSqlM)){
   ?>
     <tr>
     	<td contenteditable="true" data-idmat="<?php echo $rSqlM['idMaterGrupo']; ?>" class="ordenMat"><?php echo $rSqlM['OrdenMater']; ?></td>
@@ -37,7 +37,7 @@ $con=Conectar();
 		
 		$qSqlMat=mysql_query($sqlMat, $con) or die ("Pailander con las materias" . mysql_error());
 		
-		while($rSqlMat= mysql_fetch_array($qSqlMat)){
+		while($rSqlMat= mysqli_fetch_array($qSqlMat)){
 			if ($rSqlMat['idMateria']==$rSqlM['idMateria']){
 		?>
             <option selected value="<?php echo $rSqlMat['idMateria']; ?>"><?php echo $rSqlMat['NombreMateria']; ?>
@@ -63,7 +63,7 @@ $con=Conectar();
             $sqlProf="select * from tbprofesores p, tbyearprofesores yp where yp.idYear=".$_SESSION['Year']. " and p.idProf=yp.idProfesor";
             $qSqlProf=mysql_query($sqlProf, $con) or die ("Pailander con los profesores" . mysql_error());
             
-            while($rSqlProf= mysql_fetch_array($qSqlProf)){
+            while($rSqlProf= mysqli_fetch_array($qSqlProf)){
                 if ($rSqlProf['idProf']==$rSqlM['idProfesor']){
             ?>
                 <option selected value="<?php echo $rSqlProf['idProf']; ?>"><?php echo $rSqlProf['NombresProf']; ?> <?php echo $rSqlProf['ApellidosProf']; ?>
@@ -120,7 +120,7 @@ $con=Conectar();
             
             $qSqlMat=mysql_query($sqlMat, $con) or die ("Pailander con las materias" . mysql_error());
             
-            while($rSqlMat= mysql_fetch_array($qSqlMat)){
+            while($rSqlMat= mysqli_fetch_array($qSqlMat)){
             ?>
 				<option value="<?php echo $rSqlMat['idMateria']; ?>"><?php echo $rSqlMat['NombreMateria']; ?>
                 </option>
@@ -139,7 +139,7 @@ $con=Conectar();
 
                     $qSqlProf=mysql_query($sqlProf, $con) or die ("Pailander con los profesores" . mysql_error());
                     
-                    while($rSqlProf= mysql_fetch_array($qSqlProf)){
+                    while($rSqlProf= mysqli_fetch_array($qSqlProf)){
                    	?>
                     <option value="<?php echo $rSqlProf['idProf']; ?>"><?php echo $rSqlProf['NombresProf']; ?> <?php echo $rSqlProf['ApellidosProf']; ?>
                     </option>

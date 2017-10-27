@@ -13,7 +13,7 @@ $sqlSel="select idCompet, Competencia, PorcCompet, FechaCreacionCompet, OrdenCom
 //echo $sqlSel;
 $qSqlSel=mysql_query($sqlSel, $con)or die("No se trajeron las competencias a copiar. ".mysql_error());
 
-$rSqlSel=mysql_fetch_array($qSqlSel);
+$rSqlSel=mysqli_fetch_array($qSqlSel);
 
 /// Verificar si el grupo del que se va a copiar es el mismo al que se va a copiar. //////////////////
 
@@ -22,7 +22,7 @@ $sqlGrNew="select idGrupo as GrupoNew from tbmateriagrupo
 		
 $qSqlGrNew=mysql_query($sqlGrNew, $con)or die("No se trajo el grupo nuevo<br>".mysql_error().$sqlGrNew);
 
-$numGr=mysql_num_rows($qSqlGrNew);
+$numGr=mysqli_num_rows($qSqlGrNew);
 
 $CopyAlum=0;
 
@@ -35,7 +35,7 @@ if($numGr>0){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 $qSqlSel=mysql_query($sqlSel, $con)or die("No se trajeron las competencias a copiar. ".mysql_error());
-while($rSqlSel=mysql_fetch_array($qSqlSel)){
+while($rSqlSel=mysqli_fetch_array($qSqlSel)){
 	
 	$sqlIns="insert into tbcompetencias (PeriodoCompet, 
 		Competencia, PorcCompet, MateriaGrupoCompet, FechaCreacionCompet, OrdenCompt)
@@ -56,7 +56,7 @@ echo "COMPETENCIA CREADA: <b>'".$rSqlSel['Competencia']."'</b> <br>";
 	$qSqlSelInd=mysql_query($sqlSelInd, $con)or die("No se pudo seleccionar los indicadores de la competencia ".$rSqlSel['Competencia'].". ".mysql_error());
 	
 	
-	while($rSqlSelInd=mysql_fetch_array($qSqlSelInd)){
+	while($rSqlSelInd=mysqli_fetch_array($qSqlSelInd)){
 		
 		$sqlInsInd="insert into tbindicadores (Indicador, PorcIndic, 
 				CompetenciaIndic, FechaInicioIndic, FechaFinIndic, 
@@ -82,7 +82,7 @@ echo "COMPETENCIA CREADA: <b>'".$rSqlSel['Competencia']."'</b> <br>";
 			
 			$qSqlSelNota=mysql_query($sqlSelNota, $con);
 			
-			while($rSqlSelNota=mysql_fetch_array($qSqlSelNota)){
+			while($rSqlSelNota=mysqli_fetch_array($qSqlSelNota)){
 				
 				$sqlInsNota="insert into tbnotas (idIndic, idAlumno, Nota) 
 					values('".$idT."','".$rSqlSelNota['idAlumno']."','".$rSqlSelNota['Nota']."')";

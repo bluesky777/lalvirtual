@@ -25,12 +25,12 @@ switch($opt){
 		where p.idProf=yp.idProfesor and idYear=" . $_SESSION['Year'];
 	$qSqlProf=mysql_query($sqlProf, $con) or die ("No se trajeron los profesores de este año. " . mysql_error());
 	
-	while($rSqlProf=mysql_fetch_array($qSqlProf)){
+	while($rSqlProf=mysqli_fetch_array($qSqlProf)){
 		
 		$sqlUsu="select idUsu from tbusuarios where idUsu='".$rSqlProf['UsuarioProf']."'";
 		$qSqlUsu=mysql_query($sqlUsu, $con) or die ("No se pudo comprobar si el profesor -(".$rSqlProf['idProf']. ")" . $rSqlProf['NombresProf']. "- tiene usuario. " . mysql_error());
 		
-		$num=mysql_num_rows($qSqlUsu);
+		$num=mysqli_num_rows($qSqlUsu);
 		if($num == 0){
 			
 			$nom = str_replace(' ', '', $rSqlProf['NombresProf']);
@@ -82,13 +82,13 @@ switch($opt){
 
 	$qSqlAlum=mysql_query($sqlAlum, $con) or die ("No se trajeron los alumnos de este año. " . mysql_error());
 	
-	while($rSqlAlum=mysql_fetch_array($qSqlAlum)){
+	while($rSqlAlum=mysqli_fetch_array($qSqlAlum)){
 		
 		
 		$sqlUsu="select idUsu from tbusuarios where idUsu='".$rSqlAlum['UsuarioAlum']."'";
 		$qSqlUsu=mysql_query($sqlUsu, $con) or die ("No se pudo comprobar si el alumno -(".$rSqlAlum['idAlum']. ")" . $rSqlAlum['NombresAlum']. "- tiene usuario. " . mysql_error());
 		
-		$num=mysql_num_rows($qSqlUsu);
+		$num=mysqli_num_rows($qSqlUsu);
 		if($num == 0){
 			
 			$nom = str_replace(' ', '', $rSqlAlum['NombresAlum']);

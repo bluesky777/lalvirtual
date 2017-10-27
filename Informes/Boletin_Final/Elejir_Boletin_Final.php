@@ -8,7 +8,7 @@ if(in_array("Ver boletines finales", $_SESSION['Privilegios'][0]) or ($_SESSION[
 
 $qSqlAlu = $Alu->gAlumxPer($_SESSION['PeriodoUsu']); //Traer todos los alumnos de un periodo
 
-$CantiAlu=mysql_num_rows($qSqlAlu);
+$CantiAlu=mysqli_num_rows($qSqlAlu);
 
 if($CantiAlu==0){
     echo "<div class='AnunNoAlum'>Aun no hay alumnos matriculados en el periodo <b>". $_SESSION['Per'] ."</b></div>";
@@ -24,7 +24,7 @@ if($CantiAlu==0){
 <select name="txtIdAlum" id="txtIdAlum">
 <?php
 
-while($rSqlAlu=mysql_fetch_array($qSqlAlu)){
+while($rSqlAlu=mysqli_fetch_array($qSqlAlu)){
 
 ?>
 	<option value="<?php echo $rSqlAlu['idAlum']; ?>"><?php echo $rSqlAlu['ApellidosAlum']." ".$rSqlAlu['NombresAlum'];?></option>
@@ -51,7 +51,7 @@ Ver boletines de un grupo:
 
 $qSqlGr = $Alu->gGrupos($_SESSION['Year']);
 
-while($rSqlGr=mysql_fetch_array($qSqlGr)){
+while($rSqlGr=mysqli_fetch_array($qSqlGr)){
 
 ?>
 	<option value="<?php echo $rSqlGr['idGrupo']; ?>"><?php echo $rSqlGr['NombreGrupo'];?></option>
